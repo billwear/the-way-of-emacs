@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - The Way of Emacs</title>
+    <style>
+        body {
+            background-color: #2e3440;
+            color: #d8dee9;
+            font-family: monospace;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            text-align: center;
+            color: #81a1c1;
+        }
+        nav {
+            background-color: #3b4252;
+            padding: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        nav a {
+            color: #d8dee9;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            color: #81a1c1;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        a {
+            color: #88c0d0;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #81a1c1;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="blog.html">Blog</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    
+    <h1>Blog</h1>
+    <p>Exploring The Way of Emacs: thoughts, lessons, and insights.</p>
+    
+    <ul id="post-list">
+        <!-- Posts will be loaded here dynamically -->
+    </ul>
+    
+    <script>
+        const posts = [
+            { title: "Welcome to The Way of Emacs", url: "posts/welcome.html", date: "March 4, 2025" },
+            { title: "Why Modularity Matters", url: "posts/modularity.html", date: "March 2, 2025" }
+        ];
+
+        const postList = document.getElementById("post-list");
+        posts.forEach(post => {
+            const li = document.createElement("li");
+            li.innerHTML = `<a href="${post.url}">${post.title}</a> <span style="color: #81a1c1;">(${post.date})</span>`;
+            postList.appendChild(li);
+        });
+    </script>
+</body>
+</html>
