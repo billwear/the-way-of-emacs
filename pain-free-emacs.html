@@ -1,0 +1,226 @@
+<body>
+<div id="content" class="content">
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org16e86a3">1. My First Notes</a></li>
+<li><a href="#orgcca6f1d">2. <span class="todo TODO">TODO</span> Write a report</a></li>
+<li><a href="#org800f3c9">3. <span class="todo TODO">TODO</span> Learn to use outline mode</a></li>
+<li><a href="#org8809140">4. <span class="todo TODO">TODO</span> Learn to make tasks recur daily</a></li>
+</ul>
+</div>
+</div>
+<p>
+<b><b>The Way of Emacs: A No-Nonsense Guide to Getting Started</b></b>
+</p>
+
+<p>
+Modern  tools  are overloaded,  complicated,
+and   get  in   your  way.   Emacs  can   be
+different — <b><b>if you skip the junk</b></b> and start
+with a simple, powerful setup. No memorizing
+cryptic     keybindings.      No     endless
+tweaking.  Just <b><b>a  system that  works</b></b> from
+the moment you install it.
+</p>
+
+<p>
+This guide sets up Emacs with <b><b>nine function
+keys  that do  everything you  need</b></b> to  get
+started.  Download  the  preloaded  `.emacs`
+file, drop it in  place, and you’re ready to
+go.
+</p>
+
+<p>
+—
+</p>
+
+<p>
+## <b><b>Step 1: Install Emacs</b></b>
+Choose your platform and install Emacs:
+</p>
+
+<ul class="org-ul">
+<li><b><b>Linux/macOS/WSL:</b></b> `sudo apt install emacs` or `brew install emacs`</li>
+<li><b><b>Windows (GUI):</b></b> Download from GNU or run `choco install emacs`</li>
+<li><b><b>Android (Termux):</b></b> `pkg install emacs`</li>
+</ul>
+
+<p>
+Once  installed, open  Emacs and  <b><b>clear the
+startup screen by pressing</b></b> `q`.
+</p>
+
+<p>
+—
+</p>
+
+<p>
+## <b><b>Step 2: Add the Preloaded `.emacs` File</b></b>
+Download the `.emacs` file and save it to your home directory (`~/.emacs` on Linux/macOS, `%APPDATA%\.emacs` on Windows). Restart Emacs, and you're ready to roll.
+</p>
+
+<p>
+—
+</p>
+
+<p>
+## <b><b>Step 3: Hands-on Learning—Let’s Do This Step by Step</b></b>
+Forget   memorizing  commands—just   <b><b>follow
+these simple actions</b></b> and you’ll be managing
+tasks in Emacs in minutes.
+</p>
+
+<p>
+### <b><b>1️⃣ Open a File</b></b>
+Press `F7` → Type `tasks.org` → Hit Enter. You just created and opened a file.
+</p>
+
+<p>
+### <b><b>2️⃣ Write Something</b></b>
+Type this inside `tasks.org`:
+```org
+</p>
+<div id="outline-container-org16e86a3" class="outline-2">
+<h2 id="org16e86a3"><span class="section-number-2">1.</span> My First Notes</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Some things I need to remember.
+```
+</p>
+
+<p>
+### <b><b>3️⃣ Save Your Work</b></b>
+Press `F8` to save the file.
+</p>
+
+<p>
+### <b><b>4️⃣ Change the File and Save As</b></b>
+</p>
+<ul class="org-ul">
+<li>Add a new line: `This is an update.`</li>
+<li>Press `F9` → Type `tasks-v2.org` → Hit Enter. You just saved it under a new name.</li>
+</ul>
+
+<p>
+### <b><b>5️⃣ Add Your First Task</b></b>
+</p>
+<ul class="org-ul">
+<li>Type this inside `tasks.org`:</li>
+</ul>
+<p>
+```org
+</p>
+</div>
+</div>
+<div id="outline-container-orgcca6f1d" class="outline-2">
+<h2 id="orgcca6f1d"><span class="section-number-2">2.</span> <span class="todo TODO">TODO</span> Write a report</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+```
+</p>
+<ul class="org-ul">
+<li>Press `F8` to save.</li>
+</ul>
+
+<p>
+### <b><b>6️⃣ Schedule It for Today</b></b>
+</p>
+<ul class="org-ul">
+<li>Move your cursor to `TODO Write a report`</li>
+<li>Press `F4` → Select today’s date → Hit Enter.</li>
+<li>Press `F8` to save.</li>
+</ul>
+
+<p>
+### <b><b>7️⃣ Open the Agenda to See Your Task</b></b>
+</p>
+<ul class="org-ul">
+<li>Press `F2` → Your scheduled task appears for today.</li>
+</ul>
+
+<p>
+### <b><b>8️⃣ Mark It as Done</b></b>
+</p>
+<ul class="org-ul">
+<li>Move the cursor to the task line.</li>
+<li>Press `F3` to cycle to `DONE`.</li>
+<li>Press `F8` to save.</li>
+</ul>
+
+<p>
+### <b><b>9️⃣ Open the Agenda Again</b></b>
+</p>
+<ul class="org-ul">
+<li>Press `F2` → See that the task is marked as done.</li>
+</ul>
+
+<p>
+### <b><b>🔟 Create two new tasks</b></b>
+</p>
+<ul class="org-ul">
+<li>Add these tasks:</li>
+</ul>
+<p>
+```org
+</p>
+</div>
+</div>
+<div id="outline-container-org800f3c9" class="outline-2">
+<h2 id="org800f3c9"><span class="section-number-2">3.</span> <span class="todo TODO">TODO</span> Learn to use outline mode</h2>
+</div>
+<div id="outline-container-org8809140" class="outline-2">
+<h2 id="org8809140"><span class="section-number-2">4.</span> <span class="todo TODO">TODO</span> Learn to make tasks recur daily</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+```
+### <b><b>6️⃣ Schedule each of these for Today</b></b>
+</p>
+<ul class="org-ul">
+<li>Move  your cursor  to `TODO  Learn to  use
+outline mode`</li>
+<li>Press `F4` → Hit Enter to select today's date.</li>
+<li>Press `F8` to save.</li>
+<li>Repeat for "…make tasks recur…"</li>
+</ul>
+
+<p>
+### <b><b>6️⃣  Give each  of these  a deadline  for
+      tomorrow</b></b>
+</p>
+<ul class="org-ul">
+<li>Move  your cursor  to `TODO  Learn to  use
+outline mode`</li>
+<li>Press `F5` → Hold  the Shift key and press
+the right arrow key  → Hit Enter to select
+the highlighted date in the calendar.</li>
+<li>Press `F8` to save.</li>
+<li>Repeat for "…make tasks recur…"</li>
+</ul>
+
+<p>
+##  <b><b>Step  4:  Now You’re  Using  Emacs—Keep
+Going</b></b>  With  this  setup,  you  can  <b><b>start
+working immediately</b></b>, without wrestling with
+Emacs' default keybindings. <b><b>Want to explore
+more?</b></b> Use `F1` to  check your function keys
+anytime.
+</p>
+
+<p>
+No extra configuration, no wasted time. Just
+a simple system that works.
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: stormrider</p>
+<p class="date">Created: 2025-03-13 Thu 11:35</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+
+
+</body>
