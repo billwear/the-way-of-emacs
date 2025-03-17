@@ -36,6 +36,7 @@
   <p>I've set this Emacs configuration file here in plain text for a very good reason: It only depends on this site; if you can see this page, you can get to the config file.</p>
 
   <pre>
+;; ------------- copy from here ---------------------
 ;; behave like every other system in the world
 (cua-mode)
 ;; open file (C-x C-f still works)
@@ -52,6 +53,7 @@
 (global-set-key (kbd "C-i") 'my/edit-init)
 ;; close file (overrides original 'kill-line')
 (global-set-key (kbd "C-k") 'kill-buffer)
+;; ------------- copy to here ---------------------
   </pre>
 
 <p>Download the <code>.emacs</code> file and save it to your home directory (<code>~/.emacs</code> on Linux/macOS, <code>%APPDATA%\.emacs</code> on Windows). Restart Emacs, and you're ready to roll.</p>
