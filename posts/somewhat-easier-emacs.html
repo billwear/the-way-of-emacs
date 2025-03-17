@@ -1,125 +1,106 @@
-<pre>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Your Life</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <nav>
+        <a href="../index.html">Home</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+        <div class="nav-footer">Always own your path</div>
+    </nav>
+    
+    <h1>Somehat easier Emacs<br/>A no-nonsense guide to getting started</h1>
+    <p class="date">March 16, 2025</p>
   
-**The Way of Emacs: A No-Nonsense Guide to Getting Started**
+<p>So there's no sales pitch here, except to say that I've tried to <em>pre-configure</em> Emacs as much as possible, to make it usable.  Then we can ratchet up the knowledge, one tiny droplet at a time, until you've got what you need.</p>
 
-Modern  tools  are overloaded,  complicated,
-and   get  in   your  way.   Emacs  can   be
-different, if you skip the junk and start
-with a simple, powerful setup. No memorizing
-cryptic     keybindings.      No     endless
-tweaking.  Just **a  system that  works** from
-the moment you install it.
+  <p>Wanna give it a try?  What's to lose, really?</p>
 
-This guide sets up Emacs with *nine function
-keys  that do  everything you  need* to  get
-started.  Download  the  preloaded  `.emacs`
-file, drop it in  place, and you’re ready to
-go.
+<h2>Step 1: Install Emacs</h2>
+<p>Choose your platform and install Emacs:</p>
+<ul>
+<li>**Linux/macOS/WSL:** <code>sudo apt install emacs</code> or <code>brew install emacs</code></li>
+<li>**Windows (GUI):** Download from GNU or run <code>choco install emacs</code></li>
+<li>**Android (Termux):** <code>pkg install emacs</code></li>
+</ul>
+<p>Once  installed, open  Emacs and  clear the creepy startup screen by pressing `q`.</p>
 
+<h2>Step 2: Copy and paste this preconfigured <code>.emacs</code> file</h2>
 
-## *Step 1: Install Emacs*
-Choose your platform and install Emacs:
+  <p>I've set this Emacs configuration file here in plain text for a very good reason: It only depends on this site; if you can see this page, you can get to the config file.</p>
 
-- **Linux/macOS/WSL:** `sudo apt install emacs` or `brew install emacs`
-- **Windows (GUI):** Download from GNU or run `choco install emacs`
-- **Android (Termux):** `pkg install emacs`
+  <pre>
+;; behave like every other system in the world
+(cua-mode)
+;; open file (C-x C-f still works)
+(global-set-key (kbd "C-o") 'find-file)
+;; find text (overrides original 'forward')
+(global-set-key (kbd "C-f") 'search-forward)
+;; save file (C-x C-s still works)
+(global-set-key (kbd "C-s") 'save-buffer)
+;; save as (overrides original 'home')
+(global-set-key (kbd "C-a") 'write-file)
+;; exit emacs (overides original 'end')
+(global-set-key (kbd "C-e") 'save-buffers-kill-terminal)
+;; open init file (overrides original 'tab')
+(global-set-key (kbd "C-i") 'my/edit-init)
+;; close file (overrides original 'kill-line')
+(global-set-key (kbd "C-k") 'kill-buffer)
+  </pre>
 
-Once  installed, open  Emacs and  **clear the
-startup screen by pressing** `q`.
+<p>Download the <code>.emacs</code> file and save it to your home directory (<code>~/.emacs</code> on Linux/macOS, <ccode>%APPDATA%\.emacs</code> on Windows). Restart Emacs, and you're ready to roll.</p>
 
-## *Step 2: Add the Preloaded `.emacs` File*
+<h2>Step 3: Hands-on learning</h2>
 
-Download the `.emacs` file and save it to your home directory (`~/.emacs` on Linux/macOS, `%APPDATA%\.emacs` on Windows). Restart Emacs, and you're ready to roll.
+Forget memorizing commands, struggling with control keys, and typing strange kebab-case-function-names.  Just follow the prompts and you should be editing files in minutes.
 
-## Step 3: Hands-on Learning
+<h3>Open a file</h3>
 
-Forget   memorizing  commands, just   *follow
-these simple actions* and you’ll be managing
-tasks in Emacs in minutes.
+  <ol>
+  <li>Hold the <code>ctrl</code> key and press <code>o</code> (lower-case letter "O").</li>
+  <li>Type whatever filename you want (totally up to you, but <code>foo</code> is a classic one.
+  <li>Hit <code>Enter</code>.</li>
+  </ol>
 
-### *Open a File*
+<p>Congrats. You just created and opened a file.</p>
 
-1. Press `F7`
-2. Type `tasks.org`
-3. Hit Enter.
+  <p><em>Tip:</em> Emacs doesn't distinguish between new files and existing ones.  If the filename you type exists in the directory you're in now, it will bring that one up.  If not, it will create it.  This is one of the ways Emacs actually <em>simplifies</em> working with text.</em></p>
 
-Congrats. You just created and opened a file.
+<h3>Write something</h3>
 
-### *Write Something*
+<p>Doesn't matter much what you type, but if you're stumped, here's suggested opening sentence to start a novel:</p>
 
-Type this inside `tasks.org`:
+  <p><code>Mary walked down the street and never came back.</code></p>
 
-\* My First Notes
-Some things I need to remember.
+<h3>Save your work</h3>
 
-### *Save Your Work*
+<p>To save your possibly-future-prize-winning prose, we're going to leverage Emacs favorite key -- the Control (<code>ctrl</code>) key.  From now on, we'll abbreviate these "Control codes" as <code>C-[some-other-key]</code>.</p>
 
-Press `F8` to save the file.
+  <p>Press <code>C-s</code> (hold <code>ctrl</code> down and press <code>s</code>) to save the file.</p>
 
-### Change the File and Save As
+  <p>There you go.  Your novel is started.</p>
 
-1. Add a new line: `This is an update.`
-2. Press `F9`
-3. Type `tasks-v2.org`
-4, Hit Enter.
+<h3></p>Change the file and "Save as..."</h3>
 
-You just saved it under a new name.
+  <p>Novels being the chimeric beasts that they are, you'll probably change this a dozen times, then finally decide that you liked the first version -- but you've overwritten it several different times!  Not to worry.  Every time the Muse strikes, you can open the old file and save it as a new version.</p>
+<ol>
+<li>Press <code>C-a</code>.</li>
+<li>Type a new file name (<em>Hint</em>: just use <code>[name]-v[n]</code>, where you increment the <code>[n]</code> every time, so for example, "foo-v2"). 
+<li>Hit <code>Enter</code>.</li>
+</ol>
+<p>You just saved it under a new name, and if look at the <em>mode line</em> (the reverse video line one line above the bottom of the window), you'll see that you're now editing the <em>new</em> file.  Mission accomplished.</p>
 
-### Add Your First Task
+<p>Note that later on, if you keep going with this little tutorial, you'll learn a wonderful Emacs add-on called "magit" that lets you keep every version you ever typed all in one place, and pick out old ones -- easily -- when you need them.  But that is many bridges down the river yet....</p>  
 
-1. Type this inside `tasks.org`:
+  <footer>
+        © 2025 Bill Wear. All Rights Reserved.
+    </footer>
 
-\* TODO Write a report
-
-2. Press `F8` to save.
-
-### **6️⃣ Schedule It for Today**
-- Move your cursor to `TODO Write a report`
-- Press `F4` → Select today’s date → Hit Enter.
-- Press `F8` to save.
-
-### **7️⃣ Open the Agenda to See Your Task**
-- Press `F2` → Your scheduled task appears for today.
-
-### **8️⃣ Mark It as Done**
-- Move the cursor to the task line.
-- Press `F3` to cycle to `DONE`.
-- Press `F8` to save.
-
-### **9️⃣ Open the Agenda Again**
-- Press `F2` → See that the task is marked as done.
-
-### **🔟 Create two new tasks**
-- Add these tasks:
-```org
-* TODO Learn to use outline mode
-* TODO Learn to make tasks recur daily
-```
-### **6️⃣ Schedule each of these for Today**
-- Move  your cursor  to `TODO  Learn to  use
-  outline mode`
-- Press `F4` → Hit Enter to select today's date.
-- Press `F8` to save.
-- Repeat for "...make tasks recur..."
-
-### **6️⃣  Give each  of these  a deadline  for
-      tomorrow**
-- Move  your cursor  to `TODO  Learn to  use
-  outline mode`
-- Press `F5` → Hold  the Shift key and press
-  the right arrow key  → Hit Enter to select
-  the highlighted date in the calendar.
-- Press `F8` to save.
-- Repeat for "...make tasks recur..."
-
-##  **Step  4:  Now You’re  Using  Emacs—Keep
-Going**  With  this  setup,  you  can  **start
-working immediately**, without wrestling with
-Emacs' default keybindings. **Want to explore
-more?** Use `F1` to  check your function keys
-anytime.
-
-No extra configuration, no wasted time. Just
-a simple system that works.
-
-</pre>
+</body>
+</html>
