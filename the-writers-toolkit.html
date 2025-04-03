@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-04-03 Thu 16:53 -->
+<!-- 2025-04-03 Thu 17:20 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>The Writer’s Toolkit</title>
@@ -213,9 +213,9 @@ I’m not doing this to chase views or SEO. I’m doing it to figure out what wo
 <p>
 The tools I’ll cover here aren’t theoretical — they’re what I’m actually using day to day.
 </p>
-<div id="outline-container-org03b7f49" class="outline-2">
-<h2 id="org03b7f49">What This Toolkit Will Eventually Cover</h2>
-<div class="outline-text-2" id="text-org03b7f49">
+<div id="outline-container-org6590bc6" class="outline-2">
+<h2 id="org6590bc6">What This Toolkit Will Eventually Cover</h2>
+<div class="outline-text-2" id="text-org6590bc6">
 <ul class="org-ul">
 <li>How I plan and structure scenes in Org mode</li>
 <li>What tags and TODO workflows I use to track drafts</li>
@@ -226,9 +226,9 @@ The tools I’ll cover here aren’t theoretical — they’re what I’m actual
 </ul>
 </div>
 </div>
-<div id="outline-container-org7d4b94b" class="outline-2">
-<h2 id="org7d4b94b">Where I'm Starting</h2>
-<div class="outline-text-2" id="text-org7d4b94b">
+<div id="outline-container-org7d93743" class="outline-2">
+<h2 id="org7d93743">Where I'm Starting</h2>
+<div class="outline-text-2" id="text-org7d93743">
 <p>
 Right now, I’m starting simple:
 </p>
@@ -245,9 +245,9 @@ This page will evolve as my workflow evolves. If you're a writer and you use Ema
 </p>
 </div>
 </div>
-<div id="outline-container-org7422ce7" class="outline-2">
-<h2 id="org7422ce7">First Things</h2>
-<div class="outline-text-2" id="text-org7422ce7">
+<div id="outline-container-org39176d3" class="outline-2">
+<h2 id="org39176d3">First Things</h2>
+<div class="outline-text-2" id="text-org39176d3">
 <ol class="org-ol">
 <li>My home directory is a GitHub repository, so most of my files are kept in a backed-up state, I can work from any device I pick up that can <code>git</code> or reach <code>GitHub.com</code>.</li>
 
@@ -293,6 +293,73 @@ I use the Org-Mode in-buffer setting <code>EXPORT_FILE_NAME</code> to define whe
 <p>
 This makes it simple to add a file and publish it without much fuss, and without a complicated <code>org-publish</code> setup.
 </p>
+</div>
+</div>
+<div id="outline-container-orgeb47553" class="outline-2">
+<h2 id="orgeb47553">Setting Up the Actual Novel Writing</h2>
+<div class="outline-text-2" id="text-orgeb47553">
+<p>
+Everything about the writing goes in a directory called <code>~usr/projects/neptune-anomaly/</code>, which breaks out like this at the moment:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil">~/usr/projects/neptune-anomaly/
+├── manuscript.org         ← all the scenes and acts go here
+├── characters.org         ← one heading per character
+├── timeline.org           ← plot beats + calendar if needed
+├── notes.org              ← worldbuilding, ideas, etc.
+├── outline.org            ← arcs, structure, theme exploration
+├── scratch.org            ← freewriting, idea dumps
+</pre>
+</div>
+
+<p>
+I suppose in something like Scrivener, these would be more atomic, but Org-Mode allows me to do lots of things with a simple outline, so no need for too many source files.  The manuscript file starts sort of plain:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil">* Act I
+ ** Scene 1 :: Arrival at Neptune
+    :PROPERTIES:
+    :SETTING: Orbital insertion
+    :STATUS: Outline
+    :POV: Lira Okoye, Master Exomet
+    :END:
+
+    Some draft text here, or notes about what this scene needs.
+</pre>
+</div>
+
+<p>
+In case you're wondering, "Exomet" stands for "Exometeorologist," which is what I think you'd call someone who understands the behavior of planets that are mostly gaseous.  It wouldn't be geology, so I (maybe?) invented a new field for this book.  So in <code>characters.org</code>, I have a heading for her:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil">* Lira Okoye
+ :PROPERTIES:
+ :ARCHETYPE: Protagonist
+ :FUNCTION: Pursues the story goal
+ :OPPOSED: Antagonist
+ :END:
+ ** Expert exometeorologist - someone who completely understands the behavior, topology, and science (the "weather") of a gas giant.
+ ** Dramatic Arc
+ :PROPERTIES:
+ :ROLE: Protagonist
+ :DOMAIN: Mind (internal conflict of belief)
+ :ISSUE: Control vs. Uncertainty
+ :CHOICE: Rationalization vs. Acceptance
+ :RESOLUTION: Integration of the subjective into the scientific
+ :END:
+
+ Lira begins the story believing that everything in the universe, even Neptune's magnetic field, can be modeled and predicted. 
+
+ The artifact doesn’t just resist analysis — it *reacts* to it. Her attempts to measure it cause it to change form or communicate through symbols. Her dreams become infected with recurring images: whirlpools, spiral arms, her father’s voice.
+
+ Over time, she realizes that the artifact is not a machine — it’s a kind of narrative engine, reacting to the *intent* of the observer.
+
+ In the final act, Lira builds a hybrid model of physics and semiotics that allows humanity to interact with the artifact without losing their minds.
+</pre>
+</div>
 </div>
 </div>
 </div>
