@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-04-03 Thu 16:43 -->
+<!-- 2025-04-03 Thu 16:53 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>The Writer’s Toolkit</title>
@@ -213,9 +213,9 @@ I’m not doing this to chase views or SEO. I’m doing it to figure out what wo
 <p>
 The tools I’ll cover here aren’t theoretical — they’re what I’m actually using day to day.
 </p>
-<div id="outline-container-orgd979abf" class="outline-2">
-<h2 id="orgd979abf">What This Toolkit Will Eventually Cover</h2>
-<div class="outline-text-2" id="text-orgd979abf">
+<div id="outline-container-org03b7f49" class="outline-2">
+<h2 id="org03b7f49">What This Toolkit Will Eventually Cover</h2>
+<div class="outline-text-2" id="text-org03b7f49">
 <ul class="org-ul">
 <li>How I plan and structure scenes in Org mode</li>
 <li>What tags and TODO workflows I use to track drafts</li>
@@ -226,15 +226,15 @@ The tools I’ll cover here aren’t theoretical — they’re what I’m actual
 </ul>
 </div>
 </div>
-<div id="outline-container-orged7066d" class="outline-2">
-<h2 id="orged7066d">Where I'm Starting</h2>
-<div class="outline-text-2" id="text-orged7066d">
+<div id="outline-container-org7d4b94b" class="outline-2">
+<h2 id="org7d4b94b">Where I'm Starting</h2>
+<div class="outline-text-2" id="text-org7d4b94b">
 <p>
 Right now, I’m starting simple:
 </p>
 
 <ul class="org-ul">
-<li>I write Org files in a homedir folder called `~/usr/projects/the-way-of-emacs` and export them to HTML on the-way-of-emacs.com with an Emacs Lisp function</li>
+<li>I write Org files in a homedir folder called <code>~/usr/projects/the-way-of-emacs</code> and export them to HTML on the-way-of-emacs.com with an Emacs Lisp function</li>
 <li>I manage my writing time in Org Agenda</li>
 <li>I have a growing system for publishing these posts to GitHub Pages</li>
 <li>I’m tracking progress on the novel with basic Org headings and TODOs</li>
@@ -245,17 +245,17 @@ This page will evolve as my workflow evolves. If you're a writer and you use Ema
 </p>
 </div>
 </div>
-<div id="outline-container-org6dc3cbe" class="outline-2">
-<h2 id="org6dc3cbe">First Things</h2>
-<div class="outline-text-2" id="text-org6dc3cbe">
+<div id="outline-container-org7422ce7" class="outline-2">
+<h2 id="org7422ce7">First Things</h2>
+<div class="outline-text-2" id="text-org7422ce7">
 <ol class="org-ol">
-<li>My home directory is a GitHub repository, so most of my files are kept in a backed-up state, I can work from any device I pick up that can `git` or reach `GitHub.com`.</li>
+<li>My home directory is a GitHub repository, so most of my files are kept in a backed-up state, I can work from any device I pick up that can <code>git</code> or reach <code>GitHub.com</code>.</li>
 
-<li>Other GitHub repos are also in my home directory, but in a folder called `~/src` that is ignored by the homedir repo thanks to a `.gitignore` entry.</li>
+<li>Other GitHub repos are also in my home directory, but in a folder called <code>~/src</code> that is ignored by the homedir repo thanks to a <code>.gitignore</code> entry.</li>
 
 <li>The source files for the Website are in Org-Mode, which can be easily exported to HTML with all the trimmings.</li>
 
-<li>I could have used the Org-Mode publishing tools for the Website, but they seemed like unnecessary complexity.  Instead, I just use this relatively simple Emacs Lisp function to export the pages to the `~/src` directory and commit/push them to the repo, where a GitHub Action publishes them on arrival.</li>
+<li>I could have used the Org-Mode publishing tools for the Website, but they seemed like unnecessary complexity.  Instead, I just use this relatively simple Emacs Lisp function to export the pages to the <code>~/src</code> directory and commit/push them to the repo, where a GitHub Action publishes them on arrival.</li>
 </ol>
 
 <p>
@@ -282,7 +282,7 @@ Here's the simple publishing function:
 </div>
 
 <p>
-I use the Org-Mode in-buffer setting `EXPORT<sub>FILE</sub><sub>NAME</sub>` to define where this file will be published in the local GitHub repo, e.g.:
+I use the Org-Mode in-buffer setting <code>EXPORT_FILE_NAME</code> to define where this file will be published in the local GitHub repo, e.g.:
 </p>
 
 <div class="org-src-container">
@@ -291,7 +291,7 @@ I use the Org-Mode in-buffer setting `EXPORT<sub>FILE</sub><sub>NAME</sub>` to d
 </div>
 
 <p>
-This makes it simple to add a file and publish it without much fuss.
+This makes it simple to add a file and publish it without much fuss, and without a complicated <code>org-publish</code> setup.
 </p>
 </div>
 </div>
