@@ -25,6 +25,15 @@ header {
   box-shadow: 0 0 10px #000;
 }
 
+.logo {
+  max-width: 200px;
+  height: auto;
+  display: block;
+  margin: 0 auto 1rem;
+  border-radius: 4px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+}
+
 h1 {
   font-size: 3rem;
   margin: 1rem 0 0.2rem;
