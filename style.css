@@ -4,64 +4,70 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Spectral', serif;
-  font-size: 1.2rem; /* Increase the base font size */
+  font-size: 1.2rem;
   background: #1a1a1a url('images/parchment-texture.jpg') repeat;
   color: #f0e6dc;
-  line-height: 1.8; /* Adjusted line height for better readability */
+  line-height: 1.8;
   text-shadow: 0 0 1px #000;
 }
 
-header {
-  text-align: center;
+/* --- Header Section --- */
+
+header.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 2rem 1rem;
   background: rgba(0, 0, 0, 0.6);
   border-bottom: 2px solid #444;
-}
-
-.banner {
-  width: 100%;
-  max-height: 350px;
-  object-fit: cover;
-  border-radius: 8px;
-  box-shadow: 0 0 10px #000;
+  gap: 1.5rem;
+  flex-wrap: wrap;
 }
 
 .logo {
-  max-width: 200px;
+  max-width: 100px;
   height: auto;
-  display: block;
-  margin: 0 auto 1rem;
   border-radius: 4px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+  flex-shrink: 0;
+}
+
+.site-title-group {
+  max-width: 700px;
+  text-align: left;
 }
 
 h1 {
-  font-size: 3.5rem; /* Slightly larger h1 */
-  margin: 1rem 0 0.2rem;
-  letter-spacing: 0.05em;
+  font-size: 2.5rem;
+  margin: 0.2rem 0;
+  letter-spacing: 0.04em;
 }
 
 .subtitle {
-  font-size: 1.3rem; /* Larger subtitle */
+  font-size: 1.2rem;
   font-style: italic;
   color: #bbb;
+  margin: 0.2rem 0 0;
 }
 
+/* --- Main Content --- */
+
 main {
-  max-width: 800px;
-  margin: 3rem auto;
-  padding: 0 1.5rem;
+  max-width: 1000px;
+  margin: 2.5rem auto;
+  padding: 0 2rem;
 }
 
 section {
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
 }
 
 h2 {
-  font-size: 2rem; /* Larger h2 for better hierarchy */
+  font-size: 1.8rem;
   color: #fcebb7;
   border-bottom: 1px solid #555;
   padding-bottom: 0.3rem;
+  margin-top: 0;
 }
 
 a {
@@ -75,30 +81,13 @@ a:hover {
   border-bottom: 1px solid #fff;
 }
 
+/* --- Footer --- */
+
 footer {
   text-align: center;
   padding: 2rem 1rem;
-  font-size: 1rem; /* Increased footer font size for readability */
+  font-size: 1rem;
   color: #777;
   background: #111;
   border-top: 1px solid #333;
-}
-
-/* Optional: Make the font size responsive */
-@media (max-width: 768px) {
-  body {
-    font-size: 1.1rem; /* Slightly smaller on mobile */
-  }
-
-  h1 {
-    font-size: 2.5rem;
-  }
-
-  h2 {
-    font-size: 1.8rem;
-  }
-
-  footer {
-    font-size: 0.9rem;
-  }
 }
