@@ -4,6 +4,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Spectral', serif;
+  font-size: 12;
   background: #1a1a1a url('images/parchment-texture.jpg') repeat;
   color: #f0e6dc;
   line-height: 1.7;
