@@ -115,8 +115,19 @@ footer {
     margin: 0;
   }
 
+  body {
+    font-size: 1rem; /* Slightly smaller base font */
+  }
+
+  h1 {
+    font-size: 1.4rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
   .subtitle {
-    font-size: 1rem;
-    margin-top: 0.3rem;
+    font-size: 0.9rem;
   }
 }
