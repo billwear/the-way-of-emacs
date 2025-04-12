@@ -16,94 +16,112 @@
   <main>
     <article>
 
-      <p>Once upon a time, I had apps. Todoist. Notion. Trello. One for work, one for faith, one for writing, and seven I forgot to delete.</p>
+      <p>I manage everything — my job, my house, my support queue, my prayer life, my sci-fi worldbuilding — with a handful of <code>.org</code> files and a system I trust more than any app I’ve ever used. This isn’t a productivity flex. It’s survival.</p>
 
-      <p>Then I discovered Emacs — and more importantly, <code>org-mode</code>. These days, I run nearly every part of my life from a single set of text files. No drag-and-drop. No dark-mode toggle. Just keystrokes, timestamps, and structured plain text.</p>
-
-      <p>Here’s how it works, what I track, and why it might be the most quietly powerful system I’ve ever used.</p>
+      <p>At the heart of the system is Emacs and <code>org-mode</code>, backed by capture templates, custom TODO states, and one principle: <strong>keep friction where it matters</strong>.</p>
 
       <hr/>
 
-      <h2>1. A Cockpit, Not a List</h2>
-      <p>At the center of it all is my <code>org-agenda</code> view. Think of it like a cockpit: every priority, project, and habit is visible in one glance. No tabs. No folders. Just structured context:</p>
+      <h2>Agenda-Driven Life</h2>
+      <p>Here’s how my Emacs is set up to focus on the things I care about:</p>
 
-      <pre><code>
-Week: [ Renovation punchlist | Canonical goals | Novel structure ]
-Today: [ 2 interviews, 3 writing blocks, 1 prayer list ]
-Recurring: [ Friday cleanup | Sunday prep | Week review ]
+      <pre><code class="emacs-lisp">
+(setq org-agenda-files '("~/etc/org/pdp.org"
+                         "~/etc/org/support.org"
+                         "~/etc/org/renovation.org"
+                         "~/etc/org/neptune.org"))
       </code></pre>
 
-      <p>I hit <code>C-c a</code> and I know what needs doing, what I’ve ignored, and what I can punt. Everything is sourced from different .org files, but it all flows into one interface.</p>
+      <p>My agenda view pulls from four key areas: professional goals, community support, house projects, and fiction work. I don’t try to merge them. I just let them show up on the same screen. The overlap reminds me that life is one thing, not four separate apps.</p>
 
       <hr/>
 
-      <h2>2. Tracking My Professional Level</h2>
-      <p>In <code>pip.org</code>, I track the goals of my current role — not aspirational fluff, but real, documented expectations:</p>
+      <h2>Professional Goals (PDP)</h2>
+      <p>In <code>pdp.org</code>, I keep a running list of expectations tied to my role level — these aren’t aspirations, they’re part of the job description. I treat them as scaffolding, not pressure:</p>
 
       <pre><code>
-* Canonical Goals                                       :work:
-** Own project/product documentation
-** Solve information architecture problems
-** Provide in-depth product feedback
-** Collaborate as a documentation expert
+* Professional Objectives                                :pdp:
+** TODO Own project documentation
+** TODO Improve architecture understanding
+** TODO Give product feedback that lands
+** TODO Contribute to team goals as a writing expert
       </code></pre>
 
-      <p>Each one links to related tasks, notes, and log entries. When I do something meaningful, I log it there with a timestamp. It’s not just accountability — it’s narrative. It reminds me who I’m trying to become professionally, and where I’m still learning.</p>
+      <p>Each of these links to real tasks. I log progress underneath them. It keeps me focused on the kind of person I’m becoming, not just the task list du jour.</p>
 
       <hr/>
 
-      <h2>3. Managing the Renovation (Without Losing My Mind)</h2>
-      <p>Our house is 70 years old and full of “fun surprises.” I track every task, delay, and purchase in <code>renovation.org</code>:</p>
+      <h2>Support Is Messy — I Track That Too</h2>
+      <p><code>support.org</code> is a wild mix: actual customer support moments, internal questions, home maintenance, and small acts of neighborly triage. I use a capture template to toss these in quickly:</p>
+
+      <pre><code class="emacs-lisp">
+("s" "Support [Inbox]" entry
+ (file+headline "~/etc/org/support.org" "Inbox")
+ "* TODO %?\n  %U\n")
+      </code></pre>
+
+      <p>Here’s what a real section might look like:</p>
 
       <pre><code>
-* Paint touchups (living room)
-* Cabinet hardware needs tightening
-* Plumbing: check new shutoff valve
-* [X] Fix broken tile before reunion
+* TODO Pull weeds out front before rain                 :chores:
+  <2025-04-14 Mon>
+* TODO Answer Jim’s PXE bug question                    :work:
+  <2025-04-12 Sat>
+* TODO Call neighbor re: loose dog                      :local:
+  <2025-04-13 Sun>
       </code></pre>
 
-      <p>Tags like <code>:BLOCKED:</code> and <code>:GOAL:</code> help me sort them in my agenda. It’s granular when it needs to be, and high-level when I just want to see what’s left before guests arrive.</p>
+      <p>This file reminds me that support isn’t just tickets and code — it’s what you choose to carry.</p>
 
       <hr/>
 
-      <h2>4. Prayer, Faith, and Staying Grounded</h2>
-      <p>Yes, I even keep a prayer list — not for gamification, but because consistency matters. In <code>prayer-list.org</code> I track names, intentions, follow-ups:</p>
+      <h2>Capture Templates Make This Flow</h2>
+      <p>I use capture templates to instantly drop thoughts, tasks, or logs into the right context without ever switching files manually. A few favorites:</p>
+
+      <pre><code class="emacs-lisp">
+(setq org-capture-templates
+      '(("s" "Support [Inbox]" entry
+         (file+headline "~/etc/org/support.org" "Inbox")
+         "* TODO %?\n  %U\n")
+        ("r" "Renovation Task" entry
+         (file+headline "~/etc/org/renovation.org" "Projects")
+         "* TODO %?  :renovation:\n  %U\n")
+        ("l" "Log Entry" entry
+         (file+headline "~/etc/org/pdp.org" "Log")
+         "* %U %?\n" :empty-lines 1)))
+      </code></pre>
+
+      <p>Each one gives me frictionless capture, but keeps tasks filed where they belong.</p>
+
+      <hr/>
+
+      <h2>Friction is a Feature</h2>
+      <p>Most people want less friction. I don’t — not always. For habits I want to keep, I make them repeat. But I don’t use tools that hide or snooze them. I <strong>let them accumulate</strong>. That way, when I ignore a habit, it piles up like guilt in my agenda view:</p>
 
       <pre><code>
-* Weekly Intentions
-** Family healing
-** Courage to finish the hard things
-* People
-** {C} George — upcoming surgery
-** {R} Sarah — job uncertainty
+* TODO Stretch (repeat every day)                       :habit:
+  SCHEDULED: <2025-04-12 Sat +1d>
+* TODO Review goals (repeat every Friday)              :habit:
+  SCHEDULED: <2025-04-11 Fri +1w>
       </code></pre>
 
-      <p>This part of the system is the quietest. No due dates. Just reminders to stop, reflect, and do the work that isn’t visible.</p>
+      <p>There’s no “Done” button that resets it. I have to manually mark it. If I ignore it, I see it. That friction is what makes me act. The guilt is the feature.</p>
 
       <hr/>
 
-      <h2>5. Support Logs (Yes, Really)</h2>
-      <p>In <code>support.org</code>, I track how I help others — from bug triage to documentation questions. It’s not for ego. It’s a reminder that my work is bigger than just me:</p>
+      <h2>Everything, Together</h2>
+      <p>All of this flows into a single agenda view that might show me:</p>
 
-      <pre><code>
-* Helped resolve PXE boot bug
-* Answered networking config thread on Discourse
-* Created mini how-to for team on VLAN IP ranges
-      </code></pre>
-
-      <p>When I wonder if I’m doing enough, I check this file. It usually quiets the doubt.</p>
-
-      <hr/>
-
-      <h2>6. Why It Works</h2>
       <ul>
-        <li><strong>Searchable</strong>: I can find anything in seconds. No scrolling through Slack history.</li>
-        <li><strong>Portable</strong>: Git-backed. Text-based. Cross-platform.</li>
-        <li><strong>Customizable</strong>: I made my own tags, states, agenda views, and rituals.</li>
-        <li><strong>Opinionated</strong>: It works because it reflects how I think, not how an app designer thinks I should.</li>
+        <li>Professional deliverables</li>
+        <li>Support tasks from people I care about</li>
+        <li>House projects due before the family reunion</li>
+        <li>A prayer list I quietly keep updating</li>
       </ul>
 
-      <p>This isn’t for everyone. But if you’ve ever wanted one tool that can scale from spiritual practice to system admin notes to novel outlining... Emacs isn’t just an editor. It’s an ecosystem. And it plays nice with your brain.</p>
+      <p>This system isn’t about minimalism. It’s about visible complexity — managed with quiet tools and loud intentions.</p>
+
+      <p>Plain text. No distractions. Just the life I’m building, one entry at a time.</p>
 
       <p><a href="/emacs/index.html">← Back to Emacs</a></p>
 
@@ -111,7 +129,7 @@ Recurring: [ Friday cleanup | Sunday prep | Week review ]
   </main>
 
   <footer>
-    <p>© 2025 The Way of Emacs. One brain. One keyboard. One text file to rule them all.</p>
+    <p>© 2025 The Way of Emacs. My friction is my focus. My focus is in a file.</p>
   </footer>
 
 </body>
