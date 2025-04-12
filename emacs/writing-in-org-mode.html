@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Dramatic Story Engine in Org-mode</title>
+  <link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+  <header class="post-header">
+    <h1>The Dramatic Story Engine: A Fiction Framework in Org-mode</h1>
+    <p class="byline">Posted April 12, 2025 by Bill</p>
+  </header>
+
+  <main>
+    <article>
+
+      <p><strong>Every story needs structure.</strong> Not a formula. A framework. Something solid enough to support creativity — and flexible enough to evolve with it. That’s what the Dramatic Story Engine is designed to do.</p>
+
+      <p>I built it because I was tired of writing notes that never aligned, outlines that buckled under revision, and character arcs that drifted out to sea. What I needed was a <em>living</em> structure. Something modular. Something in Emacs. And something I could tweak without rewriting a whole book.</p>
+
+      <p>So I created the Dramatic Story Engine — a small set of flexible narrative components managed in Org-mode, designed to capture the deep structure of a story without turning the writing into homework.</p>
+
+      <hr/>
+
+      <h2>What is the Dramatic Story Engine?</h2>
+      <p>It’s a way to track how your story functions, using a few core ideas:</p>
+
+      <ul>
+        <li><strong>Conflict Frames</strong>: High-level tensions that power your plot and your theme.</li>
+        <li><strong>Character Functions</strong>: Narrative roles that evolve across the story.</li>
+        <li><strong>Domains</strong>: The arenas where story change happens — personal, relational, societal, and unknown.</li>
+        <li><strong>Pressure Tracks</strong>: Where the story applies change, and how characters push back or adapt.</li>
+      </ul>
+
+      <p>You don’t need to fill them all in at once. You grow them as your story grows. And because it’s Org-mode, everything stays linkable, searchable, and version-controlled.</p>
+
+      <hr/>
+
+      <h2>Conflict Frames: Tension is Structure</h2>
+      <p>Every story has a central conflict — but great stories hum with layers of tension. The engine helps you name and track these as <em>Conflict Frames</em>: opposing ideas that power scenes and character decisions.</p>
+
+      <p>Example:</p>
+
+      <pre><code>
+* Conflict Frames                                      :structure:
+** Truth vs Comfort
+- Lira believes knowing the truth will free her.
+- Tallis clings to comfort: "We survived this long not asking questions."
+- The artifact destabilizes both.
+** Control vs Wildness
+- The ship’s AI wants predictability.
+- Neptune’s magnetic shifts seem... alive.
+      </code></pre>
+
+      <p>These aren’t “themes” you declare. They’re living tensions. You can tag scenes with these frames to see how they evolve.</p>
+
+      <hr/>
+
+      <h2>Character Functions: Who Drives What?</h2>
+      <p>This isn’t about archetypes — it’s about <em>function</em>. Ask: What job does each character serve in the story’s dramatic machinery?</p>
+
+      <pre><code>
+* Character Functions                                   :characters:
+** Protagonist: Lira Okoye
+- Drives pursuit of the anomaly.
+- Interrogates the archive, Neptune, herself.
+** Catalyst: Tallis
+- Forces uncomfortable questions.
+- Challenges Lira’s certainty and habits.
+** Foil: Ship AI "Sefer"
+- Represents control, caution, limitation.
+      </code></pre>
+
+      <p>This helps you balance scenes. Is the Protagonist acting? Is the Catalyst disrupting? Is the Foil opposing enough?</p>
+
+      <hr/>
+
+      <h2>Story Domains: Where the Drama Happens</h2>
+      <p>Each story operates on multiple levels — not just events, but implications. I track those with four domains:</p>
+
+      <ul>
+        <li><strong>Inner</strong>: personal identity, memory, self-deceit</li>
+        <li><strong>Relational</strong>: power dynamics, trust, obligation</li>
+        <li><strong>Structural</strong>: institutions, cultures, norms</li>
+        <li><strong>Unknown</strong>: alien, divine, chaotic, metaphysical</li>
+      </ul>
+
+      <p>Scenes or chapters get tagged with these domains to see what kind of story you’re actually telling.</p>
+
+      <pre><code>
+* Domains
+** Relational: Lira & Tallis
+- Their shared trauma hides deeper mistrust.
+** Structural: The scientific protocols
+- The mission’s rules prevent discovery.
+** Unknown: The magnetic anomaly
+- It speaks, but no one's sure how.
+      </code></pre>
+
+      <hr/>
+
+      <h2>Tracking Change: The Pressure Map</h2>
+      <p>Good stories push people. Bad ones let them stay the same. A Pressure Map asks: Where is the story <em>applying pressure</em>, and where are characters resisting or growing?</p>
+
+      <pre><code>
+* Pressure Map                                          :evolution:
+** Lira
+- Pressure: Must abandon archive neutrality
+- Pushback: Clings to her scientist role
+- Change: Begins questioning foundational beliefs
+** Tallis
+- Pressure: Needs to accept loss
+- Pushback: Tries to act as protector
+- Change: Starts letting Lira take the lead
+      </code></pre>
+
+      <p>This lets you revise for emotional weight. Too little pressure = flat story. No pushback = unbelievable change.</p>
+
+      <hr/>
+
+      <h2>How I Use It While Writing</h2>
+      <p>I start with one or two Conflict Frames, sketch rough Character Functions, and keep the Pressure Map open as a checklist during edits. I don’t write linearly — this gives me anchor points to return to, and a way to track how the story is behaving over time.</p>
+
+      <p>Every week or so, I revise the engine itself: add a new tension, rewrite a function, remove an arc that’s gone nowhere. This system is alive.</p>
+
+      <hr/>
+
+      <h2>Try It Yourself (Template)</h2>
+      <p>Here’s a dead-simple Org template to get started:</p>
+
+      <pre><code>
+* Conflict Frames
+** {{Opposition A vs B}}
+- {{Initial expression}}
+- {{Scene moments}}
+
+* Character Functions
+** {{Character Name}} - {{Function}}
+- {{Drives/pushes/blocks}}
+
+* Pressure Map
+** {{Character Name}}
+- Pressure:
+- Pushback:
+- Change:
+
+* Domains
+** {{Scene/Relationship}} - {{Domain(s)}}
+      </code></pre>
+
+      <p>You can even capture new story elements using `org-capture`, or link to these frames from scene notes or TODOs.</p>
+
+      <hr/>
+
+      <h2>Next Steps</h2>
+      <p>This is the first iteration of the Dramatic Story Engine. I’m currently building a system to auto-tag Org headings with frames and functions, plus a Graphviz export to visualize character pressure over time.</p>
+
+      <p>If that sounds useful — subscribe. I’ll share updates, refinements, and maybe even a printable story map if I stop rewriting it long enough to print it.</p>
+
+      <p><a href="/emacs/index.html">← Back to Emacs</a></p>
+
+    </article>
+  </main>
+
+  <footer>
+    <p>© 2025 The Way of Emacs. Build your story scaffolds. Write like thunder.</p>
+  </footer>
+
+</body>
+</html>
