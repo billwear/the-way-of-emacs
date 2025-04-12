@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>How I Run My Life from a Text File</title>
+  <link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+  <header class="post-header">
+    <h1>How I Run My Life from a Text File</h1>
+    <p class="byline">Posted April 12, 2025 by Bill</p>
+  </header>
+
+  <main>
+    <article>
+
+      <p>Once upon a time, I had apps. Todoist. Notion. Trello. One for work, one for faith, one for writing, and seven I forgot to delete.</p>
+
+      <p>Then I discovered Emacs — and more importantly, <code>org-mode</code>. These days, I run nearly every part of my life from a single set of text files. No drag-and-drop. No dark-mode toggle. Just keystrokes, timestamps, and structured plain text.</p>
+
+      <p>Here’s how it works, what I track, and why it might be the most quietly powerful system I’ve ever used.</p>
+
+      <hr/>
+
+      <h2>1. A Cockpit, Not a List</h2>
+      <p>At the center of it all is my <code>org-agenda</code> view. Think of it like a cockpit: every priority, project, and habit is visible in one glance. No tabs. No folders. Just structured context:</p>
+
+      <pre><code>
+Week: [ Renovation punchlist | Canonical goals | Novel structure ]
+Today: [ 2 interviews, 3 writing blocks, 1 prayer list ]
+Recurring: [ Friday cleanup | Sunday prep | Week review ]
+      </code></pre>
+
+      <p>I hit <code>C-c a</code> and I know what needs doing, what I’ve ignored, and what I can punt. Everything is sourced from different .org files, but it all flows into one interface.</p>
+
+      <hr/>
+
+      <h2>2. Tracking My Professional Level</h2>
+      <p>In <code>pip.org</code>, I track the goals of my current role — not aspirational fluff, but real, documented expectations:</p>
+
+      <pre><code>
+* Canonical Goals                                       :work:
+** Own project/product documentation
+** Solve information architecture problems
+** Provide in-depth product feedback
+** Collaborate as a documentation expert
+      </code></pre>
+
+      <p>Each one links to related tasks, notes, and log entries. When I do something meaningful, I log it there with a timestamp. It’s not just accountability — it’s narrative. It reminds me who I’m trying to become professionally, and where I’m still learning.</p>
+
+      <hr/>
+
+      <h2>3. Managing the Renovation (Without Losing My Mind)</h2>
+      <p>Our house is 70 years old and full of “fun surprises.” I track every task, delay, and purchase in <code>renovation.org</code>:</p>
+
+      <pre><code>
+* Paint touchups (living room)
+* Cabinet hardware needs tightening
+* Plumbing: check new shutoff valve
+* [X] Fix broken tile before reunion
+      </code></pre>
+
+      <p>Tags like <code>:BLOCKED:</code> and <code>:GOAL:</code> help me sort them in my agenda. It’s granular when it needs to be, and high-level when I just want to see what’s left before guests arrive.</p>
+
+      <hr/>
+
+      <h2>4. Prayer, Faith, and Staying Grounded</h2>
+      <p>Yes, I even keep a prayer list — not for gamification, but because consistency matters. In <code>prayer-list.org</code> I track names, intentions, follow-ups:</p>
+
+      <pre><code>
+* Weekly Intentions
+** Family healing
+** Courage to finish the hard things
+* People
+** {C} George — upcoming surgery
+** {R} Sarah — job uncertainty
+      </code></pre>
+
+      <p>This part of the system is the quietest. No due dates. Just reminders to stop, reflect, and do the work that isn’t visible.</p>
+
+      <hr/>
+
+      <h2>5. Support Logs (Yes, Really)</h2>
+      <p>In <code>support.org</code>, I track how I help others — from bug triage to documentation questions. It’s not for ego. It’s a reminder that my work is bigger than just me:</p>
+
+      <pre><code>
+* Helped resolve PXE boot bug
+* Answered networking config thread on Discourse
+* Created mini how-to for team on VLAN IP ranges
+      </code></pre>
+
+      <p>When I wonder if I’m doing enough, I check this file. It usually quiets the doubt.</p>
+
+      <hr/>
+
+      <h2>6. Why It Works</h2>
+      <ul>
+        <li><strong>Searchable</strong>: I can find anything in seconds. No scrolling through Slack history.</li>
+        <li><strong>Portable</strong>: Git-backed. Text-based. Cross-platform.</li>
+        <li><strong>Customizable</strong>: I made my own tags, states, agenda views, and rituals.</li>
+        <li><strong>Opinionated</strong>: It works because it reflects how I think, not how an app designer thinks I should.</li>
+      </ul>
+
+      <p>This isn’t for everyone. But if you’ve ever wanted one tool that can scale from spiritual practice to system admin notes to novel outlining... Emacs isn’t just an editor. It’s an ecosystem. And it plays nice with your brain.</p>
+
+      <p><a href="/emacs/index.html">← Back to Emacs</a></p>
+
+    </article>
+  </main>
+
+  <footer>
+    <p>© 2025 The Way of Emacs. One brain. One keyboard. One text file to rule them all.</p>
+  </footer>
+
+</body>
+</html>
