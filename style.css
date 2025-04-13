@@ -124,6 +124,10 @@ footer {
     line-height: 1.0;
   }
 
+  h2 {
+    font-size: 1.0rem;
+  }
+
   .subtitle {
     font-size: 0.9rem;
   }
