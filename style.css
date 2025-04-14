@@ -89,7 +89,7 @@ a:hover {
   }
   pre, code {
       font-family: 'IBM Plex Mono', monospace;
-      background-color: #111;
+      background-color: #000;
       color: #cfcfcf;
       padding: 1rem;
       border-radius: 4px;
