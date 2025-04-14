@@ -1,12 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Literata:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap');
 
 body {
   margin: 0;
   padding: 0;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Literata', serif;
   font-size: 1.2rem;
   background: #1a1a1a url('images/parchment-texture.jpg') repeat;
-  color: #d8cfc4;  /* softer beige, easier on the eyes */
+  color: #d8cfc4;
   line-height: 1.8;
   text-shadow: 0 0 1px #000;
 }
@@ -130,5 +131,10 @@ footer {
 
   .subtitle {
     font-size: 0.9rem;
+  }
+  h1, h2, h3 {
+      color: #e7ddd0;
+      font-weight: 700;
+      font-family: 'Literata', serif;
   }
 }
