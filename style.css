@@ -137,4 +137,26 @@ footer {
       font-weight: 700;
       font-family: 'Literata', serif;
   }
+  pre, code {
+      font-family: 'IBM Plex Mono', monospace;
+      background-color: #111;
+      color: #cfcfcf;
+      padding: 1rem;
+      border-radius: 4px;
+      line-height: 1.5;
+      overflow-x: auto;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+  }
+
+  /* For inline code snippets */
+  code {
+      padding: 0.2em 0.4em;
+      font-size: 0.95em;
+      background-color: #222;
+      border-radius: 3px;
+  }
+  pre {
+      border-top: 3px solid #aaa;
+  }
+
 }
