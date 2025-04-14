@@ -89,6 +89,49 @@ nav.top-nav a:hover {
   color: #fff;
 }
 
+.top-nav ul {
+  position: relative;
+}
+
+.top-nav .has-submenu {
+  position: relative;
+}
+
+.top-nav .submenu {
+  display: none;
+  position: absolute;
+  top: 2rem;
+  left: 0;
+  background: #2a2a2a;
+  border: 1px solid #444;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.5);
+  z-index: 1001;
+  white-space: nowrap;
+}
+
+.top-nav .has-submenu:hover .submenu,
+.top-nav .has-submenu:focus-within .submenu {
+  display: block;
+}
+
+.submenu li {
+  margin: 0.3rem 0;
+}
+
+.submenu a {
+  color: #fcebb7;
+  text-decoration: none;
+  border-bottom: 1px dotted #888;
+  font-size: 0.9rem;
+}
+
+.submenu a:hover {
+  color: #fff;
+  border-bottom: 1px solid #fff;
+}
+
 main {
   max-width: 1000px;
   margin: 2.5rem auto;
