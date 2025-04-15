@@ -70,9 +70,10 @@ nav.top-nav > ul > li {
 }
 
 nav.top-nav a {
-  color: white;
+  color: #fcebb7;
   text-decoration: none;
-  padding: 0.5rem 1rem;
+  border-bottm: 1px dotted #666;
+  padding: 0.2rem 1rem;
   display: block;
 }
 
