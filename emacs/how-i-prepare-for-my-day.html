@@ -14,7 +14,8 @@
     <li class="has-submenu">
       Blog ▾
       <ul class="submenu">
-  	<li><a href="/emacs/how-i-start-my-day.html">How I start my day</a></li>
+        <li><a href="/emacs/too-many-tabs-open.html">Living with a lively, nonlinear brain</a></li>
+        <li><a href="/emacs/how-i-start-my-day.html">How I start my day</a></li>
         <li><a href="/emacs/how-i-prepare-for-my-day.html">How I prepare for my day</a></li>
       </ul>
     </li>
@@ -35,9 +36,9 @@
     <section>
       <h1>How I prepare for my day</h1>
 
-      <p><em>Some mornings I wake up and feel like a hero. Other mornings I wake up and feel like I’ve been smuggled into the day by mistake. (Me, some random Wednesday).</em></p>
+      <p><em>Some mornings I wake up and feel like a hero. Other mornings I wake up and feel like I’ve been smuggled into the day by mistake.</em></p>
 
-      <p>For years, my mornings were chaos, an anxious patchwork of brushing teeth after coffee, trying to remember if i took my meds, and generally slouching toward 9 a.m. like a hungover detective in a noir film.  That’s why I stopped winging it and built a morning routine in Org-mode that feels more like architecture than slow suffocation.</p>
+      <p>For years, my mornings were chaos, an anxious patchwork of brushing teeth after coffee, trying to remember if i took my meds, and generally slouching gracelessly toward 9 a.m.  That’s why I stopped winging it and built a morning routine in Org-mode that feels more like scaffolding than suffocation.</p>
 
       <p>Now my mornings look (mostly) like this:</p>
       
@@ -71,15 +72,15 @@
    7:19 : TODO the-way-of-emacs: update content
 </code></pre>
 
-      <p>I use Emacs to schedule my entire morning down to the minute. That's not me being "disciplined."  That's me admitting that I'm neurodivergent -- and finally accepting that I need something stable to stand on before the day starts slipping sideways.  If I don't anchor the day, it floats away.</p>
+      <p>I use Emacs to schedule my entire morning down to the minute. That's not me being "disciplined."  That's me admitting that I'm neurodivergent -- and accepting that I need something stable to stand on before the day starts slipping sideways.  Do I follow the schedule to the minute?  No, not by a long shot: sometimes I'm a little ahead, sometimes I'm behind, and sometimes I just skip steps, just because.  But if I don't anchor the day, it completely floats away.</p>
 
       <h2>Why scheduled and not just listed?</h2>
       <p>There's a huge difference between:</p>
       <ul>
-	<li>A list of stuff I hope I'll do in the morning, and</li>
-	<li>A ladder of timestamps I can climb without thinking too much.</li>
+	<li>A disordered list of stuff I hope I'll do in the morning, and</li>
+	<li>A ladder of timestamps I can climb without thinking.</li>
       </ul>
-      <p>Org-mode's <code>SCHEDULED:</code> keyword lets me lay out each task with a fixed time and a repeat interval.  These aren't alarms, they're guidelines -- helpful nudges from a calmer version of me.  Each task aslo carries an <code>:Effort:</code> estimate, which lets me <em>feel</em> how heavy the morning is going to be, not just see it.</p>
+      <p>Org-mode's <code>SCHEDULED:</code> keyword lets me lay out each task with a fixed time and a repeat interval.  These aren't alarms, they're guidelines -- helpful nudges from a calmer version of me.  Each task also carries an <code>:Effort:</code> estimate, which lets me <em>feel</em> how heavy the morning could be, not just see it.</p>
 
       <pre><code>
 	*** TODO take Mg 06:08                             :morning:
@@ -90,7 +91,7 @@
       </code></pre>
 
       <p>Even short, one-minute tasks matter, especially the small ones.  When they're in the system, I don't have to remember them or <em>think</em> about them, and that's the goal.</p>
-      <p>Point of technique: putting the time on the same line as the task (and not in the <code>SCHEDULED:</code> line) helps. It works the same, but it's much easier to edit times on my phone.</p>
+      <p><em>Point of technique: putting the time on the same line as the task (and not in the <code>SCHEDULED:</code> line) helps. It works the same, but it's much easier to edit times on my phone.  That's because pointing in Emacs on the phone, -- say, by touching a timestamp -- moves you to another file.</em></p>
       <h2>Clustering: bathroom logic and neuro-spatial sanity</h2>
       <p>I group tasks not just by what they are, but by where I’ll be when I do them. Take a look at this hygiene sequence:</p>
 
@@ -107,7 +108,7 @@
 	  *** TODO steroid 06:53
       </code></pre>
 
-      <p>All of these live in the same physical space. I’m not bouncing between kitchen and office and bathroom like a Roomba with a caffeine problem. This clustering calms my brain, because it honors the way ADHD and executive dysfunction actually feel. I’m not choosing what to do next — I’m just following the list in the place I’m already standing.</p>
+      <p>All of these live in the same physical space. I’m not bouncing between kitchen and office and bathroom. This clustering calms my brain, because it honors the way ADHD and executive dysfunction actually feel. I’m not choosing what to do next — I’m just following the list in the place I’m already standing.</p>
       
       <h2>The Emologent check-in</h2>
       <p>Before I shower, I sit with my brain:</p>
@@ -117,17 +118,17 @@
 	  *** TODO journal 06:17
       </code></pre>
       
-      <p>My “emologent” (EMOtional LOG ENTry) is a form I built in Org mode to take stock of mood, mental weather, emotional noise, and what’s pulling at me. It's part therapy, part weather report, and part vibe-check with God.</p>
+      <p>My “emologent” (EMOtional LOG ENTry) is a form I built in Org mode to take stock of mood, mental weather, emotional noise, and what’s pulling at me. It's part therapy, part weather report, and part vibe-check.</p>
 
-      <p>It’s short, honest, and structured. And it often saves the day before it even starts. It helps me scan my emotional weather, name distractions, and ground myself. It’s not therapy, but it keeps me from jumping straight into the chaos of the world without bringing an attitude and focus that <em>I've</em> chosen.</p>
+      <p>It’s short, honest, and structured -- and often saves the day before it even starts. It helps me scan my emotional weather, name distractions, and ground myself. It’s not therapy, but it keeps me from jumping straight into the chaos of the world without bringing an attitude and focus that <em>I've</em> chosen.</p>
 
       <h2>Why I think this works</h2>
       <ul>
-        <li><strong>It eliminates decision fatigue.</strong> I don’t wonder what’s next. I just do the next thing.</li>
+        <li><strong>It eliminates decision fatigue.</strong> There's that ever-present problem again.  With this list, I don’t wonder what’s next. I just do the next thing.</li>
         <li><strong>It gives me small wins early.</strong> Checking off "take Mg" is silly, but it starts a streak.</li>
         <li><strong>It matches how my brain works.</strong> Structured but flexible. Ordered but personal.</li>
         <li><strong>It’s a ritual, not a rule.</strong> I don’t follow it perfectly. But it carries me when I can’t carry myself.</li>
-        <li><strong>It externalizes memory.</strong> I don’t rely on recall—I rely on rhythm.</li>
+        <li><strong>It externalizes memory.</strong> I don’t rely on recall — I rely on rhythm.</li>
       </ul>
 
       <p>This isn’t about squeezing more out of my morning. It’s about not losing it to friction and fuzziness. The day will throw enough at me. This gives me a shape to stand in first.</p>
