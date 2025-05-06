@@ -1,3 +1,5 @@
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="static/style.css"/>
+
 * the way of emacs
 
 I started using Emacs and Org-mode exclusively when my skills got me a very good job.
