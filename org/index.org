@@ -1,4 +1,7 @@
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="static/style.css"/>
+#+TITLE: way of emacs
+
+/(Top)/ [[https://the-way-of-emacs.com][Home]]
 
 * the way of emacs
 
