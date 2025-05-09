@@ -22,10 +22,24 @@
     <img src="images/emacs-dark-mode.png" style="max-width: 100%; height: auto;" alt="Responsive Image" />
     <p>I typically use lots of windows, and those require some keychords, so I simplified it a bit with <code>windmove</code>:</p>
     <p><code>
-	(windmove-default-keybindings 'control)
+	(windmove-default-keybindings 'control)<br/>
 	(setq windmove-create-window t)
     </code></p>
     <p>Now I can switch windows by just pressing Ctrl-{direction-arrow}, and if there isn't one in that direction, it will create one.  Now I don't have to interrupt the flow of my thinking to get a new window or switch between them.</p>
+    <p>Also, I do everything I possibly can in Emacs, so I really want it to come up full-screen.  I did that with:</p>
+    <p><code>
+	(add-to-list 'default-frame-alist
+	 '(fullscreen . maximized))
+    </code></p>
+    <p>I won't try to cram a full screen into the page, you get the drift.  From now on, I'll just show the relevant parts of the screen so it looks halfway decent on a phone.</p>
+    <p>The next thing I didn't need were the menus.  I'd like to have the real-estate back from the menubar and the toolbar, so I implemented this eLisp:</p>
+    <p><code>
+	(menu-bar-mode -1)<br/>
+	(tool-bar-mode -1)
+    </code></p>
+    <p>Looks much cleaner without them:</p>
+    <img src="images/no-toolbars.png" style="max-width: 100%; height: auto;" alt="Responsive Image" />
+    
     <hr>
     <p>
       © 2025 by Bill Wear. All Rights Reserved.
