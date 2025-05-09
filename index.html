@@ -20,6 +20,12 @@
     </code></p>
     <p>This gave me a bit of a better look:</p>
     <img src="images/emacs-dark-mode.png" style="max-width: 100%; height: auto;" alt="Responsive Image" />
+    <p>I typically use lots of windows, and those require some keychords, so I simplified it a bit with <code>windmove</code>:</p>
+    <p><code>
+	(windmove-default-keybindings 'control)
+	(setq windmove-create-window t)
+    </code></p>
+    <p>Now I can switch windows by just pressing Ctrl-{direction-arrow}, and if there isn't one in that direction, it will create one.  Now I don't have to interrupt the flow of my thinking to get a new window or switch between them.</p>
     <hr>
     <p>
       © 2025 by Bill Wear. All Rights Reserved.
