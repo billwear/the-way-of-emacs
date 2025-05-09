@@ -9,7 +9,12 @@
   </head>
   <body>
     <p>I started with Emacs right out of the box, no customizations.  It looked like this:</p>
-    <img src="images/plain-emacs.png"/>
+    <img src="images/plain-emacs.png" style="max-width: 100%; height: auto;" alt="Responsive Image">
+      <p>Not exactly sure how the splash screen got turned off, but no matter, it always got in my way anyway. But I didn't like the white screen (it bothers my eyes), so I changed it to a darker hue with this bit of Emacs Lisp:</p>
+      <pre><code>
+	  (set-face-attribute 'default nil :height 140 :background "#282828" :foreground "#ebdbb2")
+	  (set-face-attribute 'cursor nil :background "#ebdbb2")
+      </code></pre>
     <hr>
     <p>
       © 2025 by Bill Wear. All Rights Reserved.
