@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WoE</title>
+  </head>
+  <body>
+    <p><a href="https://the-way-of-emacs/index.html">Screens</a> ~ <a href="https://the-way-of-emacs/Messages.html">Messages</a></p>
+    <hr/>
+    <p>Next, I decided to actually choose the status messages I receive:
+    <p><code>
+	;; Turn off the default startup screen
+	(setq inhibit-startup-screen t)
+
+	;; Set a friendly initial message *scratch*
+	(setq initial-scratch-message ";; Solder & Signal\n")
+
+	;; Show the column number in the mode line
+	(column-number-mode)
+
+	;; Use a visible bell, not audible
+	(setq visible-bell t)
+
+	;; Auto-save files without nagging messages
+	(setq auto-save-no-message t)
+
+	;; Don’t confirm when quitting Emacs
+	(setq confirm-kill-emacs nil)
+
+	;; Allow Emacs to resize frames at the pixel level
+	;; (smoother UI on modern displays)
+	(setq frame-resize-pixelwise t)
+
+	;; Suppress noisy native-comp warnings
+	(setq native-comp-async-report-warnings-errors nil)
+    </code></p>
+    <p>The only noticeable change is the addition of a column number in the mode line (in the "(...)"):</p>
+    <img src="images/column-number-modeline.png" style="max-width: 100%; height: auto;" alt="Responsive Image" />
+    <p>No other real changes here.</p>
+    <hr/>
+    <p><a href="https://the-way-of-emacs/index.html">Screens</a> ~ <a href="https://the-way-of-emacs/Messages.html">Messages</a></p>
+    <hr/>
+    <p>
+      © 2025 by Bill Wear. All Rights Reserved.
+    </p>
+  </body>
+</html>
