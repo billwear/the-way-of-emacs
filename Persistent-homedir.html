@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WoE</title>
+  </head>
+  <body>
+    <p><a href="https://the-way-of-emacs.com/index.html">Screens</a> ~ <a href="https://the-way-of-emacs.com/Messages.html">Messages</a></p> ~ <a hef="https://the-way-of-emacs.com/Persistent-homedir.html">Persistent homedir</a>
+    <hr/>
+    <p>I want my homedir to be kept in sync across any device where I run Emacs.  I do this by creating a GitHub repository, linking it to my homedir on various devices, and then using the <code>~/</code> syntax to make references universal.</p>
+    <p>Once I've done this, I just need to make sure that Emacs syncs up to the repo on exit, syncs up to the repo regularly if anything's changed, and pulls from the repo before on startup.  This requires some ELlisp:</p>
+    <pre>
+      ;; load/update my home directory, which is a github
+      ;;   repository; later steps may depend on it
+      (defun commit-homedir-if-needed ()
+       "Add, commit, and push homedir changes if there are any."
+       (interactive)
+       (save-some-buffers t)
+       (let* ((default-directory "~/")
+        (hostname (system-name))
+        (timestamp (format-time-string "%Y-%m-%d %H:%M:%S"))
+        (commit-msg (format "commit from %s at %s" hostname timestamp)))
+        (when (not (string= (shell-command-to-string "git status --porcelain") ""))
+         (shell-command "git add .")
+         (shell-command (format "git commit -m \"%s\"" commit-msg))
+         (shell-command "git push"))))
+      
+      (defun pull-homedir ()
+       "Pull latest changes to homedir."
+       (interactive)
+       (let ((default-directory "~/"))
+        (shell-command "git pull")))
+      
+      (add-hook 'emacs-startup-hook #'pull-homedir)
+      (add-hook 'kill-emacs-hook #'commit-homedir-if-needed)
+      (run-with-timer
+       600   ; wait 10 minutes
+       600   ; repeat every 10 minutes
+       #'commit-homedir-if-needed)
+    </pre>
+    <p>The command <code>save-some-buffers</code> saves everything that is "dirty" (has unsaved changes). <code>git status --porcelain</code> returns nothing if there are no changes to the repo, so the <code>(when (not (...</code> will only run the attached list of commands if something has changed.  The hostname and timestamp are used to uniquely identify where the update came from and when.  <code>emacs-startup-hook</code> and <code>kill-emacs-hook</code> set functions to run at startup and shutdown, respectively.  And the <code>run-with-timer</code> set to repeat every 10 minutes.</p>
+    <p>The upshot of this?  I can walk away from my Emacs session when I leave one computer, and wait at <em>most</em> 10 minutes to run Emacs somewhere else with the same data.</p>
+    <hr/>
+    <p><a href="https://the-way-of-emacs.com/index.html">Screens</a> ~ <a href="https://the-way-of-emacs.com/Messages.html">Messages</a></p> ~ <a hef="https://the-way-of-emacs.com/Persistent-homedir.html">Persistent homedir</a>
+    <hr/>
+    <p>
+      © 2025 by Bill Wear. All Rights Reserved.
+    </p>
+  </body>
+</html>
