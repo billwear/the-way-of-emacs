@@ -14,10 +14,18 @@
     <pre>
 	;; Turn off the default startup screen
 	(setq inhibit-startup-screen t)
-
+    </pre>
+    <p>This variable keeps Emacs from presenting it's usual splash screen:</p>
+    <img src="images/emacs-splash-screen.png" style="max-width: 100%; height: auto;" alt="Responsive Image" />
+    <p>Next, I wanted to create a scratch message that reminds me to work on my electronics hobby site.</p>
+    <pre>
 	;; Set a friendly initial message *scratch*
 	(setq initial-scratch-message ";; Solder & Signal\n")
-
+    </pre>
+    <p>Every time I open Emacs, I get this little reminder:</p>
+    <img src="images/scratch-message.png" style="max-width: 100%; height: auto;" alt="Responsive Image" />
+    <p>Finally, a few things that just annoy me about the default Emacs messaging:</p>
+    <pre>
 	;; Show the column number in the mode line
 	(column-number-mode)
 
@@ -39,7 +47,7 @@
     </pre>
     <p>The only noticeable change is the addition of a column number in the mode line (in the "(...)"):</p>
     <img src="images/column-number-modeline.png" style="max-width: 100%; height: auto;" alt="Responsive Image" />
-    <p>No other real changes here.</p>
+    <p>The other changes shut up the bell, stop the "confirm exit" nagging and some obscure error messages, and make the UI smoother on newer graphics displays.  Not much to it, but very much noticed if <em>not</em> changed.</p>
     <hr/>
     <p><a href="https://the-way-of-emacs.com/index.html">Screens</a> ~ <a href="https://the-way-of-emacs.com/Messages.html">Messages</a></p>
     <hr/>
