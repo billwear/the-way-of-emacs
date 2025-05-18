@@ -1,29 +1,13 @@
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="static/style.css"/>
-#+TITLE: way of emacs
+#+TITLE: WoE
 
 /(Top)/ [[https://the-way-of-emacs.com][Home]]
 
 * the way of emacs
 
-I started using Emacs and Org-mode exclusively when my skills got me a very good job.
+I started using Emacs and Org-mode exclusively when my skills got me a very good job.  It just hung on because it worked, and I started being known around the office as "the Emacs guy."  I'm no Emacs maven, by any means, but here's how I slid into the role:
 
-Had been looking at a company for about 10 years, waiting for the right opportunity.  When it showed up, I jumped on it, but a traditional resumé seemed boring and useless.  Instead, I took the job description, converted it to a .org file, and turned it in.  Got the job.
-
-Two standout things keep me using Emacs: the consistency of action, and the breadth of capability.  Let me explain.
-
-** consistency of action
-
-It doesn't matter where I am or what I'm doing in Emacs, the text editor always works as expected.  Want to copy something from the message line?  Check.  Want to page down in an Ivy list?  Check.  Delete the previous word in an SSH buffer?  Check.  All the standard controls work (nearly) everywhere, so there's very little time looking up keyboard shortcuts.
-
-I can even edit files this way.  By entering the right command into dired, you can literally edit filenames in the listing, and when you exit this mode, the changes are made for you behind the scenes.  Ditto magit.  Ditto org-mode.  Ditto markdown mode.  Everything works as consistently as possible.
-
-** breadth of capability
-
-ivy and counsel make it simple to find files, commands, and other choices by letting you walk through them.  The work files I edit are uniquely identified by topic numbers, and even though the topic number is on the end of the filename, I can still just type the number and get the file when I'm searching for one to open.  markdown-mode makes markdown files work a lot like org mode, with the ability to collapse headings, which makes writing technical documents that much easier. dired-sidebar gives me a file tree that can be easily turned on and off.  which-key gives me detailed key listings while I'm typing combos.  And that's just a smattering of what's possible.  There is (almost) nothing you can't do in emacs.
-
-** so here i am
-
-I have no idea where this site will take me.  I'm not an emacs-novice by any means, but I'm certainly not closing on expert any time soon.  But what's here?  It needs to be said.  Keep watch.
+- [[https://tweaking-the-view.html][Tweaking the view]]: Changing little things to suit my liking.
     
   
 

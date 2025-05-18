@@ -8,42 +8,81 @@
     <title>WoE</title>
   </head>
   <body>
-    <p><a href="https://the-way-of-emacs.com/index.html">Screens</a> ~ <a href="https://the-way-of-emacs.com/Messages.html">Messages</a> ~ <a hef="https://the-way-of-emacs.com/Persistent-homedir.html">Persistent homedir</a></p>
-    <hr/>
-    <p>I started with Emacs right out of the box, no customizations.  It looked like this:</p>
-    <img src="images/plain-emacs.png" style="max-width: 100%; height: auto;" alt="Responsive Image" />
-    <p>Not exactly sure how the splash screen got turned off, but no matter, it always got in my way anyway. But I didn't like the white screen (it bothers my eyes), so I changed it to a darker hue with this bit of Emacs Lisp:</p>
-    <p><code>
-	(set-face-attribute 'default nil
-	 :height 140 :background "#282828"
-	 :foreground "#ebdbb2")
-	(set-face-attribute 'cursor nil
-	 :background "#ebdbb2")
-    </code></p>
-    <p>This gave me a bit of a better look:</p>
-    <img src="images/emacs-dark-mode.png" style="max-width: 100%; height: auto;" alt="Responsive Image" />
-    <p>I typically use lots of windows, and those require some keychords, so I simplified it a bit with <code>windmove</code>:</p>
-    <p><code>
-	(windmove-default-keybindings 'control)<br/>
-	(setq windmove-create-window t)
-    </code></p>
-    <p>Now I can switch windows by just pressing Ctrl-{direction-arrow}, and if there isn't one in that direction, it will create one.  Now I don't have to interrupt the flow of my thinking to get a new window or switch between them.</p>
-    <p>Also, I do everything I possibly can in Emacs, so I really want it to come up full-screen.  I did that with:</p>
-    <p><code>
-	(add-to-list 'default-frame-alist
-	 '(fullscreen . maximized))
-    </code></p>
-    <p>I won't try to cram a full screen into the page, you get the drift.  From now on, I'll just show the relevant parts of the screen so it looks halfway decent on a phone.</p>
-    <p>The next thing I didn't need were the menus.  I'd like to have the real-estate back from the menubar and the toolbar, so I implemented this eLisp:</p>
-    <p><code>
-	(menu-bar-mode -1)<br/>
-	(tool-bar-mode -1)
-    </code></p>
-    <p>Looks much cleaner without them:</p>
-    <img src="images/no-toolbars.png" style="max-width: 100%; height: auto;" alt="Responsive Image" />
-    <hr/>
-   <p><a href="https://the-way-of-emacs.com/index.html">Screens</a> ~ <a href="https://the-way-of-emacs.com/Messages.html">Messages</a></p>
-    <p><a href="https://the-way-of-emacs.com/index.html">Screens</a> ~ <a href="https://the-way-of-emacs.com/Messages.html">Messages</a></p> ~ <a hef="https://the-way-of-emacs.com/Persistent-homedir.html">Persistent homedir</a>
+    <p>In <a href="https://williamwear.substack.com/p/let-there-be-light">my life's weird, winding work</a>, I try to organize meaning in evolutions of increasing clarity: first by context, then priority, then incremental complexity, and finally increasing clarity of intent.</p>
+    <p>In terms of writing my .emacs, that translates to:</p>
+    <ul>
+      <li>core before extensions.</li>
+      <li>workflow before convenience and automation.</li>
+      <li>constraints before integrated solutions.</li>
+      <li>focus over distraction.</li>
+    </ul>
+    <p>I want Emacs to come up fast and clean, and leave me with a blank page where I can start speaking my truth.  Saying this in eLisp:</p>
+    <pre>
+;;
+;; 1. disable the startup screen
+(setq inhibit-startup-screen t)
+;; why: removes the splash screen with GNU
+;; text and random help — clears the path to
+;; your content.
+;; 
+;; 2. remove the initial scratch buffer message
+(setq initial-scratch-message "")
+;; why: makes the scratch buffer feel like a
+;; blank slate, ready for anything.
+;;
+;; 3. skip loading package.el before init
+(setq package-enable-at-startup nil)
+;; why: if you're using use-package or your
+;; own package bootstrap, this avoids double
+;; loading.
+;;
+;; 4. don't load site-wide defaults
+(setq inhibit-default-init t)
+;; why: prevents Emacs from loading
+;; /etc/emacs/default.el or other
+;; sysadmin-defined settings.
+;;
+;; 5. Skip custom file (or isolate it)
+(setq custom-file
+      (locate-user-emacs-file "custom.el"))
+(load custom-file 'noerror)
+;;
+;; why: prevents Emacs from cluttering your
+;; .emacs with setq lines every time you
+;; change a setting from the UI.
+;;
+;; 6. Don’t show toolbars, menu or scroll bars
+;;
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+;;
+;; why: frees up space, especially on small
+;; screens.
+;;
+;; 7. Prevent frame resizing for font changes
+(setq frame-inhibit-implied-resize t)
+;;
+;; why: prevents font size tweaks from
+;; adjusting your window layout on startup.
+;;
+;; 8. Disable file dialog and dialog boxes
+(setq use-file-dialog nil)
+(setq use-dialog-box nil)
+;; why: avoids GUI popups i don't want,
+;; especially useful in terminal or mobile
+;; environments.
+;;
+;; 9. Turn off blinking cursor
+(blink-cursor-mode 0)
+;; why: reduces visual distraction.
+;;
+;; 10. no beep, no visible bell
+(setq ring-bell-function 'ignore)
+;; why: makes Emacs less shouty when you hit
+;; the edge of something.
+;;
+    </pre>
+    <p>Next, <a href="index2.html">sane package loading</a> that defers as many packages as possible until they're actually needed.</p>
     <hr/>
     <p>
       © 2025 by Bill Wear. All Rights Reserved.
