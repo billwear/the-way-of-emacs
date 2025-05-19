@@ -6,7 +6,7 @@ body {
   padding: 0;
   font-family: 'Literata', serif;
   font-size: 1.2rem;
-  background: #0C000C url('images/parchment-texture.jpg') repeat;
+  background: #030003 url('images/parchment-texture.jpg') repeat;
   color: #d8cfc4;
   line-height: 1.8;
   text-shadow: 0 0 1px #000;
@@ -17,7 +17,7 @@ header.site-header {
   align-items: center;
   justify-content: center;
   padding: 2rem 1rem;
-  background: #0F000F;
+  background: #0A000A;
   border-bottom: 2px solid #5c4631;
   gap: 1.5rem;
   flex-wrap: wrap;
