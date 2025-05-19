@@ -17,7 +17,7 @@ header.site-header {
   align-items: center;
   justify-content: center;
   padding: 2rem 1rem;
-  background: rgba(60, 45, 30, 0.85);
+  background: #0F000F;
   border-bottom: 2px solid #5c4631;
   gap: 1.5rem;
   flex-wrap: wrap;
