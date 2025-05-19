@@ -1,0 +1,277 @@
+@import url('https://fonts.googleapis.com/css2?family=Literata:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Literata', serif;
+  font-size: 1.2rem;
+  background: #1a1a1a url('images/parchment-texture.jpg') repeat;
+  color: #d8cfc4;
+  line-height: 1.8;
+  text-shadow: 0 0 1px #000;
+}
+
+header.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  background: rgba(60, 45, 30, 0.85);
+  border-bottom: 2px solid #5c4631;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  box-shadow: 0 4px 8px rgba(60, 45, 30, 0.3);
+}
+
+.logo {
+  max-width: 100px;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+  flex-shrink: 0;
+}
+
+.site-title-group {
+  max-width: 700px;
+  text-align: left;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin: 0.2rem 0;
+  letter-spacing: 0.04em;
+  color: #fcebb7;
+  font-weight: 700;
+  font-family: 'Literata', serif;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  font-style: italic;
+  color: #a38c74;
+  margin: 0.2rem 0 0;
+  text-align: center;
+}
+
+nav.top-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  background: #3a2e22;
+}
+
+nav.top-nav li {
+  position: relative;
+}
+
+nav.top-nav > ul > li {
+  padding: 1rem;
+}
+
+nav.top-nav a {
+  color: #fcebb7;
+  text-decoration: none;
+  border-bottom: 1px dotted #a38c74;
+  padding: 0.2rem 1rem;
+  display: block;
+}
+
+nav.top-nav .submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #5c4631;
+  flex-direction: column;
+  min-width: 200px;
+  z-index: 9999;
+}
+
+nav.top-nav .submenu li {
+  white-space: nowrap;
+}
+
+nav.top-nav .has-submenu:hover .submenu {
+  display: block;
+}
+
+nav.top-nav .submenu a:hover {
+  background-color: #a38c74;
+}
+
+main {
+  max-width: 1000px;
+  margin: 2.5rem auto;
+  padding: 0 2rem;
+}
+
+section {
+  margin-bottom: 2rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+  color: #fcebb7;
+  border-bottom: 1px solid #555;
+  padding-bottom: 0.3rem;
+  margin-top: 0;
+}
+
+h1, h2, h3 {
+  color: #fcebb7;
+  font-weight: 700;
+  font-family: 'Literata', serif;
+}
+
+h3 {
+  font-size: 1.4rem;
+  margin-top: 2rem;
+  color: #e3c99c;
+}
+
+a {
+  color: #d9a151;
+  text-decoration: underline dotted;
+  border-bottom: none;
+  transition: color 0.2s ease-in-out;
+}
+
+a:visited {
+  color: #c27b3f;
+}
+
+a:hover {
+  color: #fcebb7;
+  text-decoration: underline solid;
+}
+
+pre, code {
+  font-family: 'IBM Plex Mono', monospace;
+  background-color: #2d241b;
+  color: #f4e6d7;
+  padding: 1rem;
+  border-radius: 4px;
+  line-height: 1.5;
+  overflow-x: auto;
+  box-shadow: 0 0 8px rgba(92, 70, 49, 0.5);
+}
+
+code {
+  padding: 0.2em 0.4em;
+  font-size: 0.95em;
+  border-radius: 3px;
+  background-color: #2d241b;
+}
+
+pre {
+  border-top: 3px solid #5c4631;
+}
+
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 1rem;
+  color: #a38c74;
+  background: #3a2e22;
+  border-top: 1px solid #5c4631;
+  box-shadow: 0 -4px 8px rgba(60, 45, 30, 0.3);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+}
+
+th, td {
+  border: 1px solid #5c4631;
+  padding: 0.5rem 1rem;
+  text-align: center;
+}
+
+thead {
+  background-color: #3a2e22;
+  color: #fcebb7;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #2a2119;
+}
+
+@media (max-width: 600px) {
+  .site-header {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .logo {
+    max-width: 64px;
+    margin-top: 0.3rem;
+  }
+
+  .site-title-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .site-title-group h1 {
+    font-size: 1.4rem;
+    margin: 0;
+  }
+
+  body {
+    font-size: 1rem;
+  }
+
+  h1 {
+    font-size: 1.2rem;
+    line-height: 1.0;
+  }
+
+  h2 {
+    font-size: 1rem;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+  }
+}
+
+.content-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.content-wrap img {
+  max-width: 100%;
+  width: 300px;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  flex-shrink: 0;
+}
+
+.content-wrap .text {
+  flex: 1 1 250px;
+  min-width: 250px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.disclaimer {
+  font-size: 0.85em;
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: -1rem;
+}

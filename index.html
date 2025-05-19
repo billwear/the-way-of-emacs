@@ -1,91 +1,101 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>WoE</title>
-  </head>
-  <body>
-    <p>In <a href="https://williamwear.substack.com/p/let-there-be-light">my life's weird, winding work</a>, I try to organize meaning in evolutions of increasing clarity: first by context, then priority, then incremental complexity, and finally increasing clarity of intent.</p>
-    <p>In terms of writing my .emacs, that translates to:</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" 
+    content="width=device-width, 
+    initial-scale=1.0"/>
+  <title>
+	   WoE
+  </title>
+  <link 
+    rel="icon" 
+    href="images/favicon.png" 
+    type="image/png" />
+  <link 
+    rel="stylesheet" 
+    href="style.css" />
+</head>
+<body>
+  <nav class="top-nav">
     <ul>
-      <li>core before extensions.</li>
-      <li>workflow before convenience and automation.</li>
-      <li>constraints before integrated solutions.</li>
-      <li>focus over distraction.</li>
+      <li>
+        <a href="index.html">
+          Home
+        </a>
+      </li>
+      <li>
+        <a href="journal.html">
+         Journal
+        </a>
+      </li>
+      <li>
+        <a href="projects.html">
+          Projects
+        </a>
+      </li>
     </ul>
-    <p>I want Emacs to come up fast and clean, and leave me with a blank page where I can start speaking my truth.  Saying this in eLisp:</p>
-    <pre>
-;;
-;; 1. disable the startup screen
-(setq inhibit-startup-screen t)
-;; why: removes the splash screen with GNU
-;; text and random help — clears the path to
-;; your content.
-;; 
-;; 2. remove the initial scratch buffer message
-(setq initial-scratch-message "")
-;; why: makes the scratch buffer feel like a
-;; blank slate, ready for anything.
-;;
-;; 3. skip loading package.el before init
-(setq package-enable-at-startup nil)
-;; why: if you're using use-package or your
-;; own package bootstrap, this avoids double
-;; loading.
-;;
-;; 4. don't load site-wide defaults
-(setq inhibit-default-init t)
-;; why: prevents Emacs from loading
-;; /etc/emacs/default.el or other
-;; sysadmin-defined settings.
-;;
-;; 5. Skip custom file (or isolate it)
-(setq custom-file
-      (locate-user-emacs-file "custom.el"))
-(load custom-file 'noerror)
-;;
-;; why: prevents Emacs from cluttering your
-;; .emacs with setq lines every time you
-;; change a setting from the UI.
-;;
-;; 6. Don’t show toolbars, menu or scroll bars
-;;
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-;;
-;; why: frees up space, especially on small
-;; screens.
-;;
-;; 7. Prevent frame resizing for font changes
-(setq frame-inhibit-implied-resize t)
-;;
-;; why: prevents font size tweaks from
-;; adjusting your window layout on startup.
-;;
-;; 8. Disable file dialog and dialog boxes
-(setq use-file-dialog nil)
-(setq use-dialog-box nil)
-;; why: avoids GUI popups i don't want,
-;; especially useful in terminal or mobile
-;; environments.
-;;
-;; 9. Turn off blinking cursor
-(blink-cursor-mode 0)
-;; why: reduces visual distraction.
-;;
-;; 10. no beep, no visible bell
-(setq ring-bell-function 'ignore)
-;; why: makes Emacs less shouty when you hit
-;; the edge of something.
-;;
-    </pre>
-    <p>Next, I'll work on sane package loading, that defers as many packages as possible until they're actually needed.  In other words, if you bring the whole toolbox over to begin with, all you've done is moved the problem, not found the solution you need right now.</p>
-    <hr/>
-    <p>
-      © 2025 by Bill Wear. All Rights Reserved.
-    </p>
-  </body>
+  </nav>
+  <header class="site-header">
+    <img 
+      src="images/way-of-emacs-logo.jpg" 
+      alt="Way of Emacs logo" 
+      class="logo" />
+    <div class="site-title-group">
+      <h1>
+        The Way of Emacs
+      </h1>
+      <p class="subtitle">
+        an OS composed of mind with machine
+      </p>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h1>Build your own lab</h1>
+      <p>Welcome to <strong>Solder & Signal</strong> — a place to rediscover the joy, skill, and freedom of hands-on electronics. In a world of ready-made tech, I build from scratch. Start small. Grow strong. Join me.</p>
+      <h2>Why I build</h2>
+      <p>I'm launching a series of simple, practical projects to help you get your hands on real circuits — no engineering degree required. Even modest builds can boost your confidence, expand your skills, and connect you to a world of builders and makers.</p>
+      <p>At 66 years old, I’m carving a path toward a meaningful, stable, and affordable retirement — and I'm inviting you to walk it with me. Out of all the side-hustles, hobbies, and crafts out there, I chose teaching electronics. Why? Because both the subject (electronics) and the act of teaching it matter deeply to me.</p>
+      <p>My promise? I'll reveal this world step-by-step, on a tight budget, using household materials wherever possible. You'll need a few components and tools along the way — but nothing fancy, and nothing you can’t gather slowly, affordably, and confidently.</p>
+<p/>
+<hr>
+    <p><strong>📬 Want updates from the workbench?</strong><br>
+<a href="https://open.substack.com/pub/billwear/p/solder-and-signal?r=1xp1tt&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true" target="_blank">
+Subscribe to the Solder & Signal newsletter on Substack
+</a> — you'll get new posts, project updates, and the occasional nerdy insight delivered right to your inbox.</p>
+<p/>
+<hr>
+      <h2>Building with Balance</h2>
+      <p>Hobbies should lift your life, not crowd it. Responsibilities come first — always. The best way to grow a hobby is to weave it into your downtime. If you usually relax with three hours of TV, maybe watch two and spend one hour learning, tinkering, and building.</p>
+      <p>When the dishes are done, the bills are paid, and the day's work is finished, you have a choice: drift into sleep — or build something real, something yours. The choice is yours to make, every day.</p>
+      <h2>Learning by doing</h2>
+      <p>Read before you start. Read while you build. Read again when things don't work the way you expected. That's the rhythm of real learning.</p>
+      <p>The best time to build is before you feel ready. Wires will cross, mistakes will happen, fuses will blow — and every "Oops!" moment will teach you something priceless. These are the sparks that light the way forward.</p>
+
+<h2>How This Site is Organized</h2>
+<p>You'll find three main sections in the menu:</p>
+<ul>
+<li><strong>Home</strong> — You're here now. Welcome.</li>
+<li><strong>Projects</strong> — A growing catalog of hands-on builds, starting simple and getting stronger over time.</li>
+<li><strong>Journal</strong> — Reflections, lessons, and practical tips from the workbench and beyond.</li>
+</ul>
+<p>Start where you are. Build what you can. Grow stronger every day. And above all — be careful with that soldering iron.</p>
+    </section>
+  </main>
+
+      <p style="font-size: 0.85em; text-align: center;">  ⚠️ DIY projects involve real tools and voltages. <a href="/disclaimer.html">Read the safety disclaimer.</a></p>
+
+  <footer>
+    <p>© 2025 by Bill Wear. All Rights Reserved.</p>
+    <p/>
+    <p><strong>📬 Want updates from the workbench?</strong><br>
+<a href="https://open.substack.com/pub/billwear/p/solder-and-signal?r=1xp1tt&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true" target="_blank">
+Subscribe to the Solder & Signal newsletter on Substack
+</a> — you'll get new posts, project updates, and the occasional nerdy insight delivered right to your inbox.</p>
+  </footer>
+
+</body>
 </html>
+
