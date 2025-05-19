@@ -7,7 +7,7 @@ body {
   font-family: 'Literata', serif;
   font-size: 1.2rem;
   background: #030003 url('images/parchment-texture.jpg') repeat;
-  color: #d8cfc4;
+  color: #905D5D;
   line-height: 1.8;
   text-shadow: 0 0 1px #000;
 }
@@ -18,7 +18,7 @@ header.site-header {
   justify-content: center;
   padding: 2rem 1rem;
   background: #0A000A;
-  border-bottom: 2px solid #5c4631;
+  border-bottom: 2px solid #905D5D;
   gap: 1.5rem;
   flex-wrap: wrap;
   box-shadow: 0 4px 8px rgba(60, 45, 30, 0.3);
@@ -41,7 +41,7 @@ h1 {
   font-size: 2.5rem;
   margin: 0.2rem 0;
   letter-spacing: 0.04em;
-  color: #fcebb7;
+  color: #905D5D;
   font-weight: 700;
   font-family: 'Literata', serif;
 }
@@ -49,7 +49,7 @@ h1 {
 .subtitle {
   font-size: 1.2rem;
   font-style: italic;
-  color: #a38c74;
+  color: #706AAA;
   margin: 0.2rem 0 0;
   text-align: center;
 }
