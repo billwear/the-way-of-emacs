@@ -1,3 +1,0 @@
-#+TITLE: The Way of Emacs
-
-- [[file:index.org][way of emacs]]
