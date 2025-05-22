@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" 
+    content="width=device-width, 
+    initial-scale=1.0"/>
+  <title>
+	   WoE
+  </title>
+  <link 
+    rel="icon" 
+    href="images/favicon.png" 
+    type="image/png" />
+  <link 
+    rel="stylesheet" 
+    href="style.css" />
+</head>
+<body>
+  <nav class="top-nav">
+    <ul>
+      <li>
+        <a href="index.html">
+          Home
+        </a>
+      </li>
+      <li>
+        <a href="journal.html">
+         Journal
+        </a>
+      </li>
+      <li>
+        <a href="projects.html">
+          Projects
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <header class="site-header">
+    <img 
+      src="images/way-of-emacs-logo.jpg" 
+      alt="Way of Emacs logo" 
+      class="logo" />
+    <div class="site-title-group">
+      <h1>
+        The Way of Emacs
+      </h1>
+      <p class="subtitle">
+        Journal: My .emacs file
+      </p>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <pre>
+;;; set flag to let me know everything went well
+(add-hook 'after-init-hook
+          (lambda () (message "Emacs config loaded clean and lean.")))
+
+;;; set up interface to my liking
+
+;; full screen maximized
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+
+;; handles modern graphics cards better
+(setq frame-resize-pixelwise t)
+(setq x-stretch-cursor t)
+
+;; charcoal background, brighter colors
+(set-face-attribute 'cursor nil :background "#ebdbb2")
+(set-face-attribute 'default nil :height 140 :background "#282828" :foreground "#ebdbb2")
+
+;; show column numbers
+(column-number-mode)
+
+;; selections function like other systems
+(delete-selection-mode 1)
+
+;; wrapping set up correctly
+(global-visual-line-mode t)
+(setq fill-column 10000)
+
+;; menu bar and toolbar off
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+
+;; annoying confirmation/messages off
+(setq auto-save-no-message t)
+(setq confirm-kill-emacs nil)
+(setq inhibit-startup-screen t)
+(setq native-comp-async-report-warnings-errors nil)
+(setq visible-bell t)
+(setq initial-scratch-message "")
+
+;; make it easy to manage windows
+(setq windmove-create-window t)
+(windmove-default-keybindings 'control)
+
+;; force ediff to vanish when done
+(setq ediff-restore-window-configuration t)
+
+;; enable UTF-8 for special characters & emojis
+(prefer-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-language-environment "UTF-8")
+(set-selection-coding-system 'utf-8)
+(set-terminal-coding-system 'utf-8)
+
+;;; set standard locations
+(setq backup-directory-alist `(("." . , "~/var/backup/autosaves")))
+(setq hdir "~/")
+(setq default-directory "~/")
+(setq git-repo-url "git@github.com:billwear/bill.git")
+(setq org-agenda-files '("~/etc/org/sands.org"))
+(setq org-archive-location "~/var/archives/emacs/%s_archive::")
+(setq org-directory "~/etc/org/")
+(setq org-journal-dir "~/var/log/2025")
+
+;;; load packages
+
+;; basic setup
+(require 'package)
+(setq package-archives
+      '(("gnu"   . "https://elpa.gnu.org/packages/")
+        ("melpa-stable" . "https://melpa.org/packages/")
+        ("org"   . "https://orgmode.org/elpa/")))
+(package-initialize)
+
+;; set up use-package
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(require 'use-package)
+(setq use-package-always-ensure t)
+
+;; load supplemental packages
+(use-package yaml)
+(use-package ivy)
+(use-package counsel)
+(use-package ivy-prescient)
+(use-package ivy-rich)
+(use-package org)
+(use-package org-journal)
+(use-package dired-sidebar)
+(use-package which-key)
+(use-package json-mode)
+(use-package magit)
+(use-package projectile)
+(use-package counsel-projectile)
+
+;;; configure packages
+
+;; configure ivy
+(setq ivy-mode 1
+      ivy-use-virtual-buffers t
+      ivy-count-format "(%d/%d) "
+      ivy-wrap t
+      ivy-re-builders-alist '((t . ivy--regex-plus))
+      ivy-height 15
+      ivy-fixed-height-minibuffer t
+      ivy-initial-inputs-alist nil
+      ivy-format-function #'ivy-format-function-arrow)
+
+;; configure counsel
+(bind-key "M-x"  #'counsel-M-x)
+(bind-key "C-x C-f" #'counsel-find-file)
+(bind-key "C-x C-r" #'counsel-recentf)
+(bind-key "C-c f" #'counsel-fzf)
+(bind-key "C-c g" #'counsel-git)
+(bind-key "C-c k" #'counsel-rg)
+(bind-key "C-c l" #'counsel-locate)
+(setq counsel-mode 1)
+(setq counsel-find-file-ignore-regexp "~/var/log/2025$")
+(setq counsel-preselect-current-file t)
+
+;; configure ivy-prescient
+(setq ivy-prescient-mode 1)
+
+;; configure ivy-rich
+(setq ivy-rich-mode 1)
+(setq ivy-rich-path-style 'abbrev)
+
+;; configure org-mode
+(setq
+  org-agenda-prefix-format '((agenda . "%t"))
+ org-agenda-show-habits t
+ org-agenda-span 'day
+ org-clock-into-drawer "CLOCKING"
+ org-clock-out-remove-zero-time-clocks t
+ org-clock-persist 'history
+ org-clock-report-include-clocking-tasks t
+ org-hide-emphasis-markers t
+ org-indent-mode 1
+ org-journal-carryover-items "TODO="
+ org-journal-date-format "%s"
+ org-journal-enable-agenda-integration nil
+ org-journal-file-format "%Y-%m-%d.org"
+ org-journal-file-header #'my-org-journal-header
+ org-journal-find-file 'find-file
+ org-journal-hide-entries-p nil
+ org-journal-time-format "%H:%M"
+ org-log-done 'time
+ org-log-into-drawer t
+ org-log-redeadline 'time
+ org-log-reschedule 'time
+ org-priority-default 82
+ org-priority-lowest 90
+ org-startup-folded 'overview
+ org-support-shift-select t
+ org-todo-repeat-to-state "TODO"
+ visual-line-mode 1
+ org-agenda-compact-blocks t
+ )
+
+(setq org-capture-templates
+      '(("w" "Work" entry (file+headline "~/etc/org/sands.org" "Work Tasks")
+	 "* TODO %? :work:\nSCHEDULED: %(format-time-string \"<%Y-%m-%d %a .+1d>\")\n  %i\n  %a")
+	("h" "Home" entry (file+headline "~/etc/org/sands.org" "Home Tasks")
+	 "* TODO %?\ :home:nSCHEDULED: %(format-time-string \"<%Y-%m-%d %a .+1d>\")\n  %i\n  %a")
+	("s" "Shopping" entry (file+headline "~/etc/org/sands.org" "Shopping List")
+	 "* TODO %? :shop:\nSCHEDULED: %(format-time-string \"<%Y-%m-%d %a .+1d>\")\n  %i\n  %a")
+	("r" "Habits" entry (file+headline "~/etc/org/sands.org" "Regular Habits")
+	 "* TODO %?\nSCHEDULED: %(format-time-string \"<%Y-%m-%d %a .+3d>\")\n:PROPERTIES:\n:STYLE: habit\n:END:\n  %i\n  %a")
+	("j" "Journal" entry (file+datetree "~/etc/org/journal.org")
+	 "* %?\nEntered on %(format-time-string \"[%Y-%m-%d %a %H:%M]\")\n  %i\n  %a")))
+(run-at-time "1 min" 60 #'org-save-all-org-buffers)
+
+;; configure org-journal
+(add-hook 'org-journal-after-entry-create-hook #'save-buffer)
+
+;; configure dired-sidebar
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (dired-sidebar-toggle-sidebar)))
+;; configure which-key
+(which-key-mode)
+(setq which-key-popup-type 'side-window
+      which-key-max-description-length 50
+      which-key-allow-imprecise-window-fit t
+      which-key-sort-order 'which-key-key-order-alpha
+      which-key-separator " → "
+      which-key-use-C-h-commands t
+      which-key-side-window-max-height 0.5
+      which-key-side-window-max-width 0.45
+      which-key-side-window-location 'bottom
+      which-key-add-column-padding 2
+      which-key-special-keys '("SPC" "TAB" "RET" "ESC"))
+;; Enable extra layout
+(which-key-setup-side-window-bottom)
+(which-key-setup-minibuffer)
+
+;;; define functions before going farther
+
+(defun my/accounts ()
+  "Open personal accounts file."
+  (interactive)
+  (find-file "~/etc/org/accounts.org"))
+
+(defun my/agenda ()
+  "Show the default agenda view."
+  (interactive)
+  (org-agenda nil "n"))
+
+(defun my/bible ()
+  "Open Bible file."
+  (interactive)
+  (find-file "~/lib/kjv/kjv-full.org"))
+
+(defun my/check-init-file ()
+  (interactive)
+  (byte-compile-file user-init-file))
+
+(defun my/commit-homedir-if-needed ()
+  "Add, commit, and push homedir changes, if any."
+  (interactive)
+  (save-some-buffers t)
+  (let* ((default-directory "~/")
+         (hostname (system-name))
+         (timestamp
+	  (format-time-string "%Y-%m-%d %H:%M:%S"))
+         (commit-msg
+	  (format "commit from %s at %s"
+		  hostname timestamp)))
+    (when (not (string= (shell-command-to-string "git status --porcelain") ""))
+      (shell-command "git add .")
+      (shell-command (format "git commit -m \"%s\"" commit-msg))
+      (shell-command "git push")))) 
+
+(defun my/copy-current-line ()
+  "Copy the current line to the kill ring."
+  (interactive)
+  (kill-new (thing-at-point 'line t))
+  (message "Copied line."))
+
+(defun my/draw-ascii-box-around-region (start end)
+  "Draw ASCII box around selected region."
+  (interactive)
+  (let* ((lines (split-string (buffer-substring start end) "\n"))
+         (max-len (apply #'max (mapcar #'length lines)))
+         (border (concat "+" (make-string (+ max-len 2) ?-) "+")))
+    (insert (concat border "\n"
+                    (mapconcat (lambda (line)
+                                 (format "| %-*s |" max-len line))
+                               lines "\n")
+                    "\n" border "\n"))))
+
+(defun my/filebar ()
+  "Toggle the dired sidebar."
+  (interactive)
+  (dired-sidebar-toggle-sidebar))
+
+(defun my/generate-clocktable ()
+  "Generate a clocktable for today."
+  (interactive)
+  (org-clock-report))
+
+(defun my/grep-thru-homedir (term)
+  "Search TERM recursively in home directory."
+  (interactive "sEnter search term: ")
+  (let ((dir (expand-file-name "~/"))
+        (pattern (if (string= term "all") "*.*" "*")))
+    (rgrep term pattern dir)))
+
+(defun my/indent-entire-buffer ()
+  "Indent the whole buffer."
+  (interactive)
+  (indent-region (point-min) (point-max)))
+
+(defun my/initfile()
+  "Open the user's init file."
+  (interactive)
+  (find-file user-init-file))
+
+(defun my/insert-date-and-time ()
+  "Insert the current date and time in ISO format."
+  (interactive)
+  (insert (format-time-string "%Y-%m-%d %H:%M:%S (%s)")))
+
+(defun my/insert-markdown-link ()
+  "Insert a Markdown link using the clipboard URL."
+  (interactive)
+  (let ((url (current-kill 0)))
+    (insert (format "[%s](%s)" (read-string "Link text: ") url))))
+
+(defun my/insert-seasonal-header ()
+  "Insert the current personal season and symbolic day into the buffer."
+  (interactive)
+  (insert (format "* Temporal Context: %s / %s\n\n"
+                  (my/temporal-day-name)
+                  (my/temporal-season))))
+
+(defun my/insert-shell-command-results (command)
+  "Insert output of shell COMMAND at point."
+  (interactive "sShell command: ")
+  (insert (shell-command-to-string command)))
+
+(defun my/bangin (command)
+  "Run shell COMMAND and show result in a buffer."
+  (interactive)
+  (let ((output (shell-command-to-string command)))
+    (with-current-buffer (get-buffer-create "*Shell Output*")
+      (erase-buffer)
+      (insert output)
+      (display-buffer (current-buffer)))))
+
+(defun my/insert-time ()
+  "Insert the current time (HH:MM)."
+  (interactive)
+  (insert (format-time-string "%H:%M")))
+
+(defun my/insert-time-and-epoch ()
+  "Insert current time and Unix epoch."
+  (interactive)
+  (insert (format-time-string "%H:%M (%s)")))
+
+(defun my/journal ()
+  "Open today's journal entry, creating it if necessary, and insert the full ritual or timestamp entry."
+  (interactive)
+  (require 'org-journal)
+  (let ((today-file (ignore-errors (org-journal--get-entry-path))))
+    ;; Open or create today's journal file
+    (if (and today-file (file-exists-p today-file))
+        (org-journal-open-current-journal-file)
+      (progn
+        (org-journal-new-entry nil)
+        (my/org-journal-ritual-insert)))
+    ;; Go to end and insert new timestamped entry
+    (goto-char (point-max))
+    (unless (bolp)
+      (insert "\n"))
+    (insert "\n* " (format-time-string "%A, %B %d %Y") "\n")
+    (insert "** " (format-time-string "%H:%M"))
+    (save-excursion (insert "\n"))))
+
+(defun my/json-format-buffer ()
+  "Pretty-print the JSON in the current buffer."
+  (interactive)
+  (json-pretty-print-buffer))
+
+(defun my/mark-done-and-reset-agenda ()
+  "Toggle TODO state, refresh agenda, and save all org buffers."
+  (interactive)
+  (org-agenda-todo)
+  (org-agenda-redo)
+  (org-save-all-org-buffers))
+
+(defun my/org-journal-ritual-insert ()
+  "Insert full org-journal ritual template: date, fortune, temporal context, and mood log."
+  (interactive)
+  (let* ((date (string-trim (shell-command-to-string "date")))
+         (fortune (string-trim (shell-command-to-string "fortune")))
+         (season (or (my/temporal-season) "☄️ Unknown Season"))
+         (day-name (or (my/temporal-day-name) "⏳ Unknown Day")))
+    (insert (format "%s\n" date))
+    (insert (format "* Temporal Context: %s / %s\n\n" day-name season))
+    (insert (format "%s\n\n" fortune))
+    (insert "* Morning Check-In\n\n"
+	    "* Snapshot\n"
+	    "- Mood (1 word):\n"
+	    "- Energy (low / steady / high):\n"
+	    "- Mental Weather (fog / overcast / clear / turbulent / don’t know yet):\n"
+	    "\n"
+	    "* Current Noise\n"
+	    "- What’s on loop?\n"
+	    "- What’s unfinished from yesterday?\n"
+	    "- Any lingering dreams or emotions?\n"
+	    "* Center of Gravity\n"
+	    "- I’m pulled toward:\n"
+	    "- I’m resisting:\n"
+	    "- The smarter move might be:\n"
+	    "* Signal Boost\n"
+	    "- [ ] I’m overcomplicating\n"
+	    "- [ ] I’m telling myself a story\n"
+	    "- [ ] I’m tired, not doomed\n"
+	    "- [ ] I’m fine™ (but am I really?)\n"
+	    "- [ ] No radar hits — we’re good\n"
+	    "* Reground (Pick 1 or Skip)\n"
+	    "- [ ] Coffee + breathe\n"
+	    "- [ ] 2-minute body scan\n"
+	    "- [ ] Externalize (journal, draw, talk)\n"
+	    "- [ ] Move before mind spirals\n"
+	    "- [ ] Permission to coast today\n"
+	    "* Small Wisdom\n"
+	    "- One thing I know right now, that I tend to forget later:\n\n")))
+
+(defun my/prayers ()
+  "Open prayer list."
+  (interactive)
+  (find-file "~/etc/org/prayer-list.org"))
+
+(defun my/pull-homedir ()
+  "Pull latest changes to homedir."
+  (interactive)
+  (let ((default-directory "~/"))
+    (shell-command "git pull")))
+
+(defun my/qrepl ()
+  "Run query regex replace."
+  (interactive)
+  (query-replace-regexp))
+
+(defvar temp-file-name nil)
+(defvar temp-file-buffer nil)
+(defun my/read-file-into-temp-buffer ()
+  "Load a file into a temp buffer and extract lines starting with 'usage:'."
+  (interactive)
+  (let ((temp-file (read-file-name "File name to load: "))
+        (temp-buffer (generate-new-buffer "*temp-file-buffer*"))
+        usage-lines)
+    (with-current-buffer temp-buffer
+      (insert-file-contents temp-file)
+      (while (re-search-forward "^usage:.*$" nil t)
+        (push (match-string 0) usage-lines)))
+    (with-current-buffer (get-buffer-create "*scratch*")
+      (goto-char (point-max))
+      (insert "\n;; Usage lines:\n"
+              (mapconcat #'identity (nreverse usage-lines) "\n")
+              "\n"))))
+
+(defun my/reload-yasnippets ()
+  "Reload all yasnippet snippets."
+  (interactive)
+  (yas-reload-all))
+
+(defun my/replace ()
+  "Run regex replace."
+  (interactive)
+  (replace-regexp))
+
+(defun my/setup-company-backends ()
+  "Configure company backends based on mode."
+  (interactive)
+  (setq-local company-backends '((company-files
+                                  company-keywords
+                                  company-capf
+                                  company-dabbrev-code
+                                  company-dabbrev
+                                  company-yasnippet))))
+
+(defun my/show-message-buffer ()
+  "Open the *Messages* buffer."
+  (interactive)
+  (switch-to-buffer "*Messages*"))
+
+(defun my/temporal-day-name ()
+  "Return the symbolic name for the current day of the week."
+  (interactive)
+  (let ((day (format-time-string "%u"))) ;; 1 = Monday ... 7 = Sunday
+    (cond
+     ((string= day "1") "🗂️ Day of Planning")
+     ((string= day "2") "📐 Day of Structure")
+     ((string= day "3") "🌌 Day of the Rift")
+     ((string= day "4") "📚 Day of Teaching")
+     ((string= day "5") "🪞 Day of Reflection")
+     ((string= day "6") "🛠️ Day of Crafting")
+     ((string= day "7") "💤 The Dream Archive")
+     (t "⏳ Unnamed Day"))))
+
+(defun my/temporal-season ()
+  "Return the name of the current personal season based on the month and day."
+  (interactive)
+  (let* ((month (string-to-number (format-time-string "%m")))
+         (day (string-to-number (format-time-string "%d")))
+         (md (+ (* month 100) day))) ;; e.g. April 4 becomes 404
+    (cond
+     ((or (and (>= md 201) (<= md 415))) "🌫️ The Drift Season") ;; Feb 1 – Apr 15
+     ((and (>= md 416) (<= md 731)) "🔥 The Forge Season")      ;; Apr 16 – July 31
+     ((and (>= md 801) (<= md 1031)) "🔧 The Rebuild Season")   ;; Aug 1 – Oct 31
+     ((or (and (>= md 1101) (<= md 1231)) (and (>= md 101) (<= md 131)))
+      "🌌 The Pull Season")                                     ;; Nov 1 – Jan 31
+     (t "🌀 Unknown Season"))))
+
+(defun my/uncapitalize-region (start end)
+  "Lowercase all text in the region."
+  (interactive "r")
+  (let ((text (buffer-substring start end)))
+    (delete-region start end)
+    (insert (downcase text))))
+
+(defun my/view-homedir-dired ()
+  "Open home directory in Dired."
+  (interactive)
+  (dired "~/"))
+
+(defun my/vt100 ()
+  "Open a bash shell in ansi-term."
+  (interactive)
+  (ansi-term "/bin/bash"))
+
+(defun my/wrap-region-as-markdown-code-block (start end)
+  "Wrap selected region in Markdown code block."
+  (interactive)
+    (insert (format "```\n%s\n```\n" text)))
+
+;;; set up homedir github repo maintenance
+(add-hook 'emacs-startup-hook #'my/pull-homedir)
+(add-hook 'kill-emacs-hook #'my/commit-homedir-if-needed)
+(run-with-timer
+  600   ; wait 10 minutes
+  600   ; repeat every 10 minutes
+  #'commit-homedir-if-needed)
+
+;;; set up journal diversions
+;; (add-hook 'org-journal-after-entry-create-hook #'my/org-journal-ritual-insert)
+
+;;; set up my hotkeys
+
+;; create locked keys mode
+(defvar my/locked-keys-map (make-sparse-keymap)
+  "Keymap for custom keybindings that should not be overridden.")
+(define-minor-mode my/locked-keys-mode
+  "Minor mode to enforce permanent keybindings."
+  :init-value t
+  :global t
+  :keymap my/locked-keys-map)
+
+;; C-c m keybindings
+(define-key my/locked-keys-map (kbd "C-c m a") #'my/agenda)
+(define-key my/locked-keys-map (kbd "C-c m b") #'my/bible)
+(define-key my/locked-keys-map (kbd "C-c m c") #'org-capture)
+(define-key my/locked-keys-map (kbd "C-c m d") #'my/filebar)
+(define-key my/locked-keys-map (kbd "C-c m i") #'my/initfile)
+(define-key my/locked-keys-map (kbd "C-c m j") #'my/journal)
+(define-key my/locked-keys-map (kbd "C-c m m") #'my/accounts)
+(define-key my/locked-keys-map (kbd "C-c m p") #'my/prayers)
+(define-key my/locked-keys-map (kbd "C-c m q") #'my/qrepl)
+(define-key my/locked-keys-map (kbd "C-c m r") #'my/replace)
+(define-key my/locked-keys-map (kbd "C-c m s") #'my/bangin)
+(define-key my/locked-keys-map (kbd "C-c m v") #'my/vt100)
+
+;; function key bindings
+(define-key my/locked-keys-map (kbd "<f1>") #'save-buffer)
+(define-key my/locked-keys-map (kbd "<f2>") #'find-file)
+(define-key my/locked-keys-map (kbd "<f4>") #'org-agenda-do-date-later)
+
+;;; customize-variable settings
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(org-habit-following-days 3)
+ '(org-habit-preceding-days 8)
+ '(org-journal-find-file-fn 'find-file nil nil "Customized with use-package org-journal")
+ '(org-modules
+   '(ol-bbdb ol-bibtex ol-docview ol-doi ol-eww ol-gnus org-habit ol-info ol-irc ol-mhe ol-rmail ol-w3m)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+      </pre>
+    </section>
+  </main>
+  <footer>
+    <p>© 2025 by Bill Wear. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>
+
