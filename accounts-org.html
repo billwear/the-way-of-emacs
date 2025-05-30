@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" 
+    content="width=device-width, 
+    initial-scale=1.0"/>
+  <title>
+	   WoE
+  </title>
+  <link 
+    rel="icon" 
+    href="images/favicon.png" 
+    type="image/png" />
+  <link 
+    rel="stylesheet" 
+    href="style.css" />
+</head>
+<body>
+  <nav class="top-nav">
+    <ul>
+      <li>
+        <a href="index.html">
+          Home
+        </a>
+      </li>
+      <li>
+        <a href="journal.html">
+         Journal
+        </a>
+      </li>
+      <li>
+        <a href="projects.html">
+          Projects
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <header class="site-header">
+    <img 
+      src="images/way-of-emacs-logo.jpg" 
+      alt="Way of Emacs logo" 
+      class="logo" />
+    <div class="site-title-group">
+      <h1>
+        The Way of Emacs
+      </h1>
+      <p class="subtitle">
+        an OS composed of mind with machine
+      </p>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h1>accounts.org</h1>
+      <p>Here's the file, loaded with fake numbers and accounts (in case I had to tell you that).</p>
+      <details>
+	<summary>A scrubbed version of my actual accounts file.</summary>
+	<pre>
+	accounts
+** basic Accounting
+*** what is accounting?
+Accounting is tracking the flow of valuable commodities, such as money or time. I am attempting to account for the flow of my money from the time i get it, to project what my needs may be, and to meet them as best I can.
+*** assets and liabilities
+assets are things you own; liabilities are things you have promised to pay others.
+
+** holdings
+#+NAME: holdings
+| desc            |  amount |
+|-----------------+---------|
+| chase chkg nnnn |  778.17 |
+| chase svgs nnnn |  855.51 |
+| amex avgs nnnn  |    0.60 |
+| cash in wallet  |   99.25 |
+| rolled coins    |   20.00 |
+| bagged coins    |   14.50 |
+|-----------------+---------|
+| total holdings  | 1768.03 |
+#+TBLFM: @8$2=vsum(@I+1..@II-1);%0.2f
+** credit cards
+#+NAME:credit
+| card | available |
+|------+-----------|
+| amex |      0.00 |
+| chas |     15.18 |
+| prim |     21.71 |
+| sams |     33.77 |
+| amaz |     24.00 |
+| csco |      0.00 |
+| boa  |     20.00 |
+| furn |      0.00 |
+|------+-----------|
+| totl |    114.66 |
+#+TBLFM: @>$2=vsum(@I+1..@II-1)
+** budget
+#+NAME: budget
+| desc  |   amount |   spent | remains |  d |
+|-------+----------+---------+---------+----|
+| salry |  5546.48 | 5591.12 | 1768.03 | 24 |
+| amex  |  -138.00 |    0.00 |   -138. | 11 |
+| chas  |  -159.00 |     159 |      0. | 28 |
+| prim  |  -230.00 |    0.00 |   -230. |  5 |
+| sams  |   -35.00 |    0.00 |    -35. | 19 |
+| amaz  |   -96.00 |   96.00 |      0. | 26 |
+| csco  |  -162.00 |    0.00 |   -162. |  3 |
+| boa   |   -56.00 |   56.00 |      0. | 25 |
+| furn  |   -80.00 |   80.00 |      0. | 22 |
+| bbuy  |  -100.00 |  100.00 |      0. | 25 |
+| tags  |   -35.40 |    0.00 |   -35.4 | 31 |
+| AI    |   -20.00 |    0.00 |    -20. | 10 |
+| mech  |   -72.00 |    0.00 |    -72. | 25 |
+| elec  |  -212.00 |    0.00 |   -212. |  5 |
+| h2o   |   -35.00 |    0.00 |    -35. |    |
+| band  |  -179.90 |   89.95 |  -89.95 | 11 |
+| cell  |  -237.74 |  237.74 |      0. | 10 |
+| mort  | -1330.00 | 1330.00 |      0. |  1 |
+| cins  |  -169.55 |  169.55 |      0. | 23 |
+| diet  |  -150.00 |  150.00 |      0. | 25 |
+| docs  |   -41.76 |   41.76 |      0. | 25 |
+| dent  |   -37.50 |    0.00 |   -37.5 | 25 |
+| eent  |   -37.50 |    0.00 |   -37.5 | 25 |
+| ptax  |  -100.00 |    0.00 |   -100. | 18 |
+| paul  |  -500.00 |  500.00 |      0. | 25 |
+| gas   |   -90.00 |   12.68 |  -77.32 |  ~ |
+| groc  |  -400.00 |  396.68 |   -3.32 |  ~ |
+| dine  |  -170.00 |  155.18 |  -14.82 |  ~ |
+| misc  |   -30.00 |   22.88 |   -7.12 |    |
+| meds  |  -100.00 |   74.00 |    -26. | 25 |
+| shari |  -300.00 |  300.00 |      0. | 25 |
+| stor  |  -170.00 |    0.00 |   -170. | 25 |
+| root  |   -48.24 |    0.00 |  -48.24 |    |
+| ytv   |     0.00 |    0.00 |      0. |    |
+| ytube |   -14.97 |   14.97 |      0. | 28 |
+|-------+----------+---------+---------+----|
+| total |          |         |  216.86 |    |
+#+TBLFM: @>$4=vsum(@I+1..@II-1);%0.2f::$4=$-1+$-2::@2$4=remote(holdings,@>$2)
+
+** purchasing power
+| account | amount |
+|---------+--------|
+| cash    | 369.66 |
+| credit  | 114.66 |
+|---------+--------|
+| g total | 484.32 |
+#+TBLFM: @2$2=remote(budget,@>$4);%0.2f::@3$2=remote(credit,@>$2)::@>$2=vsum(@I+1..@II-1)
+** projected budget
+#+NAME: projbudget
+| desc  |   amount |
+|-------+----------+
+| salry |  5546.48 |
+| amex  |  -138.00 |
+| chas  |  -159.00 |
+| prim  |  -230.00 |
+| sams  |   -35.00 |
+| amaz  |   -96.00 |
+| csco  |  -162.00 |
+| boa   |   -56.00 |
+| furn  |   -80.00 |
+| bbuy  |  -100.00 |
+| tags  |   -35.40 |
+| AI    |   -20.00 |
+| mech  |   -72.00 |
+| elec  |  -212.00 |
+| h2o   |   -35.00 |
+| band  |  -179.90 |
+| cell  |  -237.74 |
+| mort  | -1330.00 |
+| cins  |  -169.55 |
+| diet  |  -150.00 |
+| docs  |   -41.76 |
+| dent  |   -37.50 |
+| eent  |   -37.50 |
+| ptax  |  -100.00 |
+| paul  |  -500.00 |
+| gas   |   -90.00 |
+| groc  |  -400.00 |
+| dine  |  -170.00 |
+| misc  |   -30.00 |
+| meds  |  -100.00 |
+| shari |  -300.00 |
+| stor  |  -170.00 |
+| root  |   -48.24 |
+| ytv   |     0.00 |
+| ytube |   -14.97 |
+|-------+----------+
+| total |          |
+#+TBLFM: @>$2=vsum(@I+1..@II-1);%0.2f
+	</pre>
+      </details>
+      <p>Let's look at each of the individual tables.</p>
+      <h2>Holdings table</h2>
+      <pre>
+#+NAME: holdings
+| desc            |  amount |
+|-----------------+---------|
+| chase chkg nnnn |  778.17 |
+| chase svgs nnnn |  855.51 |
+| amex avgs nnnn  |    0.60 |
+| cash in wallet  |   99.25 |
+| rolled coins    |   20.00 |
+| bagged coins    |   14.50 |
+|-----------------+---------|
+| total holdings  | 1768.03 |
+#+TBLFM: @8$2=vsum(@I+1..@II-1);%0.2f
+      </pre>
+      <p>The "holdings" table is basically all the liquid money I have available to me right now.  Nevermind that some of it's spoken for in the budget (priorities can change, negotiations can be made).  Note it just has a simple sum of everything from <code>@I+1</code> (the first <code>|-----+--------|</code>) to <code>@II</code> (the last one).  This way, I can add rows without worrying about updating any formulas.</p>
+      <h2>Credit cards</h2>
+      <p>The credit cards table just shows my available balance.  Though I realize now that John Q. Sample here has a <em>lot</em> of credit cards.  I would never recommend having anywhere near this many, TBH.  Lucky I'm not giving financial advice.</p>
+      <pre>
+#+NAME:credit
+| card | available |
+|------+-----------|
+| amex |      0.00 |
+| chas |     15.18 |
+| prim |     21.71 |
+| sams |     33.77 |
+| amaz |     24.00 |
+| csco |      0.00 |
+| boa  |     20.00 |
+| furn |      0.00 |
+|------+-----------|
+| totl |    114.66 |
+#+TBLFM: @>$2=vsum(@I+1..@II-1)
+      </pre>
+      <p>Again, just a simple column sum.  Note that both these last two files have an assigned <code>#+NAME:</code>. That becomes important in the next few tables.</p>
+      <h2>The budget table</h2>
+      <p>Here's the main table I depend upon. I pretend like this is all the money I have and the categories can't be overrun.</p>
+      <pre>
+	#+NAME: budget
+| desc  |   amount |   spent | remains |  d |
+|-------+----------+---------+---------+----|
+| salry |  5546.48 | 5591.12 | 1768.03 | 24 |
+| amex  |  -138.00 |    0.00 |   -138. | 11 |
+| chas  |  -159.00 |     159 |      0. | 28 |
+| prim  |  -230.00 |    0.00 |   -230. |  5 |
+| sams  |   -35.00 |    0.00 |    -35. | 19 |
+| amaz  |   -96.00 |   96.00 |      0. | 26 |
+| csco  |  -162.00 |    0.00 |   -162. |  3 |
+| boa   |   -56.00 |   56.00 |      0. | 25 |
+| furn  |   -80.00 |   80.00 |      0. | 22 |
+| bbuy  |  -100.00 |  100.00 |      0. | 25 |
+| tags  |   -35.40 |    0.00 |   -35.4 | 31 |
+| AI    |   -20.00 |    0.00 |    -20. | 10 |
+| mech  |   -72.00 |    0.00 |    -72. | 25 |
+| elec  |  -212.00 |    0.00 |   -212. |  5 |
+| h2o   |   -35.00 |    0.00 |    -35. |    |
+| band  |  -179.90 |   89.95 |  -89.95 | 11 |
+| cell  |  -237.74 |  237.74 |      0. | 10 |
+| mort  | -1330.00 | 1330.00 |      0. |  1 |
+| cins  |  -169.55 |  169.55 |      0. | 23 |
+| diet  |  -150.00 |  150.00 |      0. | 25 |
+| docs  |   -41.76 |   41.76 |      0. | 25 |
+| dent  |   -37.50 |    0.00 |   -37.5 | 25 |
+| eent  |   -37.50 |    0.00 |   -37.5 | 25 |
+| ptax  |  -100.00 |    0.00 |   -100. | 18 |
+| paul  |  -500.00 |  500.00 |      0. | 25 |
+| gas   |   -90.00 |   12.68 |  -77.32 |  ~ |
+| groc  |  -400.00 |  396.68 |   -3.32 |  ~ |
+| dine  |  -170.00 |  155.18 |  -14.82 |  ~ |
+| misc  |   -30.00 |   22.88 |   -7.12 |    |
+| meds  |  -100.00 |   74.00 |    -26. | 25 |
+| shari |  -300.00 |  300.00 |      0. | 25 |
+| stor  |  -170.00 |    0.00 |   -170. | 25 |
+| root  |   -48.24 |    0.00 |  -48.24 |    |
+| ytv   |     0.00 |    0.00 |      0. |    |
+| ytube |   -14.97 |   14.97 |      0. | 28 |
+|-------+----------+---------+---------+----|
+| total |          |         |  216.86 |    |
+#+TBLFM: @>$4=vsum(@I+1..@II-1);%0.2f::$4=$-1+$-2::@2$4=remote(holdings,@>$2)
+      </pre>
+      <p>The columns here are:</p>
+      <ul>
+	<li><strong>desc</strong>ription: just little codewords for me, but you can probably guess most of them.</li>
+	<li><strong>amount</strong>: the budgeted amount. Entering it as a negative number makes calculations easy.</li>
+	<li><strong>spent</strong>: how much has already been spent in this category this month / paycheck / whatever.</li>
+	<li><strong>remains</strong>: how much remains that I <em>can</em> spend in this category.</li>
+	<li><strong>d</strong>ue date: if this is a routine bill, when it comes due every month.  A <code>~</code> means it's something that would never have a specific date, like groceries.</li>
+      </ul>
+      <p>Note some nuances in the formulas, here.  The main sum is also relative to the leader lines, so rows can be added or removed at will.  That one's formatted for two decimal places, no matter what.  The fourth column (<code>$4</code>) is the sum of one column to the left (<code>$-1</code>) and two columns to the left (<code>$-2</code>) -- except for the first row under the first leader line (<code>@2$4</code>).  That's equal to the last row in column 2 (<code>@>$2</code>) in the table named "holdings" ( <code>=remote(holdings,@>$2)</code> ).</p>
+      <p>Most people don't know that org-mode spreadsheets are this nuanced, probably because the documentation is a little more difficult to read and put together.</p>
+      <p>You can probably figure out the remaining tables.</p>
+    </section>
+  </main>
+  <footer>
+    <p>© 2025 by Bill Wear. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>
+
