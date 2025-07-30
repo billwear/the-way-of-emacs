@@ -1,2 +1,4 @@
 #+TITLE: The Way of Emacs
 
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="style.css" />
+* heading 1
