@@ -66,3 +66,265 @@ Except on Termux, where trying to remove them causes .emacs to fail.
 #+BEGIN_SRC emacs-lisp
   (delete-selection-mode 1)
 #+END_SRC
+
+* Load packages
+
+** Set the package sources
+#+BEGIN_SRC emacs-lisp
+(require 'package)
+(setq package-enable-at-startup nil)
+(setq package-archives
+      '(("gnu" . "https://elpa.gnu.org/packages/")
+        ("melpa" . "https://melpa.org/packages/")
+        ("melpa-stable" . "https://stable.melpa.org/packages/")
+        ("org" . "https://orgmode.org/elpa/")))
+(package-initialize)
+#+END_SRC
+
+** Enable & configure use-package
+
+#+BEGIN_SRC emacs-lisp
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(require 'use-package)
+(setq use-package-always-ensure t)
+#+END_SRC
+
+** Invoke & configure doom-modeline
+
+#+BEGIN_SRC emacs-lisp
+(use-package doom-modeline
+  :init
+  (setq doom-modeline-height 15
+        doom-modeline-bar-width 3
+        doom-modeline-buffer-file-name-style
+		'truncate-upto-root
+        doom-modeline-icon nil
+        doom-modeline-major-mode-icon nil
+        doom-modeline-minor-modes nil
+        doom-modeline-enable-word-count nil
+        doom-modeline-checker-simple-format t
+        doom-modeline-env-version nil)
+  :config
+  (doom-modeline-mode 1)
+  (doom-modeline-def-segment my/clock
+    "Show current date/time compactly."
+    (propertize (format-time-string "%a %H:%M") 'face 'doom-modeline-info))
+  (doom-modeline-def-modeline 'my/modeline
+    '(bar buffer-info buffer-position)
+    '(my/clock misc-info))
+  (defun my/set-custom-modeline ()
+    (doom-modeline-set-modeline 'my/modeline 'default))
+  (add-hook 'after-init-hook #'my/set-custom-modeline))
+#+END_SRC
+
+** Invoke & load a bunch of other packages I like
+
+#+BEGIN_SRC emacs-lisp
+(use-package which-key :config (which-key-mode 1))
+(use-package company :hook (after-init . global-company-mode))
+(use-package helpful)
+(use-package visual-fill-column)
+(use-package yaml-mode)
+(use-package markdown-mode)
+(use-package json-mode)
+(use-package yasnippet :config (yas-global-mode 1))
+(use-package no-littering)
+(use-package gcmh :config (gcmh-mode 1))
+(use-package golden-ratio :config (golden-ratio-mode 1))
+(use-package flycheck :init (global-flycheck-mode))
+(use-package grip-mode)
+(use-package eradio)
+(use-package esup)
+(use-package elmacro)
+(use-package simple-httpd)
+(use-package treemacs)
+(use-package treemacs-magit)
+(use-package treemacs-all-the-icons)
+(use-package websocket)
+(use-package pandoc-mode)
+(use-package auto-package-update :config (auto-package-update-maybe))
+(use-package ivy :config (ivy-mode 1))
+(use-package counsel :after ivy)
+(use-package ivy-rich :after ivy :config (ivy-rich-mode 1))
+(use-package ivy-prescient :after ivy :config (ivy-prescient-mode 1))
+(use-package org-journal)
+(use-package dired-sidebar)
+#+END_SRC
+
+* Configure org tools
+
+** Basic org-mode config
+
+#+BEGIN_SRC emacs-lisp
+  (setq org-agenda-span 1)
+  (with-eval-after-load 'org
+    (add-to-list 'org-modules 'org-habit))
+  (setq org-deadline-warning-days 9)
+  (require 'ox-md)
+(require 'ox-man)
+(setq org-publish-project-alist
+      '(("the-way-of-emacs"
+         :base-directory "~/src/the-way-of-emacs/"
+         :publishing-directory "~/src/the-way-of-emacs/"
+         :recursive t
+         :publishing-function org-html-publish-to-html
+         :headline-levels 4
+         :section-numbers nil
+         :with-toc t
+         :html-extension "html"
+         :body-only nil
+         :auto-sitemap t
+         :sitemap-filename "sitemap.org"
+         :sitemap-title "The Way of Emacs")))
+(setq org-agenda-menu-show-matcher t
+      org-agenda-menu-two-columns nil)
+#+END_SRC
+
+* Custom set variables
+Includes some org stuff that was set that way.
+
+#+BEGIN_SRC emacs-lisp
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(org-agenda-files
+   '("~/.notes" "~/plan.org"
+     "~/org-journal/2025-07-26.org"
+     "~/org-journal/2025-07-23.org"
+     "~/org-journal/2025-07-24.org"
+     "~/org-journal/2025-07-26.org"
+     "~/org-journal/2025-07-28.org"))
+ '(org-agenda-prefix-format
+   '((agenda . "%?-12t ") (todo . "") (tags . " %i %-12:c")
+     (search . " %i %-12:c")))
+ '(org-priority-default 64)
+ '(org-priority-highest 0)
+ '(org-todo-keywords '((sequence "EPIC" "PROJ" "TODO" "DONE")))
+ '(package-selected-packages
+   '(adafruit-wisdom auto-package-update boxy company counsel-projectile
+		     dired-sidebar dirvish doom-modeline doom-themes
+		     ef-themes elmacro epresent eradio esup
+		     flycheck-vale gcmh golden-ratio
+		     golden-ratio-scroll-screen grip-mode hackernews
+		     ham-mode helpful ivy-prescient ivy-rich json-mode
+		     le-thesaurus markdown-toc no-littering org-brain
+		     org-bullets org-download org-journal org-modern
+		     org-roam org-super-agenda ov pandoc-mode
+		     shell-maker simple-httpd treemacs-all-the-icons
+		     treemacs-magit ubuntu-theme visual-fill-column
+		     vterm vundo websocket which-key-posframe yaml
+		     yaml-mode yasnippet-snippets ztree))
+ '(warning-minimum-level :error))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(org-level-1 ((t (:inherit outline-1 :extend nil :foreground "red"))))
+ '(org-level-2 ((t (:inherit outline-2 :extend nil :foreground "green"))))
+ '(org-level-3 ((t (:inherit outline-3 :extend nil :foreground "yellow"))))
+ '(org-level-4 ((t (:inherit outline-4 :extend nil :foreground "magenta" :slant normal))))
+ '(org-level-5 ((t (:inherit outline-5 :extend nil :foreground "cyan")))))
+#+END_SRC
+
+* My custom functions
+
+#+BEGIN_SRC emacs-lisp
+(defun my/full-maas-discourse-doc-pull ()
+   (interactive)
+  (let ((files (directory-files-recursively "/home/stormrider/src/maas/docs/usr/markdown/" "\\.md$")))
+    (dolist (file files)
+      (let* ((basename (file-name-sans-extension (file-name-nondirectory file)))
+             (number (when (string-match "-\\([0-9]+\\)$" basename)
+                       (match-string 1 basename))))
+        (when number
+          (message "Processing file: %s, Number: %s" basename number)
+          (shell-command (format "gfd %s > %s" number file)))))))
+
+	  (defun my/accounts ()
+  "edit my financial accounts file"
+  (interactive)
+  (find-file "~/var/cache/accounts.org"))
+(defun my/help-file ()
+  "edit the emacs init file"
+  (interactive)
+  (find-file "~/.help"))
+(defun my/init-file ()
+  "edit the emacs init file"
+  (interactive)
+  (find-file "~/.emacs"))
+(defun my/org-journal-insert-first-entry ()
+  "Insert the standard daily journal header for Billwear, only once per day."
+  (interactive)
+  (let* ((journal-file (expand-file-name
+                        (format-time-string "%Y-%m-%d.org")
+                        org-journal-dir))
+         (first-entry (not (file-exists-p journal-file))))
+    (find-file journal-file)
+    (goto-char (point-max))
+    (unless (bolp) (insert "\n"))
+    (when first-entry
+      (insert "* personal journal of billwear\n")
+      (insert (string-trim (shell-command-to-string "date")))
+      (insert "\n")
+      (when (executable-find "fortune")
+        (insert (string-trim (shell-command-to-string "fortune"))))
+      (insert "\n")
+      (when (executable-find "ddate")
+        (insert (string-trim (shell-command-to-string "ddate"))))
+      (insert "\n\n")
+      (insert "** emologent\n")
+      (dolist (field '("mood" "energy" "mental wx" "loop" "unfinished"
+                       "lingering" "gravity" "resisting" "pivot"
+                       "signal boost" "reground" "reminder" "rare value" "blocker"))
+        (insert (format "- %s: \n" field)))
+      (insert "\n"))
+    ;; Append a timestamped entry after the emologent
+    (insert (format "** %s\n\n" (format-time-string "%H:%M")))))
+#+END_SRC
+
+* Personal shortcut keys
+
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-c a") 'org-agenda)
+
+;;; org shortcut keys
+(global-set-key (kbd "C-c o a") #'org-agenda-list)
+(global-set-key (kbd "C-c o b") #'org-backward-heading-same-level)
+(global-set-key (kbd "C-c o c") #'org-capture)
+(global-set-key (kbd "C-c o d") #'org-decrypt-entry)
+(global-set-key (kbd "C-c o e") #'org-encrypt-entry)
+(global-set-key (kbd "C-c o f") #'org-forward-heading-same-level)
+(global-set-key (kbd "C-c o g") #'org-goto)
+(global-set-key (kbd "C-c o h") #'org-html-export-as-html)
+(global-set-key (kbd "C-c o i") #'org-clock-in)
+(global-set-key (kbd "C-c o j") #'my/org-journal-insert-first-entry)
+(global-set-key (kbd "C-c o l") #'org-list-make-subtree)
+(global-set-key (kbd "C-c o m") #'org-md-export-as-markdown)
+(global-set-key (kbd "C-c o n") #'org-add-note)
+(global-set-key (kbd "C-c o o") #'org-clock-out)
+(global-set-key (kbd "C-c o p") #'org-publish-project)
+(global-set-key (kbd "C-c o r") #'org-cancel-repeater)
+(global-set-key (kbd "C-c o s") #'org-schedule)
+(global-set-key (kbd "C-c o t") #'org-todo-list)
+
+;;; org agenda shortcut keys (caps)
+(global-set-key (kbd "C-c o A") #'org-agenda-add-note)
+(global-set-key (kbd "C-c o C") #'org-agenda-date-prompt)
+(global-set-key (kbd "C-c o D") #'org-agenda-date-later)
+(global-set-key (kbd "C-c o S") #'org-agenda-schedule)
+(global-set-key (kbd "C-c o U") #'org-agenda-undo)
+
+;;; other shortcut keys
+(global-set-key (kbd "C-c m a") #'my/accounts)
+(global-set-key (kbd "C-c m d") #'dired)
+(global-set-key (kbd "C-c m i") #'my/init-file)
+(global-set-key (kbd "C-c m r") #'replace-regexp)
+(global-set-key (kbd "C-c m q") #'query-replace-regexp)
+
+(global-set-key (kbd "<f1>") #'my/help-file)
+#+END_SRC
