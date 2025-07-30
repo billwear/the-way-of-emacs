@@ -1,15 +1,68 @@
 #+TITLE: The Way of Emacs
 
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="style.css" />
+* Identify the user
+
+#+BEGIN_SRC emacs-lisp
+(setq user-full-name "William Wear"
+      user-email-address "williamowear@gmail.com")
+#+END_SRC
+
 * Clean up the display
 
 ** Get window to fullscreen
-Use ~(add-to-list 'default-frame-alist '(fullscreen . maximized))~ to automatically maximize the window.
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+#+END_SRC
 
 ** Load the Ubuntu theme
-#+BEGIN_SRC
+#+BEGIN_SRC emacs-lisp
 (use-package ubuntu-theme
   :config
   (load-theme 'ubuntu t))
 #+END_SRC
 
+** Turn off annoying messages
+
+#+BEGIN_SRC emacs-lisp
+(setq confirm-kill-emacs nil
+      confirm-kill-processes nil
+      visible-bell nil
+      ring-bell-function 'ignore)
+(setq inhibit-startup-screen t)
+#+END_SRC
+
+** Make touchscreen work like mousewheel
+
+#+BEGIN_SRC emacs-lisp
+(xterm-mouse-mode 1)
+(global-set-key [wheel-up]
+		(lambda ()
+			(interactive)
+			(scroll-down-line 1)))
+(global-set-key [wheel-down]
+		(lambda ()
+			(interactive)
+			(scroll-up-line 1)))
+#+END_SRC
+
+** Remove decorations I don't use
+Except on Termux, where trying to remove them causes .emacs to fail.
+
+#+BEGIN_SRC emacs-lisp
+(unless (getenv "TERMUX_VERSION")
+  (scroll-bar-mode -1)
+  (tool-bar-mode -1)
+  (menu-bar-mode -1))
+(blink-cursor-mode -1)
+#+END_SRC
+
+** Make the text readable by old men and children
+#+BEGIN_SRC emacs-lisp
+  (set-face-attribute 'default nil :height 200)
+#+END_SRC
+
+** Make selections work like Windows
+#+BEGIN_SRC emacs-lisp
+  (delete-selection-mode 1)
+#+END_SRC

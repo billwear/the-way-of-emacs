@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-07-29 Tue 19:22 -->
+<!-- 2025-07-29 Tue 19:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>The Way of Emacs</title>
@@ -202,13 +202,29 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
+<li><a href="#org0b78d6b">Identify the user</a></li>
 <li><a href="#orgee2b6ec">Clean up the display</a>
 <ul>
 <li><a href="#orge45905b">Get window to fullscreen</a></li>
 <li><a href="#org38076c2">Load the Ubuntu theme</a></li>
+<li><a href="#orga67ed41">Turn off annoying messages</a></li>
+<li><a href="#orge4cb095">Make touchscreen work like mousewheel</a></li>
+<li><a href="#orge3f79c7">Remove decorations I don't use</a></li>
+<li><a href="#orgb902001">Make the text readable by old men and children</a></li>
+<li><a href="#org1b248bf">Make selections work like Windows</a></li>
 </ul>
 </li>
 </ul>
+</div>
+</div>
+<div id="outline-container-org0b78d6b" class="outline-2">
+<h2 id="org0b78d6b">Identify the user</h2>
+<div class="outline-text-2" id="text-org0b78d6b">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(setq user-full-name "William Wear"
+      user-email-address "williamowear@gmail.com")
+</pre>
+</div>
 </div>
 </div>
 <div id="outline-container-orgee2b6ec" class="outline-2">
@@ -218,18 +234,84 @@
 <div id="outline-container-orge45905b" class="outline-3">
 <h3 id="orge45905b">Get window to fullscreen</h3>
 <div class="outline-text-3" id="text-orge45905b">
-<p>
-Use <code>(add-to-list 'default-frame-alist '(fullscreen . maximized))</code> to automatically maximize the window.
-</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(add-to-list 'default-frame-alist '(fullscreen . maximized))
+</pre>
+</div>
 </div>
 </div>
 <div id="outline-container-org38076c2" class="outline-3">
 <h3 id="org38076c2">Load the Ubuntu theme</h3>
 <div class="outline-text-3" id="text-org38076c2">
 <div class="org-src-container">
-<pre class="src src-nil">(use-package ubuntu-theme
+<pre class="src src-emacs-lisp">(use-package ubuntu-theme
   :config
   (load-theme 'ubuntu t))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orga67ed41" class="outline-3">
+<h3 id="orga67ed41">Turn off annoying messages</h3>
+<div class="outline-text-3" id="text-orga67ed41">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(setq confirm-kill-emacs nil
+      confirm-kill-processes nil
+      visible-bell nil
+      ring-bell-function 'ignore)
+(setq inhibit-startup-screen t)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orge4cb095" class="outline-3">
+<h3 id="orge4cb095">Make touchscreen work like mousewheel</h3>
+<div class="outline-text-3" id="text-orge4cb095">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(xterm-mouse-mode 1)
+(global-set-key [wheel-up]
+                (lambda ()
+                        (interactive)
+                        (scroll-down-line 1)))
+(global-set-key [wheel-down]
+                (lambda ()
+                        (interactive)
+                        (scroll-up-line 1)))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orge3f79c7" class="outline-3">
+<h3 id="orge3f79c7">Remove decorations I don't use</h3>
+<div class="outline-text-3" id="text-orge3f79c7">
+<p>
+Except on Termux, where trying to remove them causes .emacs to fail.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(unless (getenv "TERMUX_VERSION")
+  (scroll-bar-mode -1)
+  (tool-bar-mode -1)
+  (menu-bar-mode -1))
+(blink-cursor-mode -1)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb902001" class="outline-3">
+<h3 id="orgb902001">Make the text readable by old men and children</h3>
+<div class="outline-text-3" id="text-orgb902001">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(set-face-attribute 'default nil :height 200)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org1b248bf" class="outline-3">
+<h3 id="org1b248bf">Make selections work like Windows</h3>
+<div class="outline-text-3" id="text-org1b248bf">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(delete-selection-mode 1)
 </pre>
 </div>
 </div>
@@ -238,7 +320,7 @@ Use <code>(add-to-list 'default-frame-alist '(fullscreen . maximized))</code> to
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: William Wear</p>
-<p class="date">Created: 2025-07-29 Tue 19:22</p>
+<p class="date">Created: 2025-07-29 Tue 19:33</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
