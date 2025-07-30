@@ -1,4 +1,5 @@
 #+TITLE: The Way of Emacs
 
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="style.css" />
-* heading 1
+* Get Emacs to full screen display
+Use ~~(add-to-list 'default-frame-alist '(fullscreen . maximized))~~ to automatically maximize the window.
