@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-07-29 Tue 19:18 -->
+<!-- 2025-07-29 Tue 19:22 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>The Way of Emacs</title>
@@ -202,22 +202,43 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org8894064">Get Emacs to full screen display</a></li>
+<li><a href="#orgee2b6ec">Clean up the display</a>
+<ul>
+<li><a href="#orge45905b">Get window to fullscreen</a></li>
+<li><a href="#org38076c2">Load the Ubuntu theme</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org8894064" class="outline-2">
-<h2 id="org8894064">Get Emacs to full screen display</h2>
-<div class="outline-text-2" id="text-org8894064">
+<div id="outline-container-orgee2b6ec" class="outline-2">
+<h2 id="orgee2b6ec">Clean up the display</h2>
+<div class="outline-text-2" id="text-orgee2b6ec">
+</div>
+<div id="outline-container-orge45905b" class="outline-3">
+<h3 id="orge45905b">Get window to fullscreen</h3>
+<div class="outline-text-3" id="text-orge45905b">
 <p>
-Use <code>~(add-to-list 'default-frame-alist '(fullscreen . maximized))~</code> to automatically maximize the window.
+Use <code>(add-to-list 'default-frame-alist '(fullscreen . maximized))</code> to automatically maximize the window.
 </p>
+</div>
+</div>
+<div id="outline-container-org38076c2" class="outline-3">
+<h3 id="org38076c2">Load the Ubuntu theme</h3>
+<div class="outline-text-3" id="text-org38076c2">
+<div class="org-src-container">
+<pre class="src src-nil">(use-package ubuntu-theme
+  :config
+  (load-theme 'ubuntu t))
+</pre>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: William Wear</p>
-<p class="date">Created: 2025-07-29 Tue 19:18</p>
+<p class="date">Created: 2025-07-29 Tue 19:22</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

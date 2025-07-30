@@ -1,5 +1,15 @@
 #+TITLE: The Way of Emacs
 
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="style.css" />
-* Get Emacs to full screen display
-Use ~~(add-to-list 'default-frame-alist '(fullscreen . maximized))~~ to automatically maximize the window.
+* Clean up the display
+
+** Get window to fullscreen
+Use ~(add-to-list 'default-frame-alist '(fullscreen . maximized))~ to automatically maximize the window.
+
+** Load the Ubuntu theme
+#+BEGIN_SRC
+(use-package ubuntu-theme
+  :config
+  (load-theme 'ubuntu t))
+#+END_SRC
+
