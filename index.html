@@ -1,639 +1,86 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<!-- 2025-07-29 Tue 19:53 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>The Way of Emacs</title>
-<meta name="author" content="William Wear" />
-<meta name="generator" content="Org Mode" />
-<style type="text/css">
-  #content { max-width: 60em; margin: auto; }
-  .title  { text-align: center;
-             margin-bottom: .2em; }
-  .subtitle { text-align: center;
-              font-size: medium;
-              font-weight: bold;
-              margin-top:0; }
-  .todo   { font-family: monospace; color: red; }
-  .done   { font-family: monospace; color: green; }
-  .priority { font-family: monospace; color: orange; }
-  .tag    { background-color: #eee; font-family: monospace;
-            padding: 2px; font-size: 80%; font-weight: normal; }
-  .timestamp { color: #bebebe; }
-  .timestamp-kwd { color: #5f9ea0; }
-  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
-  .underline { text-decoration: underline; }
-  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
-  p.verse { margin-left: 3%; }
-  pre {
-    border: 1px solid #e6e6e6;
-    border-radius: 3px;
-    background-color: #f2f2f2;
-    padding: 8pt;
-    font-family: monospace;
-    overflow: auto;
-    margin: 1.2em;
-  }
-  pre.src {
-    position: relative;
-    overflow: auto;
-  }
-  pre.src:before {
-    display: none;
-    position: absolute;
-    top: -8px;
-    right: 12px;
-    padding: 3px;
-    color: #555;
-    background-color: #f2f2f299;
-  }
-  pre.src:hover:before { display: inline; margin-top: 14px;}
-  /* Languages per Org manual */
-  pre.src-asymptote:before { content: 'Asymptote'; }
-  pre.src-awk:before { content: 'Awk'; }
-  pre.src-authinfo::before { content: 'Authinfo'; }
-  pre.src-C:before { content: 'C'; }
-  /* pre.src-C++ doesn't work in CSS */
-  pre.src-clojure:before { content: 'Clojure'; }
-  pre.src-css:before { content: 'CSS'; }
-  pre.src-D:before { content: 'D'; }
-  pre.src-ditaa:before { content: 'ditaa'; }
-  pre.src-dot:before { content: 'Graphviz'; }
-  pre.src-calc:before { content: 'Emacs Calc'; }
-  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-fortran:before { content: 'Fortran'; }
-  pre.src-gnuplot:before { content: 'gnuplot'; }
-  pre.src-haskell:before { content: 'Haskell'; }
-  pre.src-hledger:before { content: 'hledger'; }
-  pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
-  pre.src-latex:before { content: 'LaTeX'; }
-  pre.src-ledger:before { content: 'Ledger'; }
-  pre.src-lisp:before { content: 'Lisp'; }
-  pre.src-lilypond:before { content: 'Lilypond'; }
-  pre.src-lua:before { content: 'Lua'; }
-  pre.src-matlab:before { content: 'MATLAB'; }
-  pre.src-mscgen:before { content: 'Mscgen'; }
-  pre.src-ocaml:before { content: 'Objective Caml'; }
-  pre.src-octave:before { content: 'Octave'; }
-  pre.src-org:before { content: 'Org mode'; }
-  pre.src-oz:before { content: 'OZ'; }
-  pre.src-plantuml:before { content: 'Plantuml'; }
-  pre.src-processing:before { content: 'Processing.js'; }
-  pre.src-python:before { content: 'Python'; }
-  pre.src-R:before { content: 'R'; }
-  pre.src-ruby:before { content: 'Ruby'; }
-  pre.src-sass:before { content: 'Sass'; }
-  pre.src-scheme:before { content: 'Scheme'; }
-  pre.src-screen:before { content: 'Gnu Screen'; }
-  pre.src-sed:before { content: 'Sed'; }
-  pre.src-sh:before { content: 'shell'; }
-  pre.src-sql:before { content: 'SQL'; }
-  pre.src-sqlite:before { content: 'SQLite'; }
-  /* additional languages in org.el's org-babel-load-languages alist */
-  pre.src-forth:before { content: 'Forth'; }
-  pre.src-io:before { content: 'IO'; }
-  pre.src-J:before { content: 'J'; }
-  pre.src-makefile:before { content: 'Makefile'; }
-  pre.src-maxima:before { content: 'Maxima'; }
-  pre.src-perl:before { content: 'Perl'; }
-  pre.src-picolisp:before { content: 'Pico Lisp'; }
-  pre.src-scala:before { content: 'Scala'; }
-  pre.src-shell:before { content: 'Shell Script'; }
-  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
-  /* additional language identifiers per "defun org-babel-execute"
-       in ob-*.el */
-  pre.src-cpp:before  { content: 'C++'; }
-  pre.src-abc:before  { content: 'ABC'; }
-  pre.src-coq:before  { content: 'Coq'; }
-  pre.src-groovy:before  { content: 'Groovy'; }
-  /* additional language identifiers from org-babel-shell-names in
-     ob-shell.el: ob-shell is the only babel language using a lambda to put
-     the execution function name together. */
-  pre.src-bash:before  { content: 'bash'; }
-  pre.src-csh:before  { content: 'csh'; }
-  pre.src-ash:before  { content: 'ash'; }
-  pre.src-dash:before  { content: 'dash'; }
-  pre.src-ksh:before  { content: 'ksh'; }
-  pre.src-mksh:before  { content: 'mksh'; }
-  pre.src-posh:before  { content: 'posh'; }
-  /* Additional Emacs modes also supported by the LaTeX listings package */
-  pre.src-ada:before { content: 'Ada'; }
-  pre.src-asm:before { content: 'Assembler'; }
-  pre.src-caml:before { content: 'Caml'; }
-  pre.src-delphi:before { content: 'Delphi'; }
-  pre.src-html:before { content: 'HTML'; }
-  pre.src-idl:before { content: 'IDL'; }
-  pre.src-mercury:before { content: 'Mercury'; }
-  pre.src-metapost:before { content: 'MetaPost'; }
-  pre.src-modula-2:before { content: 'Modula-2'; }
-  pre.src-pascal:before { content: 'Pascal'; }
-  pre.src-ps:before { content: 'PostScript'; }
-  pre.src-prolog:before { content: 'Prolog'; }
-  pre.src-simula:before { content: 'Simula'; }
-  pre.src-tcl:before { content: 'tcl'; }
-  pre.src-tex:before { content: 'TeX'; }
-  pre.src-plain-tex:before { content: 'Plain TeX'; }
-  pre.src-verilog:before { content: 'Verilog'; }
-  pre.src-vhdl:before { content: 'VHDL'; }
-  pre.src-xml:before { content: 'XML'; }
-  pre.src-nxml:before { content: 'XML'; }
-  /* add a generic configuration mode; LaTeX export needs an additional
-     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
-  pre.src-conf:before { content: 'Configuration File'; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Way of Emacs</title>
+  <meta name="description" content="A gentle, INFP-friendly path into Emacs. Thoughtful tools for thoughtful people." />
 
-  table { border-collapse:collapse; }
-  caption.t-above { caption-side: top; }
-  caption.t-bottom { caption-side: bottom; }
-  td, th { vertical-align:top;  }
-  th.org-right  { text-align: center;  }
-  th.org-left   { text-align: center;   }
-  th.org-center { text-align: center; }
-  td.org-right  { text-align: right;  }
-  td.org-left   { text-align: left;   }
-  td.org-center { text-align: center; }
-  dt { font-weight: bold; }
-  .footpara { display: inline; }
-  .footdef  { margin-bottom: 1em; }
-  .figure { padding: 1em; }
-  .figure p { text-align: center; }
-  .equation-container {
-    display: table;
-    text-align: center;
-    width: 100%;
-  }
-  .equation {
-    vertical-align: middle;
-  }
-  .equation-label {
-    display: table-cell;
-    text-align: right;
-    vertical-align: middle;
-  }
-  .inlinetask {
-    padding: 10px;
-    border: 2px solid gray;
-    margin: 10px;
-    background: #ffffcc;
-  }
-  #org-div-home-and-up
-   { text-align: right; font-size: 70%; white-space: nowrap; }
-  textarea { overflow-x: auto; }
-  .linenr { font-size: smaller }
-  .code-highlighted { background-color: #ffff00; }
-  .org-info-js_info-navigation { border-style: none; }
-  #org-info-js_console-label
-    { font-size: 10px; font-weight: bold; white-space: nowrap; }
-  .org-info-js_search-highlight
-    { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { }
-</style>
-<link rel="stylesheet" type="text/css" href="style.css" />
+  <!-- Import Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Fira+Mono&family=Playfair+Display&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-color: #f7f4f1;
+      --text-color: #2e2e2e;
+      --link-color: #6d4e74;
+      --accent-color: #5f7e67;
+      --highlight-color: #c9b79d;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'EB Garamond', serif;
+      font-size: 120%;
+      line-height: 1.7;
+      margin: 0;
+      padding: 2rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      animation: fadein 1.2s ease-in-out;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--accent-color);
+      margin-top: 2rem;
+    }
+
+    a {
+      color: var(--link-color);
+      text-decoration: none;
+      border-bottom: 1px dashed var(--link-color);
+    }
+
+    a:hover {
+      color: var(--highlight-color);
+      border-bottom: 1px solid var(--highlight-color);
+    }
+
+    @keyframes fadein {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
-<div id="content" class="content">
-<h1 class="title">The Way of Emacs</h1>
-<div id="table-of-contents" role="doc-toc">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents" role="doc-toc">
-<ul>
-<li><a href="#org0b78d6b">Identify the user</a></li>
-<li><a href="#orgee2b6ec">Clean up the display</a>
-<ul>
-<li><a href="#orge45905b">Get window to fullscreen</a></li>
-<li><a href="#org38076c2">Load the Ubuntu theme</a></li>
-<li><a href="#orga67ed41">Turn off annoying messages</a></li>
-<li><a href="#orge4cb095">Make touchscreen work like mousewheel</a></li>
-<li><a href="#orge3f79c7">Remove decorations I don't use</a></li>
-<li><a href="#orgb902001">Make the text readable by old men and children</a></li>
-<li><a href="#org1b248bf">Make selections work like Windows</a></li>
-</ul>
-</li>
-<li><a href="#org145a19e">Load packages</a>
-<ul>
-<li><a href="#orgcf16e21">Set the package sources</a></li>
-<li><a href="#orgd50b430">Enable &amp; configure use-package</a></li>
-<li><a href="#org42e8b24">Invoke &amp; configure doom-modeline</a></li>
-<li><a href="#org2b1bacf">Invoke &amp; load a bunch of other packages I like</a></li>
-</ul>
-</li>
-<li><a href="#org044081e">Configure org tools</a>
-<ul>
-<li><a href="#org3155894">Basic org-mode config</a></li>
-</ul>
-</li>
-<li><a href="#org162e87a">Custom set variables</a></li>
-<li><a href="#org509d646">My custom functions</a></li>
-<li><a href="#orga43e529">Personal shortcut keys</a></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org0b78d6b" class="outline-2">
-<h2 id="org0b78d6b">Identify the user</h2>
-<div class="outline-text-2" id="text-org0b78d6b">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(setq user-full-name "William Wear"
-      user-email-address "williamowear@gmail.com")
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orgee2b6ec" class="outline-2">
-<h2 id="orgee2b6ec">Clean up the display</h2>
-<div class="outline-text-2" id="text-orgee2b6ec">
-</div>
-<div id="outline-container-orge45905b" class="outline-3">
-<h3 id="orge45905b">Get window to fullscreen</h3>
-<div class="outline-text-3" id="text-orge45905b">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(add-to-list 'default-frame-alist '(fullscreen . maximized))
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org38076c2" class="outline-3">
-<h3 id="org38076c2">Load the Ubuntu theme</h3>
-<div class="outline-text-3" id="text-org38076c2">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(use-package ubuntu-theme
-  :config
-  (load-theme 'ubuntu t))
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orga67ed41" class="outline-3">
-<h3 id="orga67ed41">Turn off annoying messages</h3>
-<div class="outline-text-3" id="text-orga67ed41">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(setq confirm-kill-emacs nil
-      confirm-kill-processes nil
-      visible-bell nil
-      ring-bell-function 'ignore)
-(setq inhibit-startup-screen t)
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orge4cb095" class="outline-3">
-<h3 id="orge4cb095">Make touchscreen work like mousewheel</h3>
-<div class="outline-text-3" id="text-orge4cb095">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(xterm-mouse-mode 1)
-(global-set-key [wheel-up]
-                (lambda ()
-                        (interactive)
-                        (scroll-down-line 1)))
-(global-set-key [wheel-down]
-                (lambda ()
-                        (interactive)
-                        (scroll-up-line 1)))
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orge3f79c7" class="outline-3">
-<h3 id="orge3f79c7">Remove decorations I don't use</h3>
-<div class="outline-text-3" id="text-orge3f79c7">
-<p>
-Except on Termux, where trying to remove them causes .emacs to fail.
-</p>
 
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(unless (getenv "TERMUX_VERSION")
-  (scroll-bar-mode -1)
-  (tool-bar-mode -1)
-  (menu-bar-mode -1))
-(blink-cursor-mode -1)
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orgb902001" class="outline-3">
-<h3 id="orgb902001">Make the text readable by old men and children</h3>
-<div class="outline-text-3" id="text-orgb902001">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(set-face-attribute 'default nil :height 200)
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org1b248bf" class="outline-3">
-<h3 id="org1b248bf">Make selections work like Windows</h3>
-<div class="outline-text-3" id="text-org1b248bf">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(delete-selection-mode 1)
-</pre>
-</div>
-</div>
-</div>
-</div>
-<div id="outline-container-org145a19e" class="outline-2">
-<h2 id="org145a19e">Load packages</h2>
-<div class="outline-text-2" id="text-org145a19e">
-</div>
-<div id="outline-container-orgcf16e21" class="outline-3">
-<h3 id="orgcf16e21">Set the package sources</h3>
-<div class="outline-text-3" id="text-orgcf16e21">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(require 'package)
-(setq package-enable-at-startup nil)
-(setq package-archives
-      '(("gnu" . "https://elpa.gnu.org/packages/")
-        ("melpa" . "https://melpa.org/packages/")
-        ("melpa-stable" . "https://stable.melpa.org/packages/")
-        ("org" . "https://orgmode.org/elpa/")))
-(package-initialize)
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orgd50b430" class="outline-3">
-<h3 id="orgd50b430">Enable &amp; configure use-package</h3>
-<div class="outline-text-3" id="text-orgd50b430">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-(require 'use-package)
-(setq use-package-always-ensure t)
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org42e8b24" class="outline-3">
-<h3 id="org42e8b24">Invoke &amp; configure doom-modeline</h3>
-<div class="outline-text-3" id="text-org42e8b24">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(use-package doom-modeline
-  :init
-  (setq doom-modeline-height 15
-        doom-modeline-bar-width 3
-        doom-modeline-buffer-file-name-style
-                'truncate-upto-root
-        doom-modeline-icon nil
-        doom-modeline-major-mode-icon nil
-        doom-modeline-minor-modes nil
-        doom-modeline-enable-word-count nil
-        doom-modeline-checker-simple-format t
-        doom-modeline-env-version nil)
-  :config
-  (doom-modeline-mode 1)
-  (doom-modeline-def-segment my/clock
-    "Show current date/time compactly."
-    (propertize (format-time-string "%a %H:%M") 'face 'doom-modeline-info))
-  (doom-modeline-def-modeline 'my/modeline
-    '(bar buffer-info buffer-position)
-    '(my/clock misc-info))
-  (defun my/set-custom-modeline ()
-    (doom-modeline-set-modeline 'my/modeline 'default))
-  (add-hook 'after-init-hook #'my/set-custom-modeline))
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org2b1bacf" class="outline-3">
-<h3 id="org2b1bacf">Invoke &amp; load a bunch of other packages I like</h3>
-<div class="outline-text-3" id="text-org2b1bacf">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(use-package which-key :config (which-key-mode 1))
-(use-package company :hook (after-init . global-company-mode))
-(use-package helpful)
-(use-package visual-fill-column)
-(use-package yaml-mode)
-(use-package markdown-mode)
-(use-package json-mode)
-(use-package yasnippet :config (yas-global-mode 1))
-(use-package no-littering)
-(use-package gcmh :config (gcmh-mode 1))
-(use-package golden-ratio :config (golden-ratio-mode 1))
-(use-package flycheck :init (global-flycheck-mode))
-(use-package grip-mode)
-(use-package eradio)
-(use-package esup)
-(use-package elmacro)
-(use-package simple-httpd)
-(use-package treemacs)
-(use-package treemacs-magit)
-(use-package treemacs-all-the-icons)
-(use-package websocket)
-(use-package pandoc-mode)
-(use-package auto-package-update :config (auto-package-update-maybe))
-(use-package ivy :config (ivy-mode 1))
-(use-package counsel :after ivy)
-(use-package ivy-rich :after ivy :config (ivy-rich-mode 1))
-(use-package ivy-prescient :after ivy :config (ivy-prescient-mode 1))
-(use-package org-journal)
-(use-package dired-sidebar)
-</pre>
-</div>
-</div>
-</div>
-</div>
-<div id="outline-container-org044081e" class="outline-2">
-<h2 id="org044081e">Configure org tools</h2>
-<div class="outline-text-2" id="text-org044081e">
-</div>
-<div id="outline-container-org3155894" class="outline-3">
-<h3 id="org3155894">Basic org-mode config</h3>
-<div class="outline-text-3" id="text-org3155894">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">  (setq org-agenda-span 1)
-  (with-eval-after-load 'org
-    (add-to-list 'org-modules 'org-habit))
-  (setq org-deadline-warning-days 9)
-  (require 'ox-md)
-(require 'ox-man)
-(setq org-publish-project-alist
-      '(("the-way-of-emacs"
-         :base-directory "~/src/the-way-of-emacs/"
-         :publishing-directory "~/src/the-way-of-emacs/"
-         :recursive t
-         :publishing-function org-html-publish-to-html
-         :headline-levels 4
-         :section-numbers nil
-         :with-toc t
-         :html-extension "html"
-         :body-only nil
-         :auto-sitemap t
-         :sitemap-filename "sitemap.org"
-         :sitemap-title "The Way of Emacs")))
-(setq org-agenda-menu-show-matcher t
-      org-agenda-menu-two-columns nil)
-</pre>
-</div>
-</div>
-</div>
-</div>
-<div id="outline-container-org162e87a" class="outline-2">
-<h2 id="org162e87a">Custom set variables</h2>
-<div class="outline-text-2" id="text-org162e87a">
-<p>
-Includes some org stuff that was set that way.
-</p>
+  <h1>The Way of Emacs</h1>
 
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(org-agenda-files
-   '("~/.notes" "~/plan.org"
-     "~/org-journal/2025-07-26.org"
-     "~/org-journal/2025-07-23.org"
-     "~/org-journal/2025-07-24.org"
-     "~/org-journal/2025-07-26.org"
-     "~/org-journal/2025-07-28.org"))
- '(org-agenda-prefix-format
-   '((agenda . "%?-12t ") (todo . "") (tags . " %i %-12:c")
-     (search . " %i %-12:c")))
- '(org-priority-default 64)
- '(org-priority-highest 0)
- '(org-todo-keywords '((sequence "EPIC" "PROJ" "TODO" "DONE")))
- '(package-selected-packages
-   '(adafruit-wisdom auto-package-update boxy company counsel-projectile
-                     dired-sidebar dirvish doom-modeline doom-themes
-                     ef-themes elmacro epresent eradio esup
-                     flycheck-vale gcmh golden-ratio
-                     golden-ratio-scroll-screen grip-mode hackernews
-                     ham-mode helpful ivy-prescient ivy-rich json-mode
-                     le-thesaurus markdown-toc no-littering org-brain
-                     org-bullets org-download org-journal org-modern
-                     org-roam org-super-agenda ov pandoc-mode
-                     shell-maker simple-httpd treemacs-all-the-icons
-                     treemacs-magit ubuntu-theme visual-fill-column
-                     vterm vundo websocket which-key-posframe yaml
-                     yaml-mode yasnippet-snippets ztree))
- '(warning-minimum-level :error))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(org-level-1 ((t (:inherit outline-1 :extend nil :foreground "red"))))
- '(org-level-2 ((t (:inherit outline-2 :extend nil :foreground "green"))))
- '(org-level-3 ((t (:inherit outline-3 :extend nil :foreground "yellow"))))
- '(org-level-4 ((t (:inherit outline-4 :extend nil :foreground "magenta" :slant normal))))
- '(org-level-5 ((t (:inherit outline-5 :extend nil :foreground "cyan")))))
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org509d646" class="outline-2">
-<h2 id="org509d646">My custom functions</h2>
-<div class="outline-text-2" id="text-org509d646">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(defun my/full-maas-discourse-doc-pull ()
-   (interactive)
-  (let ((files (directory-files-recursively "/home/stormrider/src/maas/docs/usr/markdown/" "\\.md$")))
-    (dolist (file files)
-      (let* ((basename (file-name-sans-extension (file-name-nondirectory file)))
-             (number (when (string-match "-\\([0-9]+\\)$" basename)
-                       (match-string 1 basename))))
-        (when number
-          (message "Processing file: %s, Number: %s" basename number)
-          (shell-command (format "gfd %s &gt; %s" number file)))))))
+  <p>Emacs isn’t just a tool. It’s a canvas, a compass, a quiet partner in the art of thinking.</p>
 
-          (defun my/accounts ()
-  "edit my financial accounts file"
-  (interactive)
-  (find-file "~/var/cache/accounts.org"))
-(defun my/help-file ()
-  "edit the emacs init file"
-  (interactive)
-  (find-file "~/.help"))
-(defun my/init-file ()
-  "edit the emacs init file"
-  (interactive)
-  (find-file "~/.emacs"))
-(defun my/org-journal-insert-first-entry ()
-  "Insert the standard daily journal header for Billwear, only once per day."
-  (interactive)
-  (let* ((journal-file (expand-file-name
-                        (format-time-string "%Y-%m-%d.org")
-                        org-journal-dir))
-         (first-entry (not (file-exists-p journal-file))))
-    (find-file journal-file)
-    (goto-char (point-max))
-    (unless (bolp) (insert "\n"))
-    (when first-entry
-      (insert "* personal journal of billwear\n")
-      (insert (string-trim (shell-command-to-string "date")))
-      (insert "\n")
-      (when (executable-find "fortune")
-        (insert (string-trim (shell-command-to-string "fortune"))))
-      (insert "\n")
-      (when (executable-find "ddate")
-        (insert (string-trim (shell-command-to-string "ddate"))))
-      (insert "\n\n")
-      (insert "** emologent\n")
-      (dolist (field '("mood" "energy" "mental wx" "loop" "unfinished"
-                       "lingering" "gravity" "resisting" "pivot"
-                       "signal boost" "reground" "reminder" "rare value" "blocker"))
-        (insert (format "- %s: \n" field)))
-      (insert "\n"))
-    ;; Append a timestamped entry after the emologent
-    (insert (format "** %s\n\n" (format-time-string "%H:%M")))))
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orga43e529" class="outline-2">
-<h2 id="orga43e529">Personal shortcut keys</h2>
-<div class="outline-text-2" id="text-orga43e529">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(global-set-key (kbd "C-c a") 'org-agenda)
+  <p>For many, it’s a text editor. For some, a code forge. But for people like us—reflective, intuitive, always seeking a meaningful flow—it can become something else entirely:<br>
+  a sanctuary for thought.</p>
 
-;;; org shortcut keys
-(global-set-key (kbd "C-c o a") #'org-agenda-list)
-(global-set-key (kbd "C-c o b") #'org-backward-heading-same-level)
-(global-set-key (kbd "C-c o c") #'org-capture)
-(global-set-key (kbd "C-c o d") #'org-decrypt-entry)
-(global-set-key (kbd "C-c o e") #'org-encrypt-entry)
-(global-set-key (kbd "C-c o f") #'org-forward-heading-same-level)
-(global-set-key (kbd "C-c o g") #'org-goto)
-(global-set-key (kbd "C-c o h") #'org-html-export-as-html)
-(global-set-key (kbd "C-c o i") #'org-clock-in)
-(global-set-key (kbd "C-c o j") #'my/org-journal-insert-first-entry)
-(global-set-key (kbd "C-c o l") #'org-list-make-subtree)
-(global-set-key (kbd "C-c o m") #'org-md-export-as-markdown)
-(global-set-key (kbd "C-c o n") #'org-add-note)
-(global-set-key (kbd "C-c o o") #'org-clock-out)
-(global-set-key (kbd "C-c o p") #'org-publish-project)
-(global-set-key (kbd "C-c o r") #'org-cancel-repeater)
-(global-set-key (kbd "C-c o s") #'org-schedule)
-(global-set-key (kbd "C-c o t") #'org-todo-list)
+  <p>Here, <em>The Way of Emacs</em> isn't about configuring the “perfect setup.” It’s about creating an environment where ideas unfold at their own pace…<br>
+  where you can write, explore, question, and create, without the noise of a world rushing past.</p>
 
-;;; org agenda shortcut keys (caps)
-(global-set-key (kbd "C-c o A") #'org-agenda-add-note)
-(global-set-key (kbd "C-c o C") #'org-agenda-date-prompt)
-(global-set-key (kbd "C-c o D") #'org-agenda-date-later)
-(global-set-key (kbd "C-c o S") #'org-agenda-schedule)
-(global-set-key (kbd "C-c o U") #'org-agenda-undo)
+  <p>You won’t find speedrun tutorials or maximalist rants here.<br>
+  Instead, you’ll find soft structure, poetic clarity, and a growing sense of alignment between your tools and your temperament.</p>
 
-;;; other shortcut keys
-(global-set-key (kbd "C-c m a") #'my/accounts)
-(global-set-key (kbd "C-c m d") #'dired)
-(global-set-key (kbd "C-c m i") #'my/init-file)
-(global-set-key (kbd "C-c m r") #'replace-regexp)
-(global-set-key (kbd "C-c m q") #'query-replace-regexp)
+  <p>If you’re someone who...</p>
+  <ul>
+    <li>edits for meaning, not just speed</li>
+    <li>prefers clarity to cleverness</li>
+    <li>wants to build a system that <em>feels like home</em></li>
+  </ul>
 
-(global-set-key (kbd "&lt;f1&gt;") #'my/help-file)
-</pre>
-</div>
-</div>
-</div>
-</div>
-<div id="postamble" class="status">
-<p class="author">Author: William Wear</p>
-<p class="date">Created: 2025-07-29 Tue 19:53</p>
-<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
-</div>
+  <p>…then you’re in the right place.</p>
+
+  <p>Let’s take it slow. One keystroke at a time.<br>
+  Welcome to <strong><em>The Way of Emacs</em></strong>.</p>
+
 </body>
 </html>
