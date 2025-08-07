@@ -22,26 +22,84 @@
 
   <img src="images/notepad-ideas.jpeg" style="width: 100%; height: auto;" />
 
-  For many, it’s a text editor. For some, a code forge. But for people like us—reflective, intuitive, always seeking a meaningful flow—it can become something else entirely:<br>
-  a sanctuary for thought.</p>
+  <p>You don't worry about structure yet.  This is the seed plot; let it grow for a few minutes or a week or whatever time you have to leave it be.</p>
 
-  <p>Here, <em>The Way of Emacs</em> isn't about configuring the “perfect setup.” It’s about creating an environment where ideas unfold at their own pace…<br>
-  where you can write, explore, question, and create, without the noise of a world rushing past.</p>
+  <p>Once it's more fully-formed, you can convert it to an Emacs text file:</p>
 
-  <p>You won’t find speedrun tutorials or maximalist rants here.<br>
-  Instead, you’ll find soft structure, poetic clarity, and a growing sense of alignment between your tools and your temperament.</p>
+  <pre>
+    text adam
+    solder & signal
+    barn door
+    clean bath
+    vent covers
+    analyze competitor docs
+    scoop litter
+    rebuild pantry doors
+    tools into tall bedroom chest
+    start next sewing project
+    clean cat's dish
+    clear debris
+    shave
+    vent covers (again?)
+  </pre>
 
-  <p>If you’re someone who...</p>
-  <ul>
-    <li>edits for meaning, not just speed</li>
-    <li>prefers clarity to cleverness</li>
-    <li>wants to build a system that <em>feels like home</em></li>
-  </ul>
+  <p>There's your list, which has now become a little more real.  It's not necessarily a to-do list yet; if you read it, you'll see it's kinda just random things, mostly orbiting around tasks, but still sort of uneven.  For example, we have:</p>
 
-  <p>…then you’re in the right place.</p>
+  <pre>
+    text adam
+    solder & signal (sounds like a thing, not a task)
+    barn door (what about it?)
+    clean bath
+    vent covers (likewise ^^)
+    analyze competitor docs (not a one-sitting thing)
+    scoop litter
+    rebuild pantry doors (clearly a project, no idea how big)
+    tools into tall bedroom chest
+    start next sewing project
+    clean cat's dish
+    clear debris (what debris? where?)
+    shave
+    vent covers (again?)
+  </pre>
 
-  <p>Let’s take it slow. One keystroke at a time.<br>
-  Welcome to <strong><em>The Way of Emacs</em></strong>.</p>
+  <p> Step 1, then is to sort of clarify these and give them some context.  To do that, we need to get them in org-mode:</p>
 
+  <pre>
+    M-x org-mode
+  </pre>
+
+  <p>Nothing changed yet:</p>
+
+  <pre>
+    text adam
+    solder & signal (sounds like a thing, not a task)
+    barn door (what about it?)
+    clean bath
+    vent covers (likewise ^^)
+    analyze competitor docs (not a one-sitting thing)
+    scoop litter
+    rebuild pantry doors (clearly a project, no idea how big)
+    tools into tall bedroom chest
+    start next sewing project
+    clean cat's dish
+    clear debris (what debris? where?)
+    shave
+    vent covers (again?)
+  </pre>
+
+  <p>But wait, we're about to do a little magic.  Let's put an asterisk (*) and a space in front of every list item, like this:</p>
+
+  <img src="images/list-as-org-mode.png" style="width:100%; height:auto;" />
+
+  <p>Now we have some tools to work with; first, let's organize these ideas a little.  Using <code>M-up-arrow</code> and <code>M-down-arrow</code> (usually, that's the <code>alt</code> key), you can move these up and down.  Let's just sort these simply, without trying to define too many categories, by putting things that seem together <em>next</em> to each other:</p>
+
+  <img src="images/grouped-org-list.png" style="width:100%; height:auto;" />
+
+  <p>Doesn't help much, but we do begin to see some patterns.  The point is that it was really easy to move items up and down without cutting and pasting, forgetting what you just cut and putting it back in the wrong place so you can remember it, and so on.</p>
+  
+  <footer>
+    Copyright &copy; 2025 by Bill Wear.  All Rights Reserved.
+  </footer>
+  
 </body>
 </html>
