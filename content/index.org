@@ -6,4 +6,5 @@
 
 I work in quiet strength, anchored in undestroyable hope justified by action, craft, and clarity.
 
+This isn't about learning the Emacs editor: there are *great* tutorials already available.
 
