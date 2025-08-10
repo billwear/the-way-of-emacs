@@ -16,3 +16,15 @@ pre, code { background: rgba(0,0,0,.05); }
 
 .callout{ background:#fffaf0; border-left:6px solid var(--ochre); padding:1rem 1.2rem; margin:1rem 0; }
 .btn{ display:inline-block; padding:.6rem 1rem; border-radius:.5rem; background:var(--sage); color:#fff; }
+
+.site-nav {
+  margin-bottom: 1em;
+}
+.site-nav a {
+  margin-right: 0.5em;
+  color: var(--sage);
+}
+.site-nav a:hover {
+  color: var(--clay);
+}
+
