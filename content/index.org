@@ -1,2 +1,9 @@
 #+TITLE: The Way of Emacs
+#+SUBTITLE: Undestroyable hope justified
+#+OPTIONS: toc:nil
+
+** Welcome
+
+I work in quiet strength, anchored in undestroyable hope justified by action, craft, and clarity.
+
 
