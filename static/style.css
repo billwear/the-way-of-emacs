@@ -28,3 +28,27 @@ pre, code { background: rgba(0,0,0,.05); }
   color: var(--clay);
 }
 
+/* Make Org’s preamble/postamble align with the main content column */
+#content,
+#preamble,
+#postamble {
+  max-width: 840px;
+  margin: 1.5rem auto;   /* centers the block */
+  padding: 0 1rem;       /* same side padding as content */
+}
+
+/* Style the nav links that you put inside the preamble */
+#preamble .site-nav a {
+  margin-right: .6rem;
+  color: var(--sage);
+  text-decoration: none;
+}
+#preamble .site-nav a:hover {
+  color: var(--clay);
+}
+
+/* Optional: make the postamble a touch lighter/smaller */
+#postamble, .postamble {
+  font-size: .9em;
+  opacity: .9;
+}
