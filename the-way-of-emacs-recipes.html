@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Way of Emacs — Recipes</title>
+<style>
+/* ===== Modern minimalist with GNU vibe (consistent with index #2) ===== */
+:root{
+  --bg:#fdfdfd; --panel:#ffffff; --ink:#101010; --muted:#636666;
+  --blue:#0066cc; --green:#1a7f37; --grid:#ececec; --shadow:0 10px 30px rgba(0,0,0,.06);
+}
+*{box-sizing:border-box}
+html{font-size:16px}
+body{margin:0; background:var(--bg); color:var(--ink); font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "DejaVu Sans", sans-serif; line-height:1.6}
+a{color:var(--blue); text-decoration:none}
+a:hover{text-decoration:underline}
+.header{
+  position:sticky; top:0; z-index:10;
+  backdrop-filter:saturate(180%) blur(6px);
+  background:rgba(253,253,253,.85);
+  border-bottom:1px solid var(--grid);
+}
+.nav{
+  max-width:1100px; margin:0 auto; padding: .75rem 1rem;
+  display:flex; align-items:center; gap:1rem;
+}
+.nav .logo{font-weight:800; letter-spacing:.2px}
+.nav .logo span{color:var(--green)}
+.nav .links{margin-left:auto; display:flex; gap:.9rem; flex-wrap:wrap}
+.breadcrumbs{max-width:1100px; margin:0 auto; padding: .5rem 1rem; color:var(--muted); font-size:.9rem}
+.page{
+  max-width:1100px; margin:0 auto; padding:2rem 1rem 3rem;
+  display:grid; grid-template-columns: 260px 1fr; gap:1.25rem;
+}
+aside{position:sticky; top:64px; align-self:start}
+aside .card{padding:.9rem 1rem}
+.card{
+  background:var(--panel); border:1px solid var(--grid); border-radius:16px; box-shadow:var(--shadow);
+  padding:1.2rem 1.25rem;
+}
+h1{margin:.25rem 0 1rem}
+.section{margin-bottom:1rem}
+.section h2{margin:.25rem 0 .5rem}
+.section .muted{color:var(--muted); margin-top:-.2rem}
+.grid{display:grid; grid-template-columns: repeat(2, 1fr); gap:1rem}
+pre, code{font-family:"DejaVu Sans Mono","Liberation Mono",ui-monospace,Menlo,Consolas,monospace}
+pre{margin:0; background:#0a0f14; color:#c8d1d9; padding:.9rem 1rem; border-radius:10px; overflow:auto}
+.kbd{display:inline-block; border:1px solid #d3d3d3; padding:.1rem .4rem; border-radius:6px; background:#fff}
+ul.compact li{margin:.1rem 0}
+hr{border:0; border-top:1px solid var(--grid); margin:1rem 0}
+footer{border-top:1px solid var(--grid); background:#fafafa}
+.footer-wrap{max-width:1100px; margin:0 auto; padding:1rem}
+@media (max-width: 980px){
+  .page{grid-template-columns: 1fr}
+  .grid{grid-template-columns: 1fr}
+  aside{position:static}
+}
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="nav">
+    <div class="logo"><a href="index.html" style="text-decoration:none;color:inherit">The Way of <span>Emacs</span></a></div>
+    <div class="links" role="navigation" aria-label="Primary">
+      <a href="tour.html">Tour</a>
+      <a href="keybindings.html">Keybindings</a>
+      <a href="why-lisp.html">Lisp</a>
+      <a href="starter-kit.html">Starter Kit</a>
+      <a href="recipes.html" aria-current="page">Recipes</a>
+      <a href="community.html">Community</a>
+    </div>
+  </div>
+</header>
+
+<div class="breadcrumbs">
+  <a href="index.html">Home</a> / Recipes
+</div>
+
+<section class="page">
+  <aside>
+    <div class="card">
+      <strong>Categories</strong>
+      <ul class="compact">
+        <li><a href="#nav-edit">Navigation & Editing</a></li>
+        <li><a href="#projects">Projects & Files</a></li>
+        <li><a href="#vc">Version Control</a></li>
+        <li><a href="#org">Org Mode</a></li>
+        <li><a href="#shells">Shell & Build</a></li>
+        <li><a href="#diff-merge">Diff & Merge</a></li>
+        <li><a href="#remote">Remote & System</a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <main>
+    <div class="card">
+      <h1>Browse Recipes</h1>
+      <p class="muted">Task-based snippets with a short “Try it” flow and a tiny “Make it yours” customization. All examples stick close to GNU defaults and built-ins; optional packages are free software.</p>
+    </div>
+
+    <!-- Navigation & Editing -->
+    <section id="nav-edit" class="section">
+      <div class="card">
+        <h2>Navigation & Editing</h2>
+        <div class="grid">
+
+          <!-- Dired power moves -->
+          <article class="card">
+            <h3>Dired power moves (bulk rename)</h3>
+            <p><em>Try it:</em></p>
+<pre><code>C-x d      ; open dired
+C-x C-q    ; wdired-change-to-wdired-mode
+C-c C-c    ; apply renames</code></pre>
+            <hr/>
+            <p><strong>Make it yours:</strong> handy key for toggling details.</p>
+<pre><code>(with-eval-after-load 'dired
+  (define-key dired-mode-map (kbd "h") #'dired-hide-details-mode))</code></pre>
+          </article>
+
+          <!-- Rectangle editing -->
+          <article class="card">
+            <h3>Rectangle editing (columns)</h3>
+            <p><em>Try it:</em> select a rectangle, then insert numbers.</p>
+<pre><code>C-SPC  move to select column block
+C-x r N   ; rectangle-number-lines
+C-x r t , ; string-rectangle (insert ",")</code></pre>
+            <hr/>
+            <p><strong>Make it yours:</strong> quick key for <code>string-rectangle</code>.</p>
+<pre><code>(global-set-key (kbd "C-c r t") #'string-rectangle)</code></pre>
+          </article>
+
+          <!-- Registers & bookmarks -->
+          <article class="card">
+            <h3>Registers & bookmarks</h3>
+            <p><em>Try it:</em></p>
+<pre><code>C-x r SPC a   ; point-to-register 'a'
+C-x r j a     ; jump-to-register 'a'
+C-x r m       ; bookmark-set
+C-x r b       ; bookmark-jump</code></pre>
+            <hr/>
+            <p><strong>Make it yours:</strong> fast bookmark menu.</p>
+<pre><code>(global-set-key (kbd "C-c b") #'bookmark-bmenu-list)</code></pre>
+          </article>
+
+          <!-- Multiple cursors (built-in alternative) -->
+          <article class="card">
+            <h3>Repeat change across lines</h3>
+            <p><em>Try it:</em> use keyboard macros.</p>
+<pre><code>F3    ; kmacro-start-macro
+...   ; do edits on line 1
+C-n   ; next-line
+F4    ; kmacro-end-and-call-macro
+C-u 10 F4 ; repeat 10 times</code></pre>
+            <hr/>
+            <p><strong>Make it yours:</strong> name your macro.</p>
+<pre><code>(call-last-kbd-macro 'my-macro)</code></pre>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects & Files -->
+    <section id="projects" class="section">
+      <div class="card">
+        <h2>Projects & Files</h2>
+        <div class="grid">
+
+          <!-- project.el essentials -->
+          <article class="card">
+            <h3>project.el essentials</h3>
+            <p><em>Try it:</em></p>
+<pre><code>C-x p s   ; project-switch-project
+C-x p f   ; project-find-file
+C-x p g   ; project-find-regexp</code></pre>
+            <hr/>
+            <p><strong>Make it yours:</strong> faster project switching.</p>
+<pre><code>(global-set-key (kbd "C-c p") #'project-switch-project)</code></pre>
+          </article>
+
+          <!-- recentf -->
+          <article class="card">
+            <h3>Recent files at your fingertips</h3>
+            <p><em>Try it:</em></p>
+<pre><code>(recentf-mode 1)
+C-x C-r   ; recentf-open-files</code></pre>
+            <hr/>
+            <p><strong>Make it yours:</strong> quick key.</p>
+<pre><code>(global-set-key (kbd "C-c r") #'recentf-open-files)</code></pre>
+          </article>
+
+          <!-- grep built-in -->
+          <article class="card">
+            <h3>Project grep (built-in)</h3>
+            <p><em>Try it:</em></p>
+<pre><code>C-x p g   ; project-find-regexp
+M-x rgrep ; recursive grep with prompts</code></pre>
+            <hr/>
+            <p><strong>Make it yours:</strong> prefer project grep by default.</p>
+<pre><code>(global-set-key (kbd "C-c /") #'project-find-regexp)</code></pre>
+          </article>
+
+          <!-- tramp -->
+          <article class="card">
+            <h3>Edit remote files with TRAMP</h3>
+            <p><em>Try it:</em> open via SSH:</p>
+<pre><code>C-x C-f /ssh:user@host:/etc/hosts RET</code></pre>
+            <hr/>
+            <p><strong>Make it yours:</strong> keep connections alive.</p>
+<pre><code>(setq tramp-ssh-controlmaster-options
+      "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=yes")</code></pre>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Version Control -->
+    <section id="vc" class="section">
+      <div class="card">
+        <h2>Version Control</h2>
+        <div class="grid">
+
+          <!-- Magit 5 minutes -->
+          <article class="card">
+            <h3>Magit in 5 minutes</h3>
+            <p><em>Try it:</em></p>
+<pre><code>M-x package-install RET magit RET
+C-x g     ; magit-status
+s         ; stage
+c c       ; commit
+P u       ; push (to upstream)</code></pre>
+            <hr/>
+            <p><strong>Make it yours:</strong> global binding.</p>
+<pre><code>(global-set-key (kbd "C-c g") #'magit-status)</code></pre>
+          </article>
+
+          <!-- VC built-in -->
+          <article class="card">
+            <h3>Built-in VC (quick commit)</h3>
+            <p><em>Try it:</em></p>
+<pre><code>C-x v v   ; do next logical VC step
+C-x v =   ; diff
+C-x v u   ; revert</code></pre>
+            <hr/>
+            <p><strong>Make it yours:</strong> diff on save (optional).</p>
+<pre><code>(add-hook 'after-save-hook #'vc-next-action)</code></pre>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Org Mode -->
+    <section id="org" class="section">
+      <div class="card">
+        <h2>Org Mode</h2>
+        <div class="grid">
+
+          <!-- Org capture -->
+          <article class="card">
+            <h3>Org capture everywhere</h3>
+            <p><em>Try it:</em></p>
+<pre><code>(global-set-key (kbd "C-c c") #'org-capture)
+(setq org-capture-templates
+      '(("t" "Todo" entry (file "~/org/inbox.org")
+         "* TODO %?\n  %U\n  %a")))</code></pre>
+            <hr/>
+            <p><strong>Make it yours:</strong> refiling destinations.</p>
+<pre><code>(setq org-refile-targets '(("~/org/next.org" :maxlevel . 2)
+                            ("~/org/projects.org" :maxlevel . 2)))</code></pre>
+          </article>
+
+          <!-- Agenda basics -->
+          <article class="card">
+            <h3>Agenda basics</h3>
+            <p><em>Try it:</em></p>
+<pre><code>(setq org-agenda-files '("~/org"))
+C-c a a   ; org-agenda
+C-c a t   ; todos</code></pre>
+            <hr/>
+            <p><strong>Make it yours:</strong> quick agenda key.</p>
+<pre><code>(global-set-key (kbd "C-c a") #'org-agenda)</code></pre>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Shell & Build -->
+    <section id="shells" class="section">
+      <div class="card">
+        <h2>Shell & Build</h2>
+        <div class="grid">
+
+          <!-- Compile / next-error -->
+          <article class="card">
+            <h3>Compile & next-error</h3>
+            <p><em>Try it:</em></p>
+<pre><code>M-x compile RET make test RET
+M-g n   ; next-error
+M-g p   ; previous-error</code></pre>
+            <hr/>
+            <p><strong>Make it yours:</strong> fast bindings.</p>
+<pre><code>(global-set-key (kbd "M-]") #'next-error)
+(global-set-key (kbd "M-[") #'previous-error)</code></pre>
+          </article>
+
+          <!-- Eshell quick -->
+          <article class="card">
+            <h3>Eshell anywhere</h3>
+            <p><em>Try it:</em></p>
+<pre><code>M-x eshell
+C-x 3   ; split and keep shell view</code></pre>
+            <hr/>
+            <p><strong>Make it yours:</strong> toggle popup shell.</p>
+<pre><code>(defun twow/toggle-eshell ()
+  (interactive)
+  (if (get-buffer "*eshell*")
+      (kill-buffer "*eshell*")
+    (eshell)))
+(global-set-key (kbd "C-c e") #'twow/toggle-eshell)</code></pre>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Diff & Merge -->
+    <section id="diff-merge" class="section">
+      <div class="card">
+        <h2>Diff & Merge</h2>
+        <div class="grid">
+
+          <!-- Ediff -->
+          <article class="card">
+            <h3>Ediff two buffers</h3>
+            <p><em>Try it:</em></p>
+<pre><code>M-x ediff-buffers</code></pre>
+            <hr/>
+            <p><strong>Make it yours:</strong> cleaner split.</p>
+<pre><code>(setq ediff-split-window-function #'split-window-horizontally)</code></pre>
+          </article>
+
+          <!-- 3-way merge -->
+          <article class="card">
+            <h3>3-way merge (Ediff)</h3>
+            <p><em>Try it:</em></p>
+<pre><code>M-x ediff-merge-files-with-ancestor</code></pre>
+            <hr/>
+            <p><strong>Make it yours:</strong> save result location.</p>
+<pre><code>(setq ediff-merge-split-window-function #'split-window-horizontally)</code></pre>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="card">
+      <h2>Contributing recipes</h2>
+      <p>Send a PR with a short “Try it” + “Make it yours” pair. Keep examples small, GNU-friendly, and focused on one job. Add links to relevant manual sections when helpful.</p>
+    </div>
+
+  </main>
+</section>
+
+<footer>
+  <div class="footer-wrap">
+    <p>Published under the GNU Free Documentation License. Emacs is a GNU project.</p>
+  </div>
+</footer>
+</body>
+</html>
