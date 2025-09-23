@@ -1,3 +1,0 @@
-#+TITLE: All Pages
-
-- [[file:index.org][The Way of Emacs]]
