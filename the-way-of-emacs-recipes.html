@@ -57,6 +57,44 @@ footer{border-top:1px solid var(--grid); background:#fafafa}
   aside{position:static}
 }
 </style>
+<style>
+/* --- Mobile polish for ≤ 720px wide screens --- */
+@media (max-width: 720px) {
+  html { font-size: 15px; }              /* slightly smaller base type */
+  .header { position: static; }          /* avoid sticky header overlap on tiny screens */
+
+  /* Layouts collapse to single column with tighter padding */
+  .hero { grid-template-columns: 1fr; padding: 1.25rem .75rem .75rem; }
+  .grid { grid-template-columns: 1fr; }
+  .section { grid-template-columns: 1fr; }
+  .page { grid-template-columns: 1fr; }
+
+  /* Cards: smaller padding so they don’t feel oversized */
+  .card { padding: .9rem .9rem; border-radius: 12px; }
+
+  /* Navigation links: wrap neatly with tighter spacing */
+  .nav { padding: .6rem .75rem; }
+  .nav .links { gap: .5rem; }
+  .nav .links a { padding: .4rem .5rem; }
+
+  /* Headings scale down a touch */
+  h1 { font-size: 1.6rem; }
+  h2 { font-size: 1.2rem; }
+
+  /* Code blocks: wrap long lines instead of forcing horizontal scroll */
+  pre { white-space: pre-wrap; word-break: break-word; font-size: .92rem; }
+
+  /* Sidebar behavior (recipes page): no sticky on mobile */
+  aside { position: static; }
+}
+
+/* Optional: ultra-small screens (≤ 360px) */
+@media (max-width: 360px) {
+  html { font-size: 14px; }
+  .card { padding: .8rem; }
+  pre { font-size: .88rem; }
+}
+</style>
 </head>
 <body>
 <header class="header">
