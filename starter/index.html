@@ -13,7 +13,12 @@
   .btn{padding:.7rem 1rem;border:1px solid #ddd;border-radius:10px;text-decoration:none;font-weight:700}
   .btn.primary{background:#0b57d0;color:#fff;border-color:#0b57d0}
   pre{background:#0f1115;color:#e8e8e8;padding:12px;border-radius:10px;overflow:auto}
-  .grid{display:grid;grid-template-columns:1fr;gap:16px}
+.grid{
+  display:grid;
+  gap:16px;
+  /* auto-fit = use as many columns as items; single item spans full width */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
   @media(min-width:800px){.grid{grid-template-columns:1fr 1fr 1fr}}
   .card{border:1px solid #eee;border-radius:14px;padding:16px}
   small.m{color:#666}
