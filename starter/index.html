@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Way of Emacs — Starter Kit</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  body{font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;margin:0;color:#111;background:#fff}
+  .wrap{max-width:900px;margin:0 auto;padding:24px}
+  h1{margin:0 0 .5rem;font-size:2rem}
+  .sub{color:#555;margin:.2rem 0 1rem}
+  .cta{display:flex;gap:.75rem;flex-wrap:wrap;margin:1rem 0}
+  .btn{padding:.7rem 1rem;border:1px solid #ddd;border-radius:10px;text-decoration:none;font-weight:700}
+  .btn.primary{background:#0b57d0;color:#fff;border-color:#0b57d0}
+  pre{background:#0f1115;color:#e8e8e8;padding:12px;border-radius:10px;overflow:auto}
+  .grid{display:grid;grid-template-columns:1fr;gap:16px}
+  @media(min-width:800px){.grid{grid-template-columns:1fr 1fr 1fr}}
+  .card{border:1px solid #eee;border-radius:14px;padding:16px}
+  small.m{color:#666}
+</style>
+<script>
+function detectOS(){
+  const ua = navigator.userAgent;
+  if (/Windows/i.test(ua)) return 'win';
+  if (/Mac OS X|Macintosh/i.test(ua)) return 'mac';
+  if (/Linux/i.test(ua)) return 'linux';
+  return 'other';
+}
+document.addEventListener('DOMContentLoaded', ()=>{
+  const os = detectOS();
+  document.querySelectorAll('[data-os]').forEach(el=>{
+    el.style.display = (el.dataset.os === os) ? 'block' : 'none';
+  });
+});
+</script>
+</head>
+<body>
+<div class="wrap">
+  <h1>Don’t have Emacs? Try our Starter Kit.</h1>
+  <p class="sub">Runs with an isolated config. No changes to your Emacs settings. One command to remove.</p>
+
+  <div class="cta">
+    <a class="btn primary" href="/downloads/twoe-starter-kit.zip">Download Starter Kit (.zip)</a>
+    <a class="btn" href="/downloads/twoe-starter-kit.sha256">SHA-256</a>
+    <a class="btn" href="#how">How it works</a>
+  </div>
+
+  <h2 id="install">Run it (pick your OS)</h2>
+  <div class="grid">
+    <div class="card" data-os="win" style="display:none">
+      <h3>Windows (PowerShell)</h3>
+      <ol>
+        <li>Download & unzip the Starter Kit.</li>
+        <li>Open <strong>PowerShell</strong> in that folder.</li>
+        <li>Run:</li>
+      </ol>
+      <pre>Unblock-File .\\start-emacs.ps1
+.\start-emacs.ps1</pre>
+      <small class="m">First run fetches the official portable Emacs ZIP to <code>%USERPROFILE%\\.twoe\\emacs-portable</code>.</small>
+    </div>
+
+    <div class="card" data-os="mac" style="display:none">
+      <h3>macOS (Terminal)</h3>
+      <ol>
+        <li>Download & unzip the Starter Kit.</li>
+        <li>Open <strong>Terminal</strong> in that folder.</li>
+        <li>Run:</li>
+      </ol>
+      <pre>chmod +x start-emacs.sh
+./start-emacs.sh</pre>
+      <small class="m">Best-effort DMG launch; if it fails, it will suggest <code>brew install --cask emacs</code>.</small>
+    </div>
+
+    <div class="card" data-os="linux" style="display:none">
+      <h3>Linux (Terminal)</h3>
+      <ol>
+        <li>Download & unzip the Starter Kit.</li>
+        <li>Open a shell in that folder.</li>
+        <li>Run:</li>
+      </ol>
+      <pre>chmod +x start-emacs.sh
+./start-emacs.sh</pre>
+      <small class="m">If Emacs isn’t present, it prints the correct package-manager command for your distro.</small>
+    </div>
+  </div>
+
+  <h2 id="how">What you’ll see</h2>
+  <p>The kit launches Emacs with a separate init directory and opens a short 30‑minute tour. Your existing configuration isn’t touched.</p>
+
+  <h2>Uninstall</h2>
+  <p>Delete everything the kit created:</p>
+  <pre># macOS / Linux
+./uninstall.sh
+
+# Windows (PowerShell)
+.\uninstall.ps1</pre>
+
+  <p><small class="m">This removes <code>~/.twoe</code> (or <code>%USERPROFILE%\\.twoe</code> on Windows), where the kit stores its files.</small></p>
+</div>
+</body>
+</html>
