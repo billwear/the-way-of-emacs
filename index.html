@@ -119,6 +119,24 @@ pre{margin:0; background:#0a0f14; color:#c8d1d9; padding:.9rem 1rem; border-radi
       <a class="btn" href="the-way-of-emacs-recipes.html">Browse recipes</a>
       <a class="btn" href="#">Why Lisp?</a>
     </div>
+    <details style="margin-top:.75rem">
+      <summary style="cursor:pointer;color:#0066cc">Don’t have Emacs?</summary>
+      <div style="margin-top:.5rem; padding:.6rem .7rem; border:1px solid #ececec; border-radius:10px; background:#fff">
+	<strong>Do the tour without installing:</strong>
+	<div style="margin:.4rem 0 .6rem">
+	  <a class="btn" href="/try-emacs">Try in your browser</a>
+	  <a class="btn" href="https://your-cloud-workspace.example">Launch cloud workspace</a>
+	</div>
+	<strong>Prefer local install (2 minutes)?</strong>
+	<ul style="margin:.4rem 0 .2rem 1.1rem">
+	  <li><code>sudo apt install emacs</code> (Ubuntu/Debian)</li>
+	  <li><code>brew install --cask emacs</code> (macOS)</li>
+	  <li><code>choco install emacs</code> (Windows)</li>
+	</ul>
+	Then run: <code>emacs -Q ~/Downloads/emacs-tour/step1.txt</code>
+      </div>
+    </details>
+
   </div>
   <div class="card">
 <pre><code>M-x package-install RET use-package RET
