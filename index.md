@@ -3,12 +3,21 @@ layout: default
 title: home
 ---
 
-# start simple. see everything.
+# the way of emacs
 
-this is a minimal site with no theme and no magic. you control the html, css, and structure.
+emacs is not an editor. it is a way of working — and for some of us,
+a way of thinking.
 
-- edit `_layouts/default.html` to change the chrome
-- edit `assets/css/main.css` to change the look
-- edit this `index.md` to change the home content
+this site is not here to convert you. if you already know emacs,
+you'll find useful things here: configurations, workflows, and honest
+explanations of why things work the way they do.
 
-want a post? there is a sample: [_first post_](/blog/first-post/).
+if you're emacs-curious but intimidated, you're in the right place.
+the goal is to show you that it isn't magic — it's just unix all the
+way down.
+
+no fluff. no religion. just the work.
+
+---
+
+[start with the blog](/blog/) — or go read [about this site](/about/).
