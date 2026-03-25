@@ -4,24 +4,24 @@ title: about
 permalink: /about/
 ---
 
-# about this site
+# About this site
 
-i've been using emacs since before most people on the internet were born.
-not because i'm stubborn — though i am — but because nothing else has
-ever come close to doing what i need, the way i need it done.
+I've been using Emacs since before most people on the Internet were born.
+Not because I'm stubborn — though I am — but because nothing else has
+ever come close to doing what I need, the way I need it done.
 
-this site is where i document what i know. configurations, workflows,
+This site is where I document what I know. configurations, workflows,
 the reasoning behind choices that might look strange until you understand
-them. written for people who want to understand their tools all the way
+them. Written for people who want to understand their tools all the way
 down, not just cargo-cult someone else's setup.
 
-i'm bill wear. retired technical writer and engineer. i've written
-documentation for nasa-adjacent projects, spent six years at canonical,
-and built more systems than i can remember. emacs has been the constant
+I'm Bill Wear. retired technical writer and engineer. I've written
+documentation for NASA-adjacent projects, spent six years at canonical,
+and built more systems than I can remember. Emacs has been the constant
 thread through all of it.
 
-the unix philosophy is not just how i work. it's how i think.
+The Unix philosophy is not just how I work. It's how I think, and how I live.
 
-if something here is useful to you, good. if you want to hire someone
+If something here is useful to you, good. If you want to hire someone
 who can take the most complex technical material and make it accessible
-without dumbing it down — [i'm available](https://billwear.github.io).
+without dumbing it down — [I'm available](https://billwear.github.io).
