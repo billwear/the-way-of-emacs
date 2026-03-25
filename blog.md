@@ -1,10 +1,12 @@
 ---
 layout: default
-title: blog
+title: tutorials
 permalink: /blog/
 ---
+# tutorials
 
-# blog
+practical guides for using emacs in the real world.
+no magic. no handwaving. just the actual steps.
 
 <ul class="post-list">
 {% for post in site.posts %}
