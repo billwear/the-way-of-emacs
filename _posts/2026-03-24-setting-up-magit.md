@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "setting up magit: git inside emacs"
-date: 2026-03-24
+date: 2026-02-18
 ---
 
 # setting up magit: git inside emacs
